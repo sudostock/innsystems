@@ -1,0 +1,38 @@
+#summary Sets goals that are to be met.
+#labels Featured
+
+= Goals =
+
+== By end of Feb ==
+
+ * Settle on a design for the PSO
+ * *Write* the PSO
+ * Determine best way to network the computers
+ * *Write* networking code
+ * Begin testing of the different sections of code
+ * *Write* "Main" program that interfaces with all of the other sections
+ * *Write* "Client" program to be put on remote computers
+
+== By end of March ==
+
+ * Finish testing of all components of the project
+ * Take the collected data and start to run tests with the system as a whole
+ * Debug any errors as fast as possible
+ * Make full blown runs with the system and record data
+ * Run same data on non PSO computer to have control
+ * Write paper
+ * Begin designing presentation
+
+== By State Science Fair ==
+
+ * Have a complete working system with data to show our findings
+ * In depth knowledge of everything about the project so we can field questions
+ 
+
+== Day After? ==
+
+ * *RELAX*
+
+
+
+
