@@ -1,0 +1,27 @@
+#summary Page to keep track of whos doing what.
+#labels Featured
+
+= Developer Assignments =
+
+Assignments will be listed here for things needing to be created and bugs that need to be fixed. Feel free to update this section if you finish a task assigned.
+
+
+= Tasks =
+
+
+*Joel*
+ * Research Particle Swarm Optimization
+ * Configure your IDE to access Google Code
+ * Get with Kevin and discuss PSO
+  # Figure out the best way to split up the PSO code
+
+*Kevin*
+ * Research Particle Swarm Optimization
+ * Configure your IDE to access Google Code
+ * Get with Joel and discuss PSO
+  # Figure out the best way to split up the PSO code
+
+*Alex*
+ * Research Particle Swarm Optimization
+ * Look into Networking with Java
+  # Start writing pseudo code for networking part of program
