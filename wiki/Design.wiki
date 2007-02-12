@@ -1,0 +1,26 @@
+#summary Design/Structure layout.
+#labels Featured,Phase-Design
+
+= Design/Structure =
+
+Shows the design of the current program and the breakdown of the classes.
+
+
+== innsystems ==
+
+=== backpropagation package ===
+
+ * backpropagation.java - This is the main neural networking class, it is generalized so it can handle any data given to it in the correct format
+
+ * Format2.java - This class is going to be rewritten for each type of data that will be tested, while it sounds like a pain in the end it will allow for a generalization of the whole project and then the individual can create there own "Format2.java" class to specify how to handle they data they want to test.
+
+=== pso ===
+
+
+=== networking ===
+
+
+
+
+
+
