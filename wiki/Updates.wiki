@@ -1,0 +1,21 @@
+#summary Project Updates.
+#labels Featured
+
+
+= Project Updates Page =
+
+This page will list updates to the project as they become to be.
+
+
+== To Date ==
+
+ * Backpropagation class - It is now fully functional
+ * Work on the Particle Swarm Optimization has begun
+
+
+
+
+
+
+
+
