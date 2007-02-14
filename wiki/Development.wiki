@@ -14,11 +14,12 @@ Assignments will be listed here for things needing to be created and bugs that n
  * Configure your IDE to access Google Code
  * Get with Kevin and discuss PSO
   # Figure out the best way to split up the PSO code
-
+  # Write pseudo code for PSO
 *Kevin*
  * Research Particle Swarm Optimization
  * Get with Joel and discuss PSO
   # Figure out the best way to split up the PSO code
+  # Write pseudo code for PSO
 
 *Alex*
  * Research Particle Swarm Optimization
