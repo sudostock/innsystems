@@ -17,7 +17,6 @@ Assignments will be listed here for things needing to be created and bugs that n
 
 *Kevin*
  * Research Particle Swarm Optimization
- * Configure your IDE to access Google Code
  * Get with Joel and discuss PSO
   # Figure out the best way to split up the PSO code
 
