@@ -11,7 +11,7 @@ This page will list updates to the project as they become to be.
 
  * Backpropagation class - It is now fully functional
  * Work on the Particle Swarm Optimization has begun
-
+ * Work on the networking classes has begun
 
 
 
