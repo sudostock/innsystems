@@ -16,9 +16,20 @@ Shows the design of the current program and the breakdown of the classes.
 
 === pso ===
 
+ * (no name).java (Data) - Responsible for handling the data and positions of the particles during the run of the PSO
+
+ * (no name).java (Particles) - Keeps a list of all particles, there present variable values and the results of the current run. Also keeps track of the global best, etc
+
+ * (no name).java (Main) - Uses both of the previous class to store data and keep track of the particles. It will take this information to calculate the variables for the next generation of particles and update everything accordingly
+
 
 === networking ===
 
+ * netComm.java - Responsible for sending of data over the networks or general communications
+
+ * netHost.java - Uses netComm and some of it own methods to facilitate the job of "controller" on the network
+
+ * netClient.java - Uses netComm to communicate, placed on all workstations that will be running the PSO, controller tells the client what to do
 
 
 
