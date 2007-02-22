@@ -1,0 +1,53 @@
+Particle Swarm Optimization notes:
+
+adjust position, velocity:
+if presentx[] > pbestx[gbest] then vx[] = vx[] - rand()*g_increment
+if presentx[] < pbestx[gbest] then vx[] = vx[] + rand()*g_increment
+if presenty[] > pbesty[gbest] then vy[] = vy[] - rand()*g_increment
+if presenty[] < pbesty[gbest] then vy[] = vy[] + rand()*g_increment
+
++Each Particle has:
+-memory of their own best position and knowledge of the swarm's best
+
+++Pseudo
+g = global best position;
+xxi = current best position for each particle;
+ 
++initialize positions and velocities of all particles:
+
++adjust positions of particles:
+	new xi= previous xi + vi;
+
++adjust velocities of particles:
+	new vi= (w)vi + c1r1 o (g-xi) + c2r2 o (g-xi)
+	-where w is an inertial constant. Good values are usually slightly less than 1,
+	-c1 and c2 are constants that say how much the particle is directed towards 
+	 good positions. They represent a "cognitive" and a "social" component, 
+	 respectively, in that they affect how much the particle's personal best 
+	 and the global best (respectively) influence its movement.
+	-r1 and r2 are two random vectors with each compenent generally a uniform 
+	 random number between 0 and 1
+	-and the o operator indicates element-by-element multiplication 
+	-MAximum velocity
++Pseudo for adjusting velocity and position:
+
+       -for I = 1 to number of particles n do
+	   for J=1 to number of dimensions m do
+	     R1=uniform random number
+	     R2=uniform random number
+	     V[I][J]=w*V[I][J]
+	            +C1*R1*(P[I][J]-X[I][J])
+	            +C2*R2*(G[I][J]-X[I][J])
+	   enddo
+	   X[I][J] = X[I][J]+V[I][J]
+	 enddo	
+
+
+
+
+
+
+
+
+
+
