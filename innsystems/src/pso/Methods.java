@@ -12,23 +12,36 @@ package pso;
 /**
  * 
  * @author Kevin Beale
+ *
  */
 public class Methods {
     //minimum # of Input and Hidden neurons, x and y values
     private final int I = 2;
     private final int H = 3;
+    private final int num_line_particles = 10;
+    private final int random_factor = 25;
     /** Creates a new instance of Methods */
     public Methods() {
     }
    
-    public double setPosition(int pnum, int dim, int n){
-        int x=((pnum+1)*(dim+1)*(n+1));
-        int q=0;
-        return q;
+    public double setPosition(int n, int dim){
+        int x = (n+1)*(n+1)*(dim+1);
+        int j = (n+1)*5;
+        int pos=0;
+        
+        if(n < num_line_particles) {
+            pos = j;     
+        }else{
+            pos = (int)(Math.random()*random_factor);
+        }
+        if(x%3==0){
+            pos = (n+1);
+        }
+        return pos;
     }
     
-   public void initilialize(int num_particles, int radius){
-       //x=input neurons, y=hidden neurons, z=learn rate
+   public void initialize(int num_particles, int radius){
+       //x=input neurons, y=hidden neurons, z=learn rate, 
        double w=0, x=0, y=0, z=0;
        int r=0;
        
@@ -37,14 +50,16 @@ public class Methods {
        for(int i=0; i<num_particles; i++){
            for (int j=0; j<4; j++)coordinates[i][j]=0;
        }
+       
        //initialize particle positions
        for(int a=0; a<num_particles; a++){
            //*dimension adjusting functionality to be included after initial project completion
            for(int b=0; b<4; b++){
-              coordinates[a][b]= setPosition(a,b,r);
+              coordinates[a][b]= setPosition(a,b);
             }
-           r++;
        }
+       
+       
     }
    
    public void assign_neighbors(){
@@ -59,12 +74,12 @@ public class Methods {
        
    }
    
-   public void calcutate_fitness(){
+   public void calculate_fitness(){
        
    }
    
    public void constrict(){
-       
+       //"constricts" velocity and fitness values to within a certain range
    }
    
    public void calculate_best(){
