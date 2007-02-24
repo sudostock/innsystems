@@ -121,7 +121,7 @@ public class Particles {
     public double[] getNeighbors(int particle){
         double[] neighbors = new double[(int)numNeighbors];
         for (int i = 12; i < numNeighbors+13; i++){
-             neighbors[i-12] = hive[particle][i];
+            neighbors[i-12] = hive[particle][i];
         }
         return neighbors;
     }
