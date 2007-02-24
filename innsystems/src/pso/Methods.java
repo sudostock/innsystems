@@ -20,6 +20,9 @@ public class Methods {
     private final int H = 3;
     private final int num_line_particles = 10;
     private final int random_factor = 25;
+    private final double inertial = .8;
+    private final double independence = .45;
+    private final double social = .5;
     /** Creates a new instance of Methods */
     public Methods() {
     }
@@ -58,23 +61,19 @@ public class Methods {
             }
             P.setPosition(a,coordinates);
         }
-        
-        //initialize particle velocities
-        double velocity[];
-        for(int k=0; k<num_particles; k++){
-            velocity = new double[3];
-            for(int l=0; l<3; l++){
-                velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
-            }
-            P.setVelocity(k, velocity);
-        }
-    }
-    
-    
-    
-    
-    
-    public void assign_neighbors(Particles part){
+       
+       //initialize particle velocities
+       double velocity[]; 
+       for(int k=0; k<num_particles; k++){
+          velocity = new double[3];
+           for(int l=0; l<3; l++){
+               velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
+           }
+          P.setVelocity(k, velocity);
+       }
+   }
+   
+   public void assign_neighbors(Particles part){
         int neighborhood_size=part.getnumNeighbors();
         for(int i = 0; i < part.getnumParticles() + 1; i++){
             int[] neighbors = new int[neighborhood_size];
@@ -101,21 +100,47 @@ public class Methods {
         }
     }
     
-    public void adjust_velocity(int num_particles){
-        double velocity[][]=new double[num_particles][3];//dimensions=3
+    public void adjust_velocity(int num_particles, Particles P){
         
+        for(int a = 0; a<num_particles; a++){
+            double velocity[] = P.getVelocity(a);
+            double nvelocity[]= new double[3]; 
+            double pos[]= P.getPosition(a);
+            double pbest[]= P.getpBest(a);
+            double nbest[]= P.getnBest();
+            double gbest[]= P.getgBest();
+            
+            for(int b=0; b<3; b++){
+                if(b%2==0){
+                //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
+                double delta = velocity[b]+independence*Math.random()*(pbest[b]-pos[b])+social*Math.random()*(nbest[b]-pos[b]+gbest[b]-pos[b])/2;
+                nvelocity[b]= inertial*velocity[b] + delta;
+                }else{
+                      //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
+                double delta = (int)(velocity[b]+independence*Math.random()*(pbest[b]-pos[b])+social*Math.random()*(nbest[b]-pos[b]+gbest[b]-pos[b])/2);
+                nvelocity[b]= inertial*velocity[b] + delta;
+                }
+              
+                //(inertial*velocity[b]+independence*Math.random())
+            }
+            P.setVelocity(a,nvelocity);
+        } 
     }
     
     public void calculate_fitness(){
         
     }
     
-    public void constrict(){
-        //"constricts" velocity and fitness values to within a certain range
+    public void constrict_xy(){
+        //"constricts" velocity and fitness values to within a certain range >>"delta"
         
     }
     
-    public void calculate_best(){
+    public void constrict_z(){
+        
+    }
+    
+    public void calculate_best(){//global, neighborhood, and personal
         
     }
     
