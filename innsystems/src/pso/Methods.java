@@ -24,7 +24,7 @@ public class Methods {
     public Methods() {
     }
     
-    public double setPosition(int n, int dim){
+    private double setPosition(int n, int dim){
         int x = (n+1)*(n+1)*(dim+1);
         int j = (n+1)*5;
         int pos=0;
@@ -40,34 +40,37 @@ public class Methods {
         return pos;
     }
     
-    public void initialize(int num_particles){
-        //x=input neurons, y=hidden neurons, z=learn rate,
-        double w=0, x=0, y=0, z=0;
-        int r=0;
-        
-        double coordinates[][] = new double[num_particles][3];
-        //initialize coordinates[][]
-        for(int i=0; i<num_particles; i++){
-            for (int j=0; j<3; j++)coordinates[i][j]=0;
-        }
-        
-        //initialize particle positions
-        for(int a=0; a<num_particles; a++){
-            //*dimension adjusting functionality to be included after initial project completion
-            for(int b=0; b<3; b++){
-                coordinates[a][b]= setPosition(a,b);
+   public void initialize_Postition(Particles P, int num_particles){
+       //x=input neurons, y=hidden neurons, z=learn rate, 
+       double w=0, x=0, y=0, z=0;
+       int r=0;
+       
+       double coordinates[] = new double[3];
+       //initialize coordinates[][]
+       for (int j=0; j<3; j++)coordinates[j]=0;
+     
+       
+       //initialize particle positions
+       for(int a=0; a<num_particles; a++){
+           //*dimension adjusting functionality to be included after initial project completion
+           for(int b=0; b<3; b++){
+              coordinates[b]= setPosition(a,b);
             }
+           P.addPosition(a,coordinates);
         }
-        
-       //initialize particle velocities
-       double velocity[][] = new double[num_particles][3];
-       for(int k=0; k<num_particles; k++){
-           for(int l=0; l<3; l++){
-               velocity[k][l] = Math.random();//sets i,j,and k velocity components to random numbers
-           }
-       }
-        
     }
+   
+   public void initialize_Velocity(Particles P, int num_particles){
+       //initialize particle velocities
+       double velocity[]; 
+       for(int k=0; k<num_particles; k++){
+          velocity = new double[3];
+           for(int l=0; l<3; l++){
+               velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
+           }
+          P.addVelocity(k, velocity);
+       }
+   }
     
     public void assign_neighbors(Particles part){
         int neighborhood_size=part.getnumNeighbors();
