@@ -101,7 +101,7 @@ public class Particles {
         return hive[particle][11];
     }
     //sets all the initial data for one particle.
-    public void addAll(int particle, double[] position, double[] velocity, double fitness, double tFitness, double pBest, double[] neighbors){
+    public void addAll(int particle, double[] position, double[] velocity, double fitness, double tFitness, double pBest, int[] neighbors){
         addPosition(particle, position);
         addVelocity(particle, velocity);
         hive[particle][9] = fitness;
@@ -110,7 +110,7 @@ public class Particles {
         addNeighbors(particle, neighbors);
     }
     //set neighbors
-    public void addNeighbors(int particle, double[] neighbors){
+    public void addNeighbors(int particle, int[] neighbors){
         for (int i = 12; i < numNeighbors+12; i++){
             hive[particle][i] = neighbors[i-12];
         }
