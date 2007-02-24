@@ -30,6 +30,7 @@ public class netHost implements netComm {
     }
 
     public boolean connect(byte[] ip_address, int port) {
+        return true;
     }
 
     public void sendData(byte[] data, int length) {

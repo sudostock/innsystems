@@ -40,39 +40,39 @@ public class Methods {
         return pos;
     }
     
-   public void initialize(Particles P, int num_particles){
-       //x=input neurons, y=hidden neurons, z=learn rate, 
-       double w=0, x=0, y=0, z=0;
-       int r=0;
-       
-       double coordinates[] = new double[3];
-       //initialize coordinates[][]
-       for (int j=0; j<3; j++)coordinates[j]=0;
-     
-       
-       //initialize particle positions
-       for(int a=0; a<num_particles; a++){
-           //*dimension adjusting functionality to be included after initial project completion
-           for(int b=0; b<3; b++){
-              coordinates[b]= setPosition(a,b);
+    public void initialize(Particles P, int num_particles){
+        //x=input neurons, y=hidden neurons, z=learn rate,
+        double w=0, x=0, y=0, z=0;
+        int r=0;
+        
+        double coordinates[] = new double[3];
+        //initialize coordinates[][]
+        for (int j=0; j<3; j++)coordinates[j]=0;
+        
+        
+        //initialize particle positions
+        for(int a=0; a<num_particles; a++){
+            //*dimension adjusting functionality to be included after initial project completion
+            for(int b=0; b<3; b++){
+                coordinates[b]= setPosition(a,b);
             }
-           P.addPosition(a,coordinates);
+            P.addPosition(a,coordinates);
         }
-       
-       //initialize particle velocities
-       double velocity[]; 
-       for(int k=0; k<num_particles; k++){
-          velocity = new double[3];
-           for(int l=0; l<3; l++){
-               velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
-           }
-          P.addVelocity(k, velocity);
-       }
-   }
-   
-   
-       
-   
+        
+        //initialize particle velocities
+        double velocity[];
+        for(int k=0; k<num_particles; k++){
+            velocity = new double[3];
+            for(int l=0; l<3; l++){
+                velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
+            }
+            P.addVelocity(k, velocity);
+        }
+    }
+    
+    
+    
+    
     
     public void assign_neighbors(Particles part){
         int neighborhood_size=part.getnumNeighbors();
@@ -89,8 +89,16 @@ public class Methods {
         }
     }
     
-    public void adjust_position(){
-        
+    public void adjust_position(Particles p){
+        for (int i = 0; i < p.getnumParticles(); i++){
+            double[] posit = p.getPosition(i);
+            double[] vel = p.getVelocity(i);
+            double[] newpos = new double[3];
+            newpos[0] = posit[0]+vel[0];
+            newpos[1] = posit[1]+vel[1];
+            newpos[2] = posit[2]+vel[2];
+            p.addPosition(i, newpos);
+        }
     }
     
     public void adjust_velocity(int num_particles){
