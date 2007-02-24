@@ -56,7 +56,7 @@ public class Methods {
             for(int b=0; b<3; b++){
                 coordinates[b]= setPosition(a,b);
             }
-            P.addPosition(a,coordinates);
+            P.setPosition(a,coordinates);
         }
         
         //initialize particle velocities
@@ -66,7 +66,7 @@ public class Methods {
             for(int l=0; l<3; l++){
                 velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
             }
-            P.addVelocity(k, velocity);
+            P.setVelocity(k, velocity);
         }
     }
     
@@ -97,7 +97,7 @@ public class Methods {
             newpos[0] = posit[0]+vel[0];
             newpos[1] = posit[1]+vel[1];
             newpos[2] = posit[2]+vel[2];
-            p.addPosition(i, newpos);
+            p.setPosition(i, newpos);
         }
     }
     
