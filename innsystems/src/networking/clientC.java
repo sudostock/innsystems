@@ -1,7 +1,7 @@
 /*
- * hostBC.java
+ * clientC.java
  *
- * Created on February 24, 2007, 2:43 PM
+ * Created on February 24, 2007, 4:21 PM
  *
  *
  */
@@ -11,36 +11,32 @@ package networking;
 import java.io.*;
 import java.net.*;
 
-
 /**
- * Class that creates a thread to listen for broadcast pings, store clientips
- * and return the server ip to the client then listen
+ * Creates a thread that listens for incoming data from the host controller then
+ * passes the connection to the main program to retrieve the data in the stream
  *
  * @author Alex Filby
  * @version 0.0.1 2/24/07
  */
-public class hostBC implements Runnable {
-    private static boolean listen;
-    private byte[] serverip;
+
+public class clientC implements Runnable {
+    private final int portListen = netComm.clientListen;
     private ServerSocket sock;
-    private final int portListen = netComm.hostListen;
+    public static boolean listen;
     
-    public hostBC(byte[] serverip) {
-        this.serverip = serverip;
-        Thread t = new Thread(this);
-        t.run();
+    public clientC() {
+        
     }
-    
+
     public void run() {
         try{
             sock = new ServerSocket(portListen);
             listen = true;
-            System.out.println("Host Listening on port 7776...");
+            System.out.println("Client Listening on port 7777...");
         }catch(IOException e) {
             e.printStackTrace();
         }
         while(listen) {
-            System.out.println("here");
             try {
                 Socket s = sock.accept();
                 // Pass socket to another class to deal with sending data back
@@ -53,9 +49,6 @@ public class hostBC implements Runnable {
         
     }
     
-    public void stop() {
-        listen = false;
-        System.out.println("done");
-    }
+    
     
 }

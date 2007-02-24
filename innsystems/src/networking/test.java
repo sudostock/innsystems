@@ -26,17 +26,11 @@ public class test {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws UnknownHostException {
-        InetAddress net = InetAddress.getLocalHost();
-        System.out.println(net);
-        System.out.println(net.getAddress());
-        System.out.println(net.toString());
-        byte[] test = new byte[net.getAddress().length];
-        test = net.getAddress();
-        System.out.println(test.toString());
-        
-        InetAddress net2 = InetAddress.getByAddress(test);
-        System.out.println(net2);
-        System.out.println(net2.getAddress());
+        byte[] serverIP = new byte[4];
+        hostBC bc = new hostBC(serverIP);
+        System.out.println("Started thread");
+        bc.stop();
+        System.out.println("stopped the fucker");
         
         
     }

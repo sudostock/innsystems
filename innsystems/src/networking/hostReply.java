@@ -32,7 +32,7 @@ public class hostReply implements Runnable{
         try{
             sock = new ServerSocket(portListen);
             listen = true;
-            System.out.println("Host Listening on port 7776...");
+            System.out.println("Host Listening on port 7778...");
         }catch(IOException e) {
             e.printStackTrace();
         }
