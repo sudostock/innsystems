@@ -108,6 +108,7 @@ public class Particles {
         p[0] = hive[particle][11];
         p[1] = hive[particle][12];
         p[2] = hive[particle][13];
+        return p;
     }
     //sets all the initial data for one particle.
     public void setAll(int particle, double[] position, double[] velocity, double fitness, double tFitness, double[] pBest, int[] neighbors){
