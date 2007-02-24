@@ -12,6 +12,7 @@
  * Begin testing of the different sections of code
  * *Write* "Main" program that interfaces with all of the other sections
  * *Write* "Client" program to be put on remote computers
+ * Get approval from jellis.
 
 == By end of March ==
 
@@ -32,7 +33,6 @@
 == Day After? ==
 
  * *RELAX*
-
 
 
 
