@@ -12,16 +12,14 @@ Assignments will be listed here for things needing to be created and bugs that n
 *Joel*
  * Research Particle Swarm Optimization
  * Configure your IDE to access Google Code
- * Figure out the best way to split up the PSO code
  * Look at this site: http://clerc.maurice.free.fr/pso/Minimal/Minimal.htm
- * Write pseudo code for PSO
+ * Write Particles class for PSO
+ * Help Kevin with Methods class
 *Kevin*
  * Research Particle Swarm Optimization
- * Figure out the best way to split up the PSO code
- * Write pseudo code for PSO
+ * Write Methods class for PSO
 *Alex*
  * Research Particle Swarm Optimization
  * Look into Networking with Java
  * Look at this site: http://clerc.maurice.free.fr/pso/Minimal/Minimal.htm
-
-  # Start writing pseudo code for networking part of program
+ * Write network code
