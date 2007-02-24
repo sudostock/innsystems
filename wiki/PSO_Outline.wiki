@@ -1,0 +1,22 @@
+# Brief outline of the PSO classes.
+
+= PSO =
+
+= Particles Class =
+
+ * Previous position
+ * Current position
+  * (x,y,z) 3D Space
+ * Velocity
+  * (u,v,w) Vector
+ * Fitness
+  * Error, epochs
+ * pBest
+ * nBest
+ * gBest
+ * Previous error (?)
+ * Neighborhood
+  * number of particles
+
+
+
