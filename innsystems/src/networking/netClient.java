@@ -16,10 +16,16 @@ import java.net.*;
  * @author Alex Filby
  * @version 0.0.1 2/14/07
  */
-public class netClient {
+public class netClient implements netComm {
     
     
     public netClient() {
+    }
+
+    public boolean connect(byte[] ip_address, int port) {
+    }
+
+    public void sendData(byte[] data, int length) {
     }
     
 }

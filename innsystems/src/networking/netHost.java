@@ -19,9 +19,15 @@ import java.net.*;
  */
 
 
-public class netHost {
+public class netHost implements netComm {
     
     public netHost() {
+    }
+
+    public boolean connect(byte[] ip_address, int port) {
+    }
+
+    public void sendData(byte[] data, int length) {
     }
     
 }
