@@ -18,7 +18,7 @@
  * Neighborhood
   * number of particles
 
-= Data Class =
+= Methods Class =
 
  * initialize positions and velocities
  * fitness function
