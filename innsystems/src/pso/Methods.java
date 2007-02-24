@@ -40,7 +40,7 @@ public class Methods {
         return pos;
     }
     
-   public void initialize_Postition(Particles P, int num_particles){
+   public void initialize(Particles P, int num_particles){
        //x=input neurons, y=hidden neurons, z=learn rate, 
        double w=0, x=0, y=0, z=0;
        int r=0;
@@ -58,9 +58,7 @@ public class Methods {
             }
            P.addPosition(a,coordinates);
         }
-    }
-   
-   public void initialize_Velocity(Particles P, int num_particles){
+       
        //initialize particle velocities
        double velocity[]; 
        for(int k=0; k<num_particles; k++){
@@ -71,6 +69,10 @@ public class Methods {
           P.addVelocity(k, velocity);
        }
    }
+   
+   
+       
+   
     
     public void assign_neighbors(Particles part){
         int neighborhood_size=part.getnumNeighbors();
