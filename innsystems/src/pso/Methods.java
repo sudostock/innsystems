@@ -63,7 +63,7 @@ public class Methods {
     }
    
    public void assign_neighbors(Particles part){
-       neighborhood_size=part.getnumNeighbors();
+       int neighborhood_size=part.getnumNeighbors();
    }
    
    public void adjust_position(){
