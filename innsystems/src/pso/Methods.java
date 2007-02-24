@@ -20,6 +20,7 @@ public class Methods {
     private final int H = 3;
     private final int num_line_particles = 10;
     private final int random_factor = 25;
+    private final int neighborhood_size = 4;
     /** Creates a new instance of Methods */
     public Methods() {
     }
@@ -38,8 +39,6 @@ public class Methods {
             if(x%3==0)pos = (int)(Math.random()*random_factor/5);
             
         }
-        
-        
         return pos;
     }
     
