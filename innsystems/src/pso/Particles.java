@@ -6,6 +6,7 @@ package pso;
  */
 public class Particles {
     private int numParticles;
+    private int depth;
     private double[][] hive; //needs renaming
     private double nBest;
     private double gBest;
@@ -19,16 +20,16 @@ public class Particles {
     public Particles(int inParticles, int neighbors){
         hive = new double[inParticles][12+neighbors];
         numNeighbors = neighbors;
+        numParticles = inParticles;
+        depth = 12+neighbors;
     }
     //creates the array for storing n particles and sets one particle
-    public Particles(int inParticles, int neighbors, int particle, double[] position, double[] velocity, double fitness, double tFitness, double pBest){
+    public Particles(int inParticles, int particle, int neighbors, double[] position, double[] velocity, double fitness, double tFitness, double pBest){
         hive = new double[inParticles][12 + neighbors];
         hive[particle][0] = position[0];
         hive[particle][1] = position[1];
         hive[particle][2] = position[2];
-        hive[particle][6] = velocity[0];
-        hive[particle][7] = velocity[1];
-        hive[particle][8] = velocity[2];
+        addVelocity(particle, velocity);
         hive[particle][9] = fitness;
         hive[particle][10] = tFitness;
         hive[particle][11] = pBest;
@@ -57,7 +58,7 @@ public class Particles {
     public double[] getPrevPosition(int particle){
         double[] coord = new double[3];
         for (int i = 3; i < 6; i++){
-            coord[i] = hive[particle][i];
+            coord[i-3] = hive[particle][i];
         }
         return coord;
     }
@@ -71,7 +72,7 @@ public class Particles {
     public double[] getVelocity(int particle){
         double[] coord = new double[3];
         for (int i = 6; i < 9; i++){
-            coord[i] = hive[particle][i];
+            coord[i-6] = hive[particle][i];
         }
         return coord;
     }
@@ -100,20 +101,17 @@ public class Particles {
         return hive[particle][11];
     }
     //sets all the initial data for one particle.
-    public void addAll(int inParticles, int particle, double[] position, double[] velocity, double fitness, double tFitness, double pBest){
-        hive[particle][0] = position[0];
-        hive[particle][1] = position[1];
-        hive[particle][2] = position[2];
-        hive[particle][6] = velocity[0];
-        hive[particle][7] = velocity[1];
-        hive[particle][8] = velocity[2];
+    public void addAll(int particle, double[] position, double[] velocity, double fitness, double tFitness, double pBest, double[] neighbors){
+        addPosition(particle, position);
+        addVelocity(particle, velocity);
         hive[particle][9] = fitness;
         hive[particle][10] = tFitness;
         hive[particle][11] = pBest;
+        addNeighbors(particle, neighbors);
     }
     //set neighbors
     public void addNeighbors(int particle, double[] neighbors){
-        for (int i = 12; i < numNeighbors+13; i++){
+        for (int i = 12; i < numNeighbors+12; i++){
             hive[particle][i] = neighbors[i-12];
         }
     }
@@ -124,5 +122,15 @@ public class Particles {
             neighbors[i-12] = hive[particle][i];
         }
         return neighbors;
+    }
+    
+    //Print out the entire matrix
+    public void debug(){
+        for (int i = 0; i < numParticles; i++){
+            for (int j = 0; j < depth; j++){
+                System.out.print(hive[i][j] + ",  ");
+            }
+            System.out.println();
+        }
     }
 }
