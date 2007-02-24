@@ -31,12 +31,15 @@ public class Methods {
         
         if(n < num_line_particles) {
             pos = j;     
+            if(x%3==0)pos = (n+1);
+            
         }else{
             pos = (int)(Math.random()*random_factor);
+            if(x%3==0)pos = (int)(Math.random()*random_factor/5);
+            
         }
-        if(x%3==0){
-            pos = (n+1);
-        }
+        
+        
         return pos;
     }
     
@@ -48,13 +51,13 @@ public class Methods {
        double coordinates[][] = new double[num_particles][3];
        //initialize coordinates[][]
        for(int i=0; i<num_particles; i++){
-           for (int j=0; j<4; j++)coordinates[i][j]=0;
+           for (int j=0; j<3; j++)coordinates[i][j]=0;
        }
        
        //initialize particle positions
        for(int a=0; a<num_particles; a++){
            //*dimension adjusting functionality to be included after initial project completion
-           for(int b=0; b<4; b++){
+           for(int b=0; b<3; b++){
               coordinates[a][b]= setPosition(a,b);
             }
        }
