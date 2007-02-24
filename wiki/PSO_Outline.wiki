@@ -20,7 +20,7 @@
 
 = Methods Class =
 
- * intialize()
+ * initialize()
   * initialize positions and velocities
  * fitness function
   * calculate fitness using epochs, error
