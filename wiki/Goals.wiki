@@ -28,11 +28,12 @@
 
  * Have a complete working system with data to show our findings
  * In depth knowledge of everything about the project so we can field questions
+ * Run profiler
+ * !!Optimize!!
  
 
 == Day After? ==
 
  * *RELAX*
-
 
 
