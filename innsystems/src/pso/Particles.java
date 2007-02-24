@@ -10,7 +10,7 @@ public class Particles {
     private double[][] hive; //needs renaming
     private double nBest;
     private double gBest;
-    private double numNeighbors;
+    private int numNeighbors;
     
     
     public Particles() {
@@ -123,7 +123,12 @@ public class Particles {
         }
         return neighbors;
     }
-    
+    public int getnumParticles(){
+        return numParticles;
+    }
+    public int getnumNeighbors(){
+        return numNeighbors;
+    }
     //Print out the entire matrix
     public void debug(){
         for (int i = 0; i < numParticles; i++){
