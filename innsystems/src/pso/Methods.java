@@ -59,6 +59,13 @@ public class Methods {
             }
         }
         
+       //initialize particle velocities
+       double velocity[][] = new double[num_particles][3];
+       for(int k=0; k<num_particles; k++){
+           for(int l=0; l<3; l++){
+               velocity[k][l] = Math.random();//sets i,j,and k velocity components to random numbers
+           }
+       }
         
     }
    
@@ -71,7 +78,8 @@ public class Methods {
    }
    
    public void adjust_velocity(int num_particles){
-       double velocity[][]=new double[num_particles][3];//dimensions=3
+       //double velocity[][] = new double[num_particles][3];//dimensions=3
+       //velocity has i, j, and k components
        
    }
    
