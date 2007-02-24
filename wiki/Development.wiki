@@ -12,7 +12,6 @@ Assignments will be listed here for things needing to be created and bugs that n
 *Joel*
  * Research Particle Swarm Optimization
  * Configure your IDE to access Google Code
- * Look at this site: http://clerc.maurice.free.fr/pso/Minimal/Minimal.htm
  * Write Particles class for PSO
  * Help Kevin with Methods class
 *Kevin*
