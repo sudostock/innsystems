@@ -21,13 +21,26 @@ import java.net.*;
 
 public class netHost implements netComm {
     
+    private InetAddress clientList[];
+    private InetAddress serverIp;
+    
+    
     public netHost() {
+    
     }
 
     public boolean connect(byte[] ip_address, int port) {
     }
 
     public void sendData(byte[] data, int length) {
+    }
+    
+    public void listenBC() {
+        
+    }
+    
+    public void listenReply() {
+        
     }
     
 }
