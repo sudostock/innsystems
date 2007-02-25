@@ -19,24 +19,23 @@ public class Particles {
     }
     //creates the array for storing n particles
     public Particles(int inParticles, int neighbors){
-        hive = new double[inParticles][18+neighbors];
+        hive = new double[inParticles][16+neighbors];
         numNeighbors = neighbors;
         numParticles = inParticles;
-        depth = 18+neighbors;
+        depth = 16+neighbors;
         
     }
     //creates the array for storing n particles and sets one particle
     public Particles(int inParticles, int particle, int neighbors, double[] position, double[] velocity, double fitness, double tFitness, double[] pBest){
-        hive = new double[inParticles][18 + neighbors];
+        hive = new double[inParticles][16 + neighbors];
         hive[particle][0] = position[0];
         hive[particle][1] = position[1];
         hive[particle][2] = position[2];
         setVelocity(particle, velocity);
         hive[particle][9] = fitness;
-        hive[particle][10] = tFitness;
-        hive[particle][11] = pBest[0];
-        hive[particle][12] = pBest[1];
-        hive[particle][13] = pBest[2];
+        hive[particle][10] = pBest[0];
+        hive[particle][11] = pBest[1];
+        hive[particle][12] = pBest[2];
         numNeighbors = neighbors;
     }
     //sets the current position, if there is already a current position, sets it as previous position
@@ -87,26 +86,18 @@ public class Particles {
     public double getFitness(int particle){
         return hive[particle][9];
     }
-    //sets the fitness in terms of epochs
-    public void settFitness(int particle, double tFitness){
-        hive[particle][10] = tFitness;
-    }
-    //gets the fitness in terms of epochs
-    public double gettFitness(int particle){
-        return hive[particle][10];
-    }
     //sets the personal best for this particle
     public void setpBest(int particle, double[] pBest){
-        hive[particle][11] = pBest[0];
-        hive[particle][12] = pBest[1];
-        hive[particle][13] = pBest[2];
+        hive[particle][10] = pBest[0];
+        hive[particle][11] = pBest[1];
+        hive[particle][12] = pBest[2];
     }
     //gets the personal best for this particle
     public double[] getpBest(int particle){
         double[] p = new double[3];
-        p[0] = hive[particle][11];
-        p[1] = hive[particle][12];
-        p[2] = hive[particle][13];
+        p[0] = hive[particle][10];
+        p[1] = hive[particle][11];
+        p[2] = hive[particle][12];
         return p;
     }
     //sets all the initial data for one particle.
@@ -114,36 +105,35 @@ public class Particles {
         setPosition(particle, position);
         setVelocity(particle, velocity);
         hive[particle][9] = fitness;
-        hive[particle][10] = tFitness;
-        hive[particle][11] = pBest[0];
-        hive[particle][12] = pBest[1];
-        hive[particle][13] = pBest[2];
+        hive[particle][10] = pBest[0];
+        hive[particle][11] = pBest[1];
+        hive[particle][12] = pBest[2];
         setNeighbors(particle, neighbors);
     }
     //set neighbors
     public void setNeighbors(int particle, int[] neighbors){
-        for (int i = 12; i < numNeighbors+12; i++){
-            hive[particle][i] = neighbors[i-12];
+        for (int i = 16; i < numNeighbors+16; i++){
+            hive[particle][i] = neighbors[i-16];
         }
     }
     //get neighbors
     public double[] getNeighbors(int particle){
         double[] neighbors = new double[(int)numNeighbors];
-        for (int i = 12; i < numNeighbors+13; i++){
-            neighbors[i-12] = hive[particle][i];
+        for (int i = 16; i < numNeighbors+16; i++){
+            neighbors[i-16] = hive[particle][i];
         }
         return neighbors;
     }
     public void setnBest(int particle, double[] nBest){
-        hive[particle][14] = nBest[0];
-        hive[particle][15] = nBest[1];
-        hive[particle][16] = nBest[2];
+        hive[particle][13] = nBest[0];
+        hive[particle][14] = nBest[1];
+        hive[particle][15] = nBest[2];
     }
     public double[] getnBest(int particle){
-        double[] nb = new double[4];
-        nb[0] = hive[particle][14];
-        nb[1] = hive[particle][15];
-        nb[2] = hive[particle][16];
+        double[] nb = new double[3];
+        nb[0] = hive[particle][13];
+        nb[1] = hive[particle][14];
+        nb[2] = hive[particle][15];
         return nb;
     }
     

@@ -26,14 +26,14 @@ public class hostBC implements Runnable {
     
     public hostBC() {
         Thread t = new Thread(this);
-        t.run();
+        t.start();
     }
     
     public hostBC(byte[] serverip) {
        // this.serverip = serverip;
         Thread t = new Thread(this);
         stop = false;
-        t.run();
+        t.start();
     }
     
     public void run() {

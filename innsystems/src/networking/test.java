@@ -27,7 +27,7 @@ public class test {
      */
     public static void main(String[] args) throws UnknownHostException, InterruptedException {
         byte[] server = new byte[5];
-        // hostBC bc = new hostBC(server);
+        //Server bc = new Server();
         hostBC bc = new hostBC(server);
         System.out.println("Hello");
         for(int i = 0; i < 10; i++) {
