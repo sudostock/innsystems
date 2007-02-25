@@ -133,7 +133,7 @@ public class Methods {
                     }
                 }else{
                     if(nvelocity[b-1]<-5 || nvelocity[b-1]>5){
-                       nvelocity[b-1]=(int)(5 * Math.random() * Math.pow(-1, (int)10*Math.random()));
+                       nvelocity[b-1]=(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()));
                     }
                 }
             }
@@ -141,15 +141,19 @@ public class Methods {
         } 
     }
     
-    public void calculate_fitness(){
-        
+    public void calculate_fitness(int Epochs, double delta, Particles P, int a){
+        double fitness = Epochs * delta;
+        P.setFitness(a,fitness);
     }
     
-    public void calculate_best(){//global, neighborhood, and personal
-        
+    public void calculate_gbest(Particles P, int num_particles){//global, neighborhood, and personal
+        double fitness[]=new double[num_particles];
+        for(int a=0; a<num_particles; a++){
+            fitness[a]=P.getFitness(a);
+        }
+        for(int b=0; b<num_particles; b++){
+           // if(fitness[b]<P.getFitness(b))
+        }
     }
-    
-    
-    
-    
+ 
 }
