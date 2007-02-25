@@ -9,6 +9,8 @@
 
 package pso;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Kevin Beale
@@ -151,8 +153,13 @@ public class Methods {
         for(int a=0; a<num_particles; a++){
             fitness[a]=P.getFitness(a);
         }
-        for(int b=0; b<num_particles; b++){
-           // if(fitness[b]<P.getFitness(b))
+        Arrays.sort(fitness);
+        for(int b =0; b <num_particles; b++){
+            if(P.getFitness(b)==fitness[0]){
+            double co[]= P.getpBest(b);
+            P.setgBest(co);
+            }
+         break;
         }
     }
  
