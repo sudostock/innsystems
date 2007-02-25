@@ -20,42 +20,53 @@ import java.net.*;
  * @version 0.0.1 2/24/07
  */
 public class hostBC implements Runnable {
-    private static boolean listen;
+    private boolean stop;
     private byte[] serverip;
-    private ServerSocket sock;
     private final int portListen = netComm.hostListen;
     
-    public hostBC(byte[] serverip) {
-        this.serverip = serverip;
+    public hostBC() {
         Thread t = new Thread(this);
         t.run();
     }
     
+    public hostBC(byte[] serverip) {
+       // this.serverip = serverip;
+        Thread t = new Thread(this);
+        stop = false;
+        t.run();
+    }
+    
     public void run() {
+         
+        System.out.println("SERVER ONLINE!!");
         try{
-            sock = new ServerSocket(portListen);
-            listen = true;
-            System.out.println("Host Listening on port 7776...");
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
-        while(listen) {
-            System.out.println("here");
-            try {
-                Socket s = sock.accept();
-                // Pass socket to another class to deal with sending data back
-                s.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            System.out.println("wtf");
+            ServerSocket acceptSocket;
+            acceptSocket = new ServerSocket(7777);
+            System.out.println("Fuck");
+            while(!stop) {
+                try{
+                    acceptSocket.setSoTimeout(10);
+                    System.out.println("hello!!!");
+                    Socket s = acceptSocket.accept();
+                    //Com.fromServer(s);
+                    s.close();
+                }catch(SocketTimeoutException c) {
+                }
+                System.out.println("WTF!!!!");
             }
-            
+        }catch(SocketException e) {
+            e.printStackTrace();
+        }catch(IOException a) {
+            a.printStackTrace();
         }
+        System.out.println("Exiting...");
         
     }
     
-    public void stop() {
-        listen = false;
-        System.out.println("done");
+    /** Stops the server thread */
+    public void stop_Server() {
+        stop = true;
     }
     
 }

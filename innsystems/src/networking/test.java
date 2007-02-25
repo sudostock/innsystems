@@ -25,14 +25,19 @@ public class test {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws UnknownHostException {
-        byte[] serverIP = new byte[4];
-        hostBC bc = new hostBC(serverIP);
-        System.out.println("Started thread");
-        bc.stop();
-        System.out.println("stopped the fucker");
+    public static void main(String[] args) throws UnknownHostException, InterruptedException {
+        byte[] server = new byte[5];
+        // hostBC bc = new hostBC(server);
+        hostBC bc = new hostBC(server);
+        System.out.println("Hello");
+        for(int i = 0; i < 10; i++) {
+            System.out.println("Hello" +i);
+            Thread.sleep(1000);
+        }
         
-        
+        bc.stop_Server();
+        System.out.println("stopping");
+        Thread.sleep(10000);
     }
     
 }
