@@ -21,8 +21,8 @@ public class Methods {
     private final int num_line_particles = 10;
     private final int random_factor = 25;
     private final double inertial = .8;
-    private final double independence = .45;
-    private final double social = .5;
+    private final double independence = .5;
+    private final double social = .4;
     /** Creates a new instance of Methods */
     public Methods() {
     }
@@ -96,8 +96,13 @@ public class Methods {
             newpos[0] = posit[0]+vel[0];
             newpos[1] = posit[1]+vel[1];
             newpos[2] = posit[2]+vel[2];
-            p.setPosition(i, newpos);
-        }
+            for(int j=0; j<3; j++){
+                if(newpos[j]<0){
+                    newpos[j]=Math.abs(7*Math.random())+3;
+                }
+            }
+            p.setPosition(i,newpos);
+        }    
     }
     
     public void adjust_velocity(int num_particles, Particles P){
@@ -107,36 +112,36 @@ public class Methods {
             double nvelocity[]= new double[3]; 
             double pos[]= P.getPosition(a);
             double pbest[]= P.getpBest(a);
-            double nbest[]= P.getnBest();
+            double nbest[]= P.getnBest(a);
             double gbest[]= P.getgBest();
             
-            for(int b=0; b<3; b++){
-                if(b%2==0){
+            for(int b=1; b<4; b++){
+                if(b%3==0){
                 //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                double delta = velocity[b]+independence*Math.random()*(pbest[b]-pos[b])+social*Math.random()*(nbest[b]-pos[b]+gbest[b]-pos[b])/2;
-                nvelocity[b]= inertial*velocity[b] + delta;
+                double delta = velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2;
+                nvelocity[b-1]= inertial*velocity[b-1] + delta;
                 }else{
-                      //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                double delta = (int)(velocity[b]+independence*Math.random()*(pbest[b]-pos[b])+social*Math.random()*(nbest[b]-pos[b]+gbest[b]-pos[b])/2);
-                nvelocity[b]= inertial*velocity[b] + delta;
+                //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
+                double delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
+                nvelocity[b-1]= inertial*velocity[b-1] + delta;
                 }
-              
-                //(inertial*velocity[b]+independence*Math.random())
+            }
+            for(int b=1; b<4; b++){
+                if(b%3==0){
+                    if(nvelocity[b-1]<-5 || nvelocity[b-1]>5){
+                       nvelocity[b-1]=5 * Math.random() * Math.pow(-1, (int)10*Math.random());
+                    }
+                }else{
+                    if(nvelocity[b-1]<-5 || nvelocity[b-1]>5){
+                       nvelocity[b-1]=(int)(5 * Math.random() * Math.pow(-1, (int)10*Math.random()));
+                    }
+                }
             }
             P.setVelocity(a,nvelocity);
         } 
     }
     
     public void calculate_fitness(){
-        
-    }
-    
-    public void constrict_xy(){
-        //"constricts" velocity and fitness values to within a certain range >>"delta"
-        
-    }
-    
-    public void constrict_z(){
         
     }
     

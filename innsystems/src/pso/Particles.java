@@ -45,7 +45,6 @@ public class Particles {
         hive[particle][4] = hive[particle][1];
         hive[particle][5] = hive[particle][2];
         
-        
         hive[particle][0] = position[0];
         hive[particle][1] = position[1];
         hive[particle][2] = position[2];
@@ -139,14 +138,12 @@ public class Particles {
         hive[particle][14] = nBest[0];
         hive[particle][15] = nBest[1];
         hive[particle][16] = nBest[2];
-        hive[particle][17] = nBest[3];
     }
     public double[] getnBest(int particle){
         double[] nb = new double[4];
         nb[0] = hive[particle][14];
         nb[1] = hive[particle][15];
         nb[2] = hive[particle][16];
-        nb[3] = hive[particle][17];
         return nb;
     }
     
