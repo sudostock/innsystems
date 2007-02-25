@@ -146,6 +146,7 @@ public class Methods {
     public void calculate_fitness(int Epochs, double delta, Particles P, int a){
         double fitness = Epochs * delta;
         P.setFitness(a,fitness);
+        if (fitness < P.getFitness(a)) P.setFitness(a, fitness); P.setpBest(a, P.getPosition(a));
     }
     
     public void calculate_gbest(Particles P, int num_particles){//global, neighborhood, and personal
