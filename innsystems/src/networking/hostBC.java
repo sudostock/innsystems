@@ -10,6 +10,7 @@ package networking;
 
 import java.io.*;
 import java.net.*;
+import networking.netHost;
 
 
 /**
@@ -20,40 +21,37 @@ import java.net.*;
  * @version 0.0.1 2/24/07
  */
 public class hostBC implements Runnable {
-    private boolean stop;
+    private boolean listen;
     private byte[] serverip;
+    private ServerSocket sock;
     private final int portListen = netComm.hostListen;
     
     public hostBC() {
         Thread t = new Thread(this);
+        listen = true;
         t.start();
     }
     
     public hostBC(byte[] serverip) {
-       // this.serverip = serverip;
+        // this.serverip = serverip;
         Thread t = new Thread(this);
-        stop = false;
+        listen = true;
         t.start();
     }
     
     public void run() {
-         
+        
         System.out.println("SERVER ONLINE!!");
         try{
-            System.out.println("wtf");
-            ServerSocket acceptSocket;
-            acceptSocket = new ServerSocket(7777);
-            System.out.println("Fuck");
-            while(!stop) {
+            sock = new ServerSocket(portListen);
+            while(listen) {
                 try{
-                    acceptSocket.setSoTimeout(10);
-                    System.out.println("hello!!!");
-                    Socket s = acceptSocket.accept();
-                    //Com.fromServer(s);
+                    sock.setSoTimeout(10);
+                    Socket s = sock.accept();
+                    netHost.fromBC(s);
                     s.close();
                 }catch(SocketTimeoutException c) {
                 }
-                System.out.println("WTF!!!!");
             }
         }catch(SocketException e) {
             e.printStackTrace();
@@ -66,7 +64,7 @@ public class hostBC implements Runnable {
     
     /** Stops the server thread */
     public void stop_Server() {
-        stop = true;
+        listen = false;
     }
     
 }

@@ -26,18 +26,15 @@ public class test {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws UnknownHostException, InterruptedException {
-        byte[] server = new byte[5];
-        //Server bc = new Server();
-        hostBC bc = new hostBC(server);
-        System.out.println("Hello");
+        netHost host = new netHost();
         for(int i = 0; i < 10; i++) {
-            System.out.println("Hello" +i);
-            Thread.sleep(1000);
+            System.out.println(i);
         }
         
-        bc.stop_Server();
-        System.out.println("stopping");
-        Thread.sleep(10000);
+        Thread.sleep(5000);
+        System.out.println("about to exit");
+        host.stop_listenBC();
+        System.out.println("wtf");
     }
     
 }
