@@ -185,6 +185,22 @@ public class Methods {
             break;
         }
     }
+    //Method not complete
+        public void calculate_nbest(){// neighborhood
+        int num_neighbors = P.getnumNeighbors();
+        double fitness[]=new double[num_neighbors];
+        for(int a = 0; a < num_particles; a++){
+            fitness[a]=P.getFitness(a);
+        }
+        Arrays.sort(fitness);
+        for(int b =0; b <num_particles; b++){
+            if(P.getFitness(b)==fitness[0]){
+                double co[]= P.getpBest(b);
+                P.setgBest(co);
+            }
+            break;
+        }
+    }
     
     /** Debug method that returns the particle array contained inside the particles class */
     public void debug() {
