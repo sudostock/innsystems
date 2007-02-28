@@ -3,7 +3,7 @@
  *
  * Created on February 24, 2007, 10:07 AM
  *
- * 
+ *
  */
 
 package pso;
@@ -17,7 +17,11 @@ import java.util.Arrays;
  * !!!!NOTE: MADE CHANGES: I changed this for a method class to one that creates objects
  * The constructor is such that it takes a Particles object and that it. I had to change the methods
  * so they no longer needed to input a Particles object since the pointer is saved inside the methods object
- *  -Alex 
+ *  -Alex
+ * I fixed the assign neighbors class, the setNeighbors method call was missing, also commented out a plus one
+ * it was giving an area out of bounds exception
+ *
+ * I have checked as much as I can understand, you guys will have to perform a more comprehensive check
  *
  */
 public class Methods {
@@ -73,21 +77,25 @@ public class Methods {
             }
             P.setPosition(a,coordinates);
         }
-       
-       //initialize particle velocities
-       double velocity[]; 
-       for(int k=0; k<num_particles; k++){
-          velocity = new double[3];
-           for(int l=0; l<3; l++){
-               velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
-           }
-          P.setVelocity(k, velocity);
-       }
-   }
-   
-   public void assign_neighbors(){
+        
+        //initialize particle velocities
+        double velocity[];
+        for(int k=0; k<num_particles; k++){
+            velocity = new double[3];
+            for(int l=0; l<3; l++){
+                velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
+            }
+            P.setVelocity(k, velocity);
+        }
+    }
+    
+    /* Why there was a plus one Idk, check the output and make sure it wasnt needed
+     * it was giving an array out of bounds exception until I commented it out.
+     * ERROR: It is assigning neighbors one int off, for instance for the 7th particle it is
+     * listing it as 7 instead of 6. */
+    public void assign_neighbors(){
         int neighborhood_size=P.getnumNeighbors();
-        for(int i = 0; i < P.getnumParticles() + 1; i++){
+        for(int i = 0; i < P.getnumParticles()/* + 1*/; i++){
             int[] neighbors = new int[neighborhood_size];
             for (int j = 0; j < neighborhood_size; j++){
                 if (i == 0 && j == 0){
@@ -95,11 +103,12 @@ public class Methods {
                 } else if (i == P.getnumParticles() && (i+j)> P.getnumParticles()){
                     neighbors[j] = (i+j-P.getnumParticles());
                 } else  neighbors[j] = i + j - 1;
-                
+                P.setNeighbors(i, neighbors);
             }
         }
     }
     
+    /* This method works */
     public void adjust_position(){
         for (int i = 0; i < P.getnumParticles(); i++){
             double[] posit = P.getPosition(i);
@@ -109,19 +118,18 @@ public class Methods {
             newpos[1] = posit[1]+vel[1];
             newpos[2] = posit[2]+vel[2];
             for(int j=0; j<3; j++){
-                if(newpos[j]<0){
+                if(newpos[j]<0)
                     newpos[j]=Math.abs(7*Math.random())+3;
-                }
             }
             P.setPosition(i,newpos);
-        }    
+        }
     }
     
     public void adjust_velocity(){
         int num_particles = P.getnumParticles();
         for(int a = 0; a<num_particles; a++){
             double velocity[] = P.getVelocity(a);
-            double nvelocity[]= new double[3]; 
+            double nvelocity[]= new double[3];
             double pos[]= P.getPosition(a);
             double pbest[]= P.getpBest(a);
             double nbest[]= P.getnBest(a);
@@ -129,29 +137,30 @@ public class Methods {
             
             for(int b=1; b<4; b++){
                 if(b%3==0){
-                //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                double delta = velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2;
-                nvelocity[b-1]= inertial*velocity[b-1] + delta;
+                    //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
+                    double delta = velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2;
+                    nvelocity[b-1]= inertial*velocity[b-1] + delta;
                 }else{
-                //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                double delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
-                nvelocity[b-1]= inertial*velocity[b-1] + delta;
+                    //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
+                    double delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
+                    nvelocity[b-1]= inertial*velocity[b-1] + delta;
                 }
             }
             for(int b=1; b<4; b++){
                 if(b%3==0){
                     if(nvelocity[b-1]<-5 || nvelocity[b-1]>5){
-                       nvelocity[b-1]=5 * Math.random() * Math.pow(-1, (int)10*Math.random());
+                        nvelocity[b-1]=5 * Math.random() * Math.pow(-1, (int)10*Math.random());
                     }
                 }else{
                     if(nvelocity[b-1]<-5 || nvelocity[b-1]>5){
-                       nvelocity[b-1]=(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()));
+                        nvelocity[b-1]=(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()));
                     }
                 }
             }
             P.setVelocity(a,nvelocity);
-        } 
+        }
     }
+    
     
     public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = Epochs * delta;
@@ -168,10 +177,10 @@ public class Methods {
         Arrays.sort(fitness);
         for(int b =0; b <num_particles; b++){
             if(P.getFitness(b)==fitness[0]){
-            double co[]= P.getpBest(b);
-            P.setgBest(co);
+                double co[]= P.getpBest(b);
+                P.setgBest(co);
             }
-         break;
+            break;
         }
     }
     
@@ -181,5 +190,5 @@ public class Methods {
     }
     
     //needs calculate_nbest()
- 
+    
 }

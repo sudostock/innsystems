@@ -124,6 +124,8 @@ public class Particles {
         }
         return neighbors;
     }
+    
+    
     public void setnBest(int particle, double[] nBest){
         hive[particle][13] = nBest[0];
         hive[particle][14] = nBest[1];

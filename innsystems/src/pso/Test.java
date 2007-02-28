@@ -13,29 +13,36 @@ public class Test {
     public Test() {
     }
     
- 
- /**************************************************************************/
- /***************** Information *********************************************/
+    
+    /**************************************************************************/
+    /***************** Information *********************************************/
  /* Keep log of test data here, any major errors list on our issue tracker
   * I made changes to the methods class look them over. I tried creating a Particles
   * object and then a methods object from 5 to 10000 particles. It creates and preforms
-  * the calculations in a timely manner... I dont know if its correct so it needs to be 
+  * the calculations in a timely manner... I dont know if its correct so it needs to be
   * checked. */
- 
+    
     public static void main(String[] args) {
-       
+        
         // First test using 5 Particles and 3 Neighbors
-        Particles part = new Particles(5, 3);
+        Particles part = new Particles(7, 3);
         Methods pso = new Methods(part);
         pso.initialize();
         pso.debug();
         System.out.println("___________________");
         System.out.println("\n");
         
-        Particles part1 = new Particles(100000, 3);
-        Methods pso1 = new Methods(part1);
-        pso1.initialize();
-       // pso1.debug();
+        /* Errors present in this method */
+        pso.assign_neighbors();
+        pso.debug();
+        
+        
+        System.out.println("________________");
+        System.out.println("\n\n");
+        
+        /* This method works */
+        pso.adjust_position();
+        pso.debug();
     }
     
 }
