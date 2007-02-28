@@ -153,7 +153,7 @@ public class Particles {
     public void debug(){
         for (int i = 0; i < numParticles; i++){
             for (int j = 0; j < depth; j++){
-                System.out.print(hive[i][j] + ",  ");
+                System.out.print(hive[i][j] + ",\t");
             }
             System.out.println();
         }

@@ -3,8 +3,7 @@
  *
  * Created on February 24, 2007, 10:07 AM
  *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
+ * 
  */
 
 package pso;
@@ -13,7 +12,12 @@ import java.util.Arrays;
 
 /**
  *
- * @author Kevin Beale
+ * @author Kevin Beale, Joel Wolfe
+ *
+ * !!!!NOTE: MADE CHANGES: I changed this for a method class to one that creates objects
+ * The constructor is such that it takes a Particles object and that it. I had to change the methods
+ * so they no longer needed to input a Particles object since the pointer is saved inside the methods object
+ *  -Alex 
  *
  */
 public class Methods {
@@ -25,8 +29,13 @@ public class Methods {
     private final double inertial = .8;
     private final double independence = .5;
     private final double social = .4;
-    /** Creates a new instance of Methods */
-    public Methods() {
+    private final int num_particles;
+    private Particles P;
+    
+    
+    public Methods(Particles particle) {
+        P = particle;
+        num_particles = P.getnumParticles();
     }
     
     private double setPosition(int n, int dim){
@@ -45,7 +54,8 @@ public class Methods {
         return pos;
     }
     
-    public void initialize(Particles P, int num_particles){
+    public void initialize(){
+        int num_particles = P.getnumParticles();
         //x=input neurons, y=hidden neurons, z=learn rate,
         double w=0, x=0, y=0, z=0;
         int r=0;
@@ -75,25 +85,25 @@ public class Methods {
        }
    }
    
-   public void assign_neighbors(Particles part){
-        int neighborhood_size=part.getnumNeighbors();
-        for(int i = 0; i < part.getnumParticles() + 1; i++){
+   public void assign_neighbors(){
+        int neighborhood_size=P.getnumNeighbors();
+        for(int i = 0; i < P.getnumParticles() + 1; i++){
             int[] neighbors = new int[neighborhood_size];
             for (int j = 0; j < neighborhood_size; j++){
                 if (i == 0 && j == 0){
-                    neighbors[j] = part.getnumParticles();
-                } else if (i == part.getnumParticles() && (i+j)> part.getnumParticles()){
-                    neighbors[j] = (i+j-part.getnumParticles());
+                    neighbors[j] = P.getnumParticles();
+                } else if (i == P.getnumParticles() && (i+j)> P.getnumParticles()){
+                    neighbors[j] = (i+j-P.getnumParticles());
                 } else  neighbors[j] = i + j - 1;
                 
             }
         }
     }
     
-    public void adjust_position(Particles p){
-        for (int i = 0; i < p.getnumParticles(); i++){
-            double[] posit = p.getPosition(i);
-            double[] vel = p.getVelocity(i);
+    public void adjust_position(){
+        for (int i = 0; i < P.getnumParticles(); i++){
+            double[] posit = P.getPosition(i);
+            double[] vel = P.getVelocity(i);
             double[] newpos = new double[3];
             newpos[0] = posit[0]+vel[0];
             newpos[1] = posit[1]+vel[1];
@@ -103,12 +113,12 @@ public class Methods {
                     newpos[j]=Math.abs(7*Math.random())+3;
                 }
             }
-            p.setPosition(i,newpos);
+            P.setPosition(i,newpos);
         }    
     }
     
-    public void adjust_velocity(int num_particles, Particles P){
-        
+    public void adjust_velocity(){
+        int num_particles = P.getnumParticles();
         for(int a = 0; a<num_particles; a++){
             double velocity[] = P.getVelocity(a);
             double nvelocity[]= new double[3]; 
@@ -143,13 +153,14 @@ public class Methods {
         } 
     }
     
-    public void calculate_fitness(int Epochs, double delta, Particles P, int a){
+    public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = Epochs * delta;
         P.setFitness(a,fitness);
         if (fitness < P.getFitness(a)) P.setFitness(a, fitness); P.setpBest(a, P.getPosition(a));
     }
     
-    public void calculate_gbest(Particles P, int num_particles){//global, neighborhood, and personal
+    public void calculate_gbest(){//global, neighborhood, and personal
+        int num_particles = P.getnumParticles();
         double fitness[]=new double[num_particles];
         for(int a=0; a<num_particles; a++){
             fitness[a]=P.getFitness(a);
@@ -162,6 +173,11 @@ public class Methods {
             }
          break;
         }
+    }
+    
+    /** Debug method that returns the particle array contained inside the particles class */
+    public void debug() {
+        P.debug();
     }
     
     //needs calculate_nbest()
