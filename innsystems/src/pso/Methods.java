@@ -95,13 +95,14 @@ public class Methods {
      * listing it as 7 instead of 6. */
     public void assign_neighbors(){
         int neighborhood_size=P.getnumNeighbors();
-        for(int i = 0; i < P.getnumParticles()/* + 1*/; i++){
+        for(int i = 0; i < P.getnumParticles(); i++){
             int[] neighbors = new int[neighborhood_size];
             for (int j = 0; j < neighborhood_size; j++){
                 if (i == 0 && j == 0){
-                    neighbors[j] = P.getnumParticles();
-                } else if (i == P.getnumParticles() && (i+j)> P.getnumParticles()){
-                    neighbors[j] = (i+j-P.getnumParticles());
+                        neighbors[j] = P.getnumParticles()-1;
+                }else if ((i+j)> P.getnumParticles()){
+                    System.out.println(i+j);
+                    neighbors[j] = (i+j-1-P.getnumParticles());
                 } else  neighbors[j] = i + j - 1;
                 P.setNeighbors(i, neighbors);
             }
