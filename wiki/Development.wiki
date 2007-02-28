@@ -10,15 +10,15 @@ Assignments will be listed here for things needing to be created and bugs that n
 
 
 *Joel*
- * Research Particle Swarm Optimization
+ * *Write* a simple class to start testing the methods of the Methods class
  * Configure your IDE to access Google Code
- * Write Particles class for PSO
- * Help Kevin with Methods class
+ * Start brainstorming ways stress test the program
+
 *Kevin*
- * Research Particle Swarm Optimization
- * Write Methods class for PSO
+ * *Write* a simple class to start testing the methods of the Methods class
+ * Start brainstorming ways stress test the program
+
 *Alex*
- * Research Particle Swarm Optimization
  * Look into Networking with Java
- * Look at this site: http://clerc.maurice.free.fr/pso/Minimal/Minimal.htm
  * Write network code
+ * Start brainstorming ways stress test the program
