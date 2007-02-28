@@ -99,7 +99,7 @@ public class Methods {
             int[] neighbors = new int[neighborhood_size];
             for (int j = 0; j < neighborhood_size; j++){
                 if (i == 0 && j == 0){
-                        neighbors[j] = P.getnumParticles()-1;
+                    neighbors[j] = P.getnumParticles()-1;
                 }else if ((i+j)> P.getnumParticles()){
                     System.out.println(i+j);
                     neighbors[j] = (i+j-1-P.getnumParticles());
@@ -186,19 +186,23 @@ public class Methods {
         }
     }
     //Method not complete
-        public void calculate_nbest(){// neighborhood
-        int num_neighbors = P.getnumNeighbors();
-        double fitness[]=new double[num_neighbors];
-        for(int a = 0; a < num_particles; a++){
-            fitness[a]=P.getFitness(a);
-        }
-        Arrays.sort(fitness);
-        for(int b =0; b <num_particles; b++){
-            if(P.getFitness(b)==fitness[0]){
-                double co[]= P.getpBest(b);
-                P.setgBest(co);
+    public void calculate_nbest(){// neighborhood
+        int num_particles = P.getnumParticles();
+        double fitness[]=new double[num_particles];
+        for(int a=0; a<num_particles; a++){
+            int num_neighbors = P.getnumNeighbors();
+            for (int b = 0; b < num_neighbors; b++){
+                fitness[b]=P.getFitness(b);
+                
+                Arrays.sort(fitness);
+                for(b = 0; b < num_particles; b++){
+                    if(P.getFitness(b)==fitness[0]){
+                        double co[]= P.getpBest(b);
+                        P.setnBest(a, co);
+                    }
+                    break;
+                }
             }
-            break;
         }
     }
     

@@ -25,7 +25,7 @@ public class Test {
     public static void main(String[] args) {
         
         // First test using 5 Particles and 3 Neighbors
-        Particles part = new Particles(7, 8);
+        Particles part = new Particles(3, 2);
         Methods pso = new Methods(part);
         pso.initialize();
         pso.debug();
@@ -33,8 +33,8 @@ public class Test {
         System.out.println("\n");
         
         /* Errors present in this method */
-        pso.assign_neighbors();
-        pso.debug();
+        //pso.assign_neighbors();
+        //pso.debug();
         
         
         //System.out.println("________________");
@@ -48,9 +48,9 @@ public class Test {
         //System.out.println("\n\n");
         
         /* This method works */
-        //pso.calculate_fitness(1, .1, 0);
-        //pso.calculate_fitness(30, .3, 1);
-      //  pso.debug();
+        pso.calculate_fitness(1, .1, 0);
+        pso.calculate_fitness(30, .3, 1);
+        pso.debug();
     }
     
 }
