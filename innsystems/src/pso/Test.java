@@ -43,6 +43,14 @@ public class Test {
         /* This method works */
         pso.adjust_position();
         pso.debug();
+        
+        System.out.println("_________");
+        System.out.println("\n\n");
+        
+        /* This method works */
+        pso.calculate_fitness(1, .1, 0);
+        pso.calculate_fitness(30, .3, 1);
+        pso.debug();
     }
     
 }

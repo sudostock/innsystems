@@ -162,6 +162,7 @@ public class Methods {
     }
     
     
+    /* Tested: Works */
     public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = Epochs * delta;
         P.setFitness(a,fitness);
