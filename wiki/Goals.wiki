@@ -5,14 +5,15 @@
 
 == By end of Feb ==
 
- * Settle on a design for the PSO
- * *Write* the PSO
- * Determine best way to network the computers
+ * ~~Settle on a design for the PSO~~
+ * ~~*Write* the PSO~~
+ * ~~Determine best way to network the computers~~
  * *Write* networking code
- * Begin testing of the different sections of code
+ * ~~Begin testing of the different sections of code~~
  * *Write* "Main" program that interfaces with all of the other sections
  * *Write* "Client" program to be put on remote computers
- * Get approval from jellis.
+ * ~~!!Get approval from jellis.~~ - NO, DENIED MONEY
+  * SGA will approve if only objection was money
 
 == By end of March ==
 
@@ -35,5 +36,7 @@
 == Day After? ==
 
  * *RELAX*
+
+
 
 
