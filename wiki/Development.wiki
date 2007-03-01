@@ -10,14 +10,13 @@ Assignments will be listed here for things needing to be created and bugs that n
 
 
 *Joel*
- * *Write* a simple class to start testing the methods of the Methods class
+ * Finish testing methods
  * Start brainstorming ways stress test the program
 
 *Kevin*
- * *Write* a simple class to start testing the methods of the Methods class
+ * Finish testing methods
  * Start brainstorming ways stress test the program
 
 *Alex*
- * Look into Networking with Java
- * Write network code
+ * Finish network code
  * Start brainstorming ways stress test the program
