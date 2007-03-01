@@ -26,22 +26,9 @@ public class clientTest {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws UnknownHostException {
-        byte[] buff;
-        buff = "HELLO".getBytes();
-        int length = buff.length;
-        InetAddress server = InetAddress.getByName("228.5.7.7");
-        DatagramPacket packet = new DatagramPacket(buff, length, server, 7776);
-        DatagramSocket sock;
-        clientComm commie = new clientComm();
+        clientComm test = new clientComm();
         try {
-            sock = new DatagramSocket();
-            sock.send(packet);
-            sock.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        try {
-            Thread.sleep(10000);
+            Thread.sleep(20000);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }

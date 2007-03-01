@@ -97,12 +97,12 @@ public class broadcastS implements Runnable {
     private void returnIP(InetAddress client) {
         DatagramSocket sockOut = null;
         try {
-           sockOut = new DatagramSocket();
+            sockOut = new DatagramSocket();
         } catch (SocketException ex) {
             ex.printStackTrace();
         }
         
-        byte[] buff = null;
+        byte[] buff = " ".getBytes();
         int length = buff.length;
         DatagramPacket packet = new DatagramPacket(buff, length, client, 7777);
         System.out.println(client);
