@@ -14,7 +14,8 @@
  * *Write* "Client" program to be put on remote computers
  * ~~!!Get approval from jellis.~~ - NO, DENIED MONEY
   * SGA will approve if only objection was money
-
+ 
+ * *Note: February is over, not all is done*
 == By end of March ==
 
  * Finish testing of all components of the project
@@ -29,6 +30,8 @@
 
  * Have a complete working system with data to show our findings
  * In depth knowledge of everything about the project so we can field questions
+
+== Tentative ==
  * Run profiler
  * !!Optimize!!
  
@@ -36,7 +39,6 @@
 == Day After? ==
 
  * *RELAX*
-
 
 
 
