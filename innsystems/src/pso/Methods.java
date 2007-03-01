@@ -89,10 +89,7 @@ public class Methods {
         }
     }
     
-    /* Why there was a plus one Idk, check the output and make sure it wasnt needed
-     * it was giving an array out of bounds exception until I commented it out.
-     * ERROR: It is assigning neighbors one int off, for instance for the 7th particle it is
-     * listing it as 7 instead of 6. */
+    /* This method works as designed */
     public void assign_neighbors(){
         int neighborhood_size=P.getnumNeighbors();
         for(int i = 0; i < P.getnumParticles(); i++){
@@ -191,13 +188,13 @@ public class Methods {
         double fitness[]=new double[num_particles];
         for(int a=0; a<num_particles; a++){
             int num_neighbors = P.getnumNeighbors();
-            for (int b = 0; b < num_neighbors; b++){
+            for (int b = 0; b<num_neighbors; b++){
                 fitness[b]=P.getFitness(b);
-                
                 Arrays.sort(fitness);
-                for(b = 0; b < num_particles; b++){
-                    if(P.getFitness(b)==fitness[0]){
-                        double co[]= P.getpBest(b);
+                //The for loop below was using 'b' also, which could be what caused the confusion
+                for(int c = 0; c<num_particles; c++){
+                    if(P.getFitness(c)==fitness[0]){
+                        double co[]= P.getpBest(c);
                         P.setnBest(a, co);
                     }
                     break;
