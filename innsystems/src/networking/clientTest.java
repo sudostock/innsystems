@@ -32,6 +32,7 @@ public class clientTest {
         InetAddress server = InetAddress.getByName("228.5.7.7");
         DatagramPacket packet = new DatagramPacket(buff, length, server, 7776);
         DatagramSocket sock;
+        clientComm commie = new clientComm();
         try {
             sock = new DatagramSocket();
             sock.send(packet);
@@ -39,7 +40,11 @@ public class clientTest {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-       
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
     
 }

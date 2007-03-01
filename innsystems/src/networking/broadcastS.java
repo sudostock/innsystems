@@ -26,7 +26,6 @@ public class broadcastS implements Runnable {
     private PipedOutputStream pout;
     
     public broadcastS() {
-        DataOutputStream dout = new DataOutputStream(pout);
         try {
             serverIp = InetAddress.getLocalHost();
             group  = InetAddress.getByName("228.5.7.7");
@@ -65,7 +64,7 @@ public class broadcastS implements Runnable {
                     msg(packet);
                     
                 } catch (SocketTimeoutException ex) {
-                   
+                    
                 }
             }catch(IOException e) {
                 e.printStackTrace();
@@ -86,10 +85,34 @@ public class broadcastS implements Runnable {
         buf = packet.getData();
         System.out.println(buf.toString());
         System.out.println(packet.getAddress());
-        if(buf.toString().equalsIgnoreCase(shake)) {
+        returnIP(packet.getAddress());
+        if(new String(buf).equalsIgnoreCase(shake)) {
             System.out.println("Got the fucking packet!");
+            // Add to list of clients
+            returnIP(packet.getAddress());
         } else
             return;
+    }
+    
+    private void returnIP(InetAddress client) {
+        DatagramSocket sockOut = null;
+        try {
+           sockOut = new DatagramSocket();
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        
+        byte[] buff = null;
+        int length = buff.length;
+        DatagramPacket packet = new DatagramPacket(buff, length, client, 7777);
+        System.out.println(client);
+        try{
+            sockOut.send(packet);
+            sockOut.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
     }
     
 }
