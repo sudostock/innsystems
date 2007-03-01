@@ -8,16 +8,16 @@
  * ~~Settle on a design for the PSO~~
  * ~~*Write* the PSO~~
  * ~~Determine best way to network the computers~~
- * *Write* networking code
  * ~~Begin testing of the different sections of code~~
- * *Write* "Main" program that interfaces with all of the other sections
- * *Write* "Client" program to be put on remote computers
  * ~~!!Get approval from jellis.~~ - NO, DENIED MONEY
   * SGA will approve if only objection was money
  
- * *Note: February is over, not all is done*
+ * *Note: February is over, not all is done, moved to March goals*
 == By end of March ==
 
+ * *Write* networking code
+ * *Write* "Main" program that interfaces with all of the other sections
+ * *Write* "Client" program to be put on remote computers
  * Finish testing of all components of the project
  * Take the collected data and start to run tests with the system as a whole
  * Debug any errors as fast as possible
@@ -39,6 +39,7 @@
 == Day After? ==
 
  * *RELAX*
+
 
 
 
