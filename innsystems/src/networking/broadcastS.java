@@ -60,7 +60,6 @@ public class broadcastS implements Runnable {
             try{
                 try {
                     sock.receive(packet);
-                    System.out.println("WTF");
                     msg(packet);
                     
                 } catch (SocketTimeoutException ex) {
@@ -102,7 +101,7 @@ public class broadcastS implements Runnable {
             ex.printStackTrace();
         }
         
-        byte[] buff = " ".getBytes();
+        byte[] buff = "random".getBytes();
         int length = buff.length;
         DatagramPacket packet = new DatagramPacket(buff, length, client, 7777);
         System.out.println(client);

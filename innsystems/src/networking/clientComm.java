@@ -37,7 +37,6 @@ public class clientComm implements Runnable {
         }
         DatagramPacket packet = new DatagramPacket(buff, length, serverM, 7776);
         DatagramSocket socket;
-        clientCommTest commie = new clientCommTest();
         try {
             socket = new DatagramSocket();
             socket.send(packet);
@@ -45,7 +44,7 @@ public class clientComm implements Runnable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+       
         System.out.println("YEP");
         DatagramSocket sock = null;
         boolean stop = false;
@@ -65,13 +64,14 @@ public class clientComm implements Runnable {
                 try {
                     sock.receive(pack);
                     System.out.println(pack.getAddress());
+                    System.out.println("BYAHH");
                     server = pack.getAddress();
                     stop = true;
                 } catch (SocketTimeoutException ex) {
-                    
+        
                 }}catch (IOException e) {
-                    
-                }
+        
+                } 
         
     }
     
