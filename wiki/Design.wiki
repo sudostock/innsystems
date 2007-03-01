@@ -20,10 +20,17 @@ Shows the design of the current program and the breakdown of the classes.
 
   * Methods.java (PSO) - Takes particle objects and uses the built in methods to manipulate the data, and perform the PSO calculations.
 
+== gui ==
+
+ * Controller.Form - Main program for the host/controller program
+ 
+ * Client.Form - Client program that is to be distributed to all computers
+
 === networking ===
 
- * Being redesigned --- no set ideas
+ * broadcastS.java - Thread that will listen for incoming client requests and send back the ip address of the server and store the clients address for future use
 
+ * clientComm.java - Thread that will handle all client side communications
 
 
 
