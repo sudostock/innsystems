@@ -17,6 +17,8 @@ import java.net.*;
  */
 public class clientComm implements Runnable {
     private InetAddress server;
+    private ServerSocket recieve;
+    private boolean stop;
     
     
     public clientComm() {
@@ -26,6 +28,7 @@ public class clientComm implements Runnable {
     }
     
     public void run() {
+        //Following code gets serverIp address
         byte[] buff;
         buff = "HELLO".getBytes();
         int length = buff.length;
@@ -44,7 +47,7 @@ public class clientComm implements Runnable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-       
+        
         System.out.println("YEP");
         DatagramSocket sock = null;
         boolean stop = false;
@@ -64,22 +67,45 @@ public class clientComm implements Runnable {
                 try {
                     sock.receive(pack);
                     System.out.println(pack.getAddress());
-                    System.out.println("BYAHH");
                     server = pack.getAddress();
                     stop = true;
                 } catch (SocketTimeoutException ex) {
-        
+                    
                 }}catch (IOException e) {
+                    
+                }
         
-                } 
+        try {
+            recieve = new ServerSocket(7778);
+            stop = false;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            
+            recieve.setSoTimeout(5);
+            while(!stop) {
+                try{
+                    try {
+                        Socket s = recieve.accept();
+                        msg(s);
+                    } catch (SocketTimeoutException ex) {
+                        
+                    }
+                }catch(IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        
+        
         
     }
     
-    private void getServerIP() {
-        
-    }
     
-    private void findServer() {
+    private void msg(Socket s) {
         
     }
     

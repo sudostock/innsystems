@@ -23,7 +23,7 @@ public class broadcastS implements Runnable {
     private boolean stop;
     private InetAddress  group;
     private final String shake = "HELLO";
-    private PipedOutputStream pout;
+    
     
     public broadcastS() {
         try {
