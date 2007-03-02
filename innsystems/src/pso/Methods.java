@@ -86,6 +86,8 @@ public class Methods {
             }
             P.setVelocity(k, velocity);
         }
+        this.assign_neighbors();
+        this.assign_fitness();
     }
     
     /* This method works as designed */
@@ -166,6 +168,12 @@ public class Methods {
         if (fitness < P.getFitness(a)){
             P.setFitness(a, fitness); 
             P.setpBest(a, P.getPosition(a));
+        }
+    }
+    
+    public void assign_fitness(){
+        for(int a = 0; a < P.getnumParticles(); a++){
+            P.setFitness(a , 400);
         }
     }
     

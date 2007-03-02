@@ -32,31 +32,23 @@ public class Test {
         System.out.println("___________________");
         System.out.println("\n");
         
-        /* Errors present in this method */
-      //  pso.assign_neighbors();
-        //pso.debug();
-        
-        
         //System.out.println("________________");
         //System.out.println("\n\n");
         
         /* This method works */
-       // pso.adjust_position();
-        //pso.debug();
         
-        //System.out.println("_________");
-        //System.out.println("\n\n");
+        pso.calculate_fitness(1, .1, 0);
+        pso.calculate_fitness(30, .3, 1);
+        pso.calculate_fitness(400, .5, 2);
+        pso.calculate_gbest();
+        pso.calculate_nbest();
+        pso.adjust_position();
+        pso.adjust_velocity();
+        pso.debug();
         
-        /* This method works */
-      //  pso.calculate_fitness(1, .1, 0);
-       // pso.calculate_fitness(30, .3, 1);
-      //  pso.calculate_fitness(33, .5, 2);
-       // pso.debug();
+        System.out.println("_________");
+        System.out.println("\n\n");
         
-     //  pso.calculate_gbest();
-      // pso.calculate_nbest();
-     //  pso.debug();
-      // pso.debug2();
     }
     
 }
