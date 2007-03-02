@@ -160,4 +160,7 @@ public class Particles {
             System.out.println();
         }
     }
+    public void debuggBest(){
+        System.out.println(gBest[0] + " " + gBest[1] + " " + gBest[2]);
+    }
 }

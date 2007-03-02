@@ -167,7 +167,7 @@ public class Methods {
         if (fitness < P.getFitness(a)) P.setFitness(a, fitness); P.setpBest(a, P.getPosition(a));
     }
     
-    public void calculate_gbest(){//global, neighborhood, and personal
+    public void calculate_gbest(){  //global, neighborhood, and personal
         int num_particles = P.getnumParticles();
         double fitness[]=new double[num_particles];
         for(int a=0; a<num_particles; a++){
@@ -179,7 +179,7 @@ public class Methods {
                 double co[]= P.getpBest(b);
                 P.setgBest(co);
             }
-            break;
+            
         }
     }
     //Method not complete
@@ -197,7 +197,7 @@ public class Methods {
                         double co[]= P.getpBest(c);
                         P.setnBest(a, co);
                     }
-                    break;
+                    
                 }
             }
         }
@@ -206,6 +206,10 @@ public class Methods {
     /** Debug method that returns the particle array contained inside the particles class */
     public void debug() {
         P.debug();
+    }
+    
+    public void debug2(){
+        P.debuggBest();
     }
     
     //needs calculate_nbest()

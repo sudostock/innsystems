@@ -33,7 +33,7 @@ public class Test {
         System.out.println("\n");
         
         /* Errors present in this method */
-        //pso.assign_neighbors();
+        pso.assign_neighbors();
         //pso.debug();
         
         
@@ -41,7 +41,7 @@ public class Test {
         //System.out.println("\n\n");
         
         /* This method works */
-        //pso.adjust_position();
+        pso.adjust_position();
         //pso.debug();
         
         //System.out.println("_________");
@@ -50,7 +50,13 @@ public class Test {
         /* This method works */
         pso.calculate_fitness(1, .1, 0);
         pso.calculate_fitness(30, .3, 1);
+        pso.calculate_fitness(33, .5, 2);
         pso.debug();
+        
+       pso.calculate_gbest();
+       pso.calculate_nbest();
+       pso.debug();
+       pso.debug2();
     }
     
 }
