@@ -106,7 +106,14 @@ public class broadcastS implements Runnable {
         DatagramPacket packet = new DatagramPacket(buff, length, client, 7777);
         System.out.println(client);
         try{
-            sockOut.send(packet);
+            for(int i = 0; i < 4; i++) {
+                sockOut.send(packet);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+            }
             sockOut.close();
         } catch (IOException ex) {
             ex.printStackTrace();
