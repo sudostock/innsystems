@@ -48,13 +48,11 @@ public class clientComm implements Runnable {
             ex.printStackTrace();
         }
         
-        System.out.println("YEP");
         DatagramSocket sock = null;
         boolean stop = false;
         try {
             sock = new DatagramSocket(7777);
         } catch (SocketException ex) {
-            System.out.println("WTF");
             ex.printStackTrace();
         }
         buff = new byte[256];
