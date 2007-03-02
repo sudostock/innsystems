@@ -68,7 +68,6 @@ public class Methods {
         //initialize coordinates[][]
         for (int j=0; j<3; j++)coordinates[j]=0;
         
-        
         //initialize particle positions
         for(int a=0; a<num_particles; a++){
             //*dimension adjusting functionality to be included after initial project completion
@@ -164,7 +163,10 @@ public class Methods {
     public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = Epochs * delta;
         P.setFitness(a,fitness);
-        if (fitness < P.getFitness(a)) P.setFitness(a, fitness); P.setpBest(a, P.getPosition(a));
+        if (fitness < P.getFitness(a)){
+            P.setFitness(a, fitness); 
+            P.setpBest(a, P.getPosition(a));
+        }
     }
     
     public void calculate_gbest(){  //global, neighborhood, and personal
