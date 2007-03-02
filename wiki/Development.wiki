@@ -12,6 +12,7 @@ Assignments will be listed here for things needing to be created and bugs that n
 *Joel*
  * Finish testing methods
  * Start brainstorming ways stress test the program
+ * Stress Test Filby
 
 *Kevin*
  * Finish testing methods
