@@ -163,4 +163,13 @@ public class Particles {
     public void debuggBest(){
         System.out.println(gBest[0] + " " + gBest[1] + " " + gBest[2]);
     }
+    public double[][] getxyz(){
+        double[][] coordinates = new double[numParticles][3];
+        for(int i=0; i<numParticles; i++){
+            hive[i][0] = coordinates[i][0];
+            hive[i][1] = coordinates[i][1];
+            hive[i][2] = coordinates[i][2];
+        }
+        return coordinates;
+    }
 }
