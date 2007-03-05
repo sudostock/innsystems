@@ -15,6 +15,9 @@
  * *Note: February is over, not all is done, moved to March goals*
 == By end of March ==
 
+ * *By Wed March 7*
+  * Complete Milestone 1.0 - have the entire system finished and ready to debug
+
  * *Write* networking code
  * *Write* "Main" program that interfaces with all of the other sections
  * *Write* "Client" program to be put on remote computers
