@@ -14,7 +14,7 @@ import java.net.*;
 
 /**
  *
- * @author Alex
+ * @author Alex Filbius
  */
 public class clientTest {
     

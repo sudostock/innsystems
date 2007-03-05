@@ -145,14 +145,14 @@ public class Methods {
                     nvelocity[b-1]= inertial*velocity[b-1] + delta;
                 }
             }
-            for(int b=1; b<4; b++){
-                if(b%3==0){
-                    if(nvelocity[b-1]<-5 || nvelocity[b-1]>5){
-                        nvelocity[b-1]=5 * Math.random() * Math.pow(-1, (int)10*Math.random());
+            for(int c=1; c<4; c++){
+                if(c%3==0){
+                    if(nvelocity[c-1]<-5 || nvelocity[c-1]>5){
+                        nvelocity[c-1]=5 * Math.random() * Math.pow(-1, (int)10*Math.random());
                     }
                 }else{
-                    if(nvelocity[b-1]<-5 || nvelocity[b-1]>5){
-                        nvelocity[b-1]=(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()));
+                    if(nvelocity[c-1]<-5 || nvelocity[c-1]>5){
+                        nvelocity[c-1]=(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()));
                     }
                 }
             }
@@ -183,11 +183,12 @@ public class Methods {
         for(int a=0; a<num_particles; a++){
             fitness[a]=P.getFitness(a);
         }
-        Arrays.sort(fitness);
-        for(int b =0; b <num_particles; b++){
-            if(P.getFitness(b)==fitness[0]){
-                double co[]= P.getpBest(b);
-                P.setgBest(co);
+            Arrays.sort(fitness);
+            for(int b =0; b <num_particles; b++){
+              if(P.getFitness(b)==fitness[0]){
+                  double co[]= P.getpBest(b);
+                  P.setgBest(co);
+                  break;
             }
             
         }
@@ -206,6 +207,7 @@ public class Methods {
                     if(P.getFitness(c)==fitness[0]){
                         double co[]= P.getpBest(c);
                         P.setnBest(a, co);
+                        break;
                     }
                     
                 }
@@ -216,6 +218,11 @@ public class Methods {
     /** Debug method that returns the particle array contained inside the particles class */
     public void debug() {
         P.debug();
+    }
+   
+    public double[] getgBest(){
+        double c[]= P.getgBest();
+        return c;
     }
     
     public void debug2(){
