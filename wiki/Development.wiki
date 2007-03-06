@@ -11,6 +11,7 @@ Assignments will be listed here for things needing to be created and bugs that n
 
 *Joel*
  * Work on Client gui
+ * Figure out things to display in Controller Gui
  * Start brainstorming ways stress test the program
  * Stress Test Filby
 
