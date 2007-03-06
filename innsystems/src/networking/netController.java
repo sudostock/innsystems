@@ -19,20 +19,25 @@ import java.util.concurrent.*;
 public class netController {
     private int particles;
     private ArrayBlockingQueue qClients;
+    private ArrayBlockingQueue dQ;
     private List lClients;
     private boolean addr;
     private boolean resultsB;
+    private boolean dataS;
     private double[][] results;
     private LinkedList <Integer> resultLeft;
     
     public netController(int particles) {
         this.particles = particles;
         addr = false;
+        dataS = false;
         qClients = new ArrayBlockingQueue(particles);
+        dQ = new ArrayBlockingQueue(particles);
         results = new double[particles][2];
         resultLeft = new LinkedList();
-        initializeList();
+        resetList();
         broadcastS clientget = new broadcastS();
+        
         
     }
     
@@ -93,7 +98,44 @@ public class netController {
         return results;
     }
     
-    public void initializeList() {
+    public synchronized void storeTestData(double testData[][]) {
+        double testInfo[];
+        for(int i = 0; i < particles; i++) {
+            testInfo = new double[4];
+            testInfo[0] = i;
+            testInfo[1] = testData[i][0];
+            testInfo[2] = testData[i][1];
+            testInfo[3] = testData[i][2];
+            try {
+                dQ.put(testInfo);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            dataS = true;
+            notify();
+        }
+    }
+    
+    public synchronized double[] retrieveTestData() {
+        double[] temp = null;
+        if(!dataS)
+            try{
+                wait();
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        try {
+            temp =(double[]) dQ.take();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        
+        if(dQ.isEmpty())
+            dataS = false;
+        return temp;
+    }
+    
+    public void resetList() {
         for(int i = 0; i < particles; i++) {
             resultLeft.add(i);
         }

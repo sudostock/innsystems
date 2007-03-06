@@ -48,11 +48,13 @@ public class clientComm implements Runnable {
             ex.printStackTrace();
         }
         
+        System.out.println("YEP");
         DatagramSocket sock = null;
         boolean stop = false;
         try {
             sock = new DatagramSocket(7777);
         } catch (SocketException ex) {
+            System.out.println("WTF");
             ex.printStackTrace();
         }
         buff = new byte[256];
@@ -73,6 +75,7 @@ public class clientComm implements Runnable {
                     
                 }
         
+        /* Rest of Code */
         try {
             recieve = new ServerSocket(7778);
             stop = false;
@@ -87,6 +90,7 @@ public class clientComm implements Runnable {
                     try {
                         Socket s = recieve.accept();
                         msg(s);
+                        s.close();
                     } catch (SocketTimeoutException ex) {
                         
                     }
@@ -104,6 +108,10 @@ public class clientComm implements Runnable {
     
     
     private void msg(Socket s) {
+       
+    }
+    
+    private void runNet() {
         
     }
     

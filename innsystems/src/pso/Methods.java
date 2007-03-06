@@ -14,15 +14,6 @@ import java.util.Arrays;
  *
  * @author Kevin Beale, Joel Wolfe
  *
- * !!!!NOTE: MADE CHANGES: I changed this for a method class to one that creates objects
- * The constructor is such that it takes a Particles object and that it. I had to change the methods
- * so they no longer needed to input a Particles object since the pointer is saved inside the methods object
- *  -Alex
- * I fixed the assign neighbors class, the setNeighbors method call was missing, also commented out a plus one
- * it was giving an area out of bounds exception
- *
- * I have checked as much as I can understand, you guys will have to perform a more comprehensive check
- *
  */
 public class Methods {
     //minimum # of Input and Hidden neurons, x and y values
