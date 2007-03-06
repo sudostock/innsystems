@@ -9,7 +9,9 @@
 
 package networking;
 
-import java.net.InetAddress;
+
+import java.io.*;
+import java.net.*;
 
 /**
  * Class takes data from the netController class and sends it to the appropriate client
@@ -46,6 +48,21 @@ public class SendData implements Runnable {
     }
     
     private void sendC(InetAddress client, double particle, double numInput, double numHidden, double learnrate) {
+        DataOutputStream out;
+        Socket sock = null;
+        try {
+            sock = new Socket(client, 7777);
+            out = new DataOutputStream(sock.getOutputStream());
+            out.writeDouble(particle);
+            out.writeDouble(numInput);
+            out.writeDouble(numHidden);
+            out.writeDouble(learnrate);
+            out.flush();
+            out.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+       
         
     }
     

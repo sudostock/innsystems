@@ -19,6 +19,7 @@ public class clientComm implements Runnable {
     private InetAddress server;
     private ServerSocket recieve;
     private boolean stop;
+    private DataInputStream in;
     
     
     public clientComm() {
@@ -108,7 +109,26 @@ public class clientComm implements Runnable {
     
     
     private void msg(Socket s) {
-       
+        double particle;
+        double numInput;
+        double numHidden;
+        double learnrate;
+        
+        try {
+            in = new DataInputStream(s.getInputStream());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        try{
+            particle = in.readDouble();
+            numInput = in.readDouble();
+            numHidden = in.readDouble();
+            learnrate = in.readDouble();
+        }catch(IOException e) {
+            e.printStackTrace();
+        }
+        
     }
     
     private void runNet() {
