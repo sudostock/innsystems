@@ -10,11 +10,14 @@ This page will list updates to the project as they become to be.
 == To Date ==
 
  * Backpropagation class - It is now fully functional
- * Work on the Particle Swarm Optimization has begun
+ * Work on the Particle Swarm Optimization has started.
  * Work on the networking classes has begun
 
+== March 5, 2007 ==
 
-
+ * Work on the PSO is done.
+ * Work on the networking is still going.
+ * Work on the GUIs has begun.
 
 
 
