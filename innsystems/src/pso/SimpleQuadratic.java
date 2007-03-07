@@ -29,6 +29,7 @@ public class SimpleQuadratic {
         Methods M = new Methods(P);
         
         M.initialize();
+        M.debug();
         M.assign_neighbors();
         M.assign_fitness();
         
