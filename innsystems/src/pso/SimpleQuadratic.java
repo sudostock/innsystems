@@ -29,34 +29,31 @@ public class SimpleQuadratic {
         Methods M = new Methods(P);
         
         M.initialize();
-        M.debug();
         M.assign_neighbors();
         M.assign_fitness();
         
         printxyz(P);
-        //getResults(data);
-        for(int i=0; i<100; i++){ //interations
+        printfitness(P);
+        
+        for(int i=0; i<200; i++){ //interations
             double[][] coordinates = P.getxyz();
-            for(int a=0; a<P.getnumParticles(); a++){//for each particle...
+            for(int a=0; a<P.getnumParticles(); a++){ //for each particle...
                 double x = coordinates[a][0];
                 double y = coordinates[a][1];
                 double z = coordinates[a][2];
                 double ans = Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
                 double delta = (Math.abs(6-ans)/6)*100;
                 M.calculate_fitness(1,delta,a);
-                //M.calculate_fitness() Epochs, Error, particle number;
-                //Epochs =1 delta = ? partic# = a
-                //x^(1/2) + y^(1/2) + z^(1/2) = 6
-                
-                
+               
             }
+            
             M.calculate_gbest();
             M.calculate_nbest();
-            
             M.adjust_velocity();
             M.adjust_position();
         }
         printxyz(P);
+        printfitness(P);
     }
     public static void printxyz(Particles P){
         double[][] coordinates1 = P.getxyz();
@@ -65,6 +62,11 @@ public class SimpleQuadratic {
                 System.out.println("coordinates["+i+"]["+j+"] = ]"+coordinates1[i][j]);
             }
             
+        }
+    }
+    public static void printfitness(Particles P){
+        for(int i=0; i<P.getnumParticles(); i++){
+            System.out.println("fitness["+i+"] = "+P.getFitness(i));
         }
     }
 }

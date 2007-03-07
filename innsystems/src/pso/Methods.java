@@ -40,11 +40,13 @@ public class Methods {
         
         if(n < num_line_particles) {
             pos = j;
-            if(x%3==0)pos = (n+1);
+            //***********************************************
+            //if(x%3==0)pos = (n+1);
             
         }else{
             pos = (int)(Math.random()*random_factor);
-            if(x%3==0)pos = (int)(Math.random()*random_factor/5);
+            //***********************************************
+            //if(x%3==0)pos = (int)(Math.random()*random_factor/5);
         }
         return pos;
     }
@@ -109,7 +111,8 @@ public class Methods {
             newpos[2] = posit[2]+vel[2];
             for(int j=0; j<3; j++){
                 if(newpos[j]<0)
-                    newpos[j]=Math.abs(7*Math.random())+3;
+                //******************************************************
+                    newpos[j]=(int)Math.abs(10*Math.random())+3;
             }
             P.setPosition(i,newpos);
         }
@@ -157,14 +160,14 @@ public class Methods {
         double fitness = Epochs * delta;
         P.setFitness(a,fitness);
         if (fitness < P.getFitness(a)){
-            P.setFitness(a, fitness); 
+            P.setFitness(a, fitness);
             P.setpBest(a, P.getPosition(a));
         }
     }
     
     public void assign_fitness(){
         for(int a = 0; a < P.getnumParticles(); a++){
-            P.setFitness(a , 400);
+            P.setFitness(a , 100);
         }
     }
     
@@ -174,12 +177,12 @@ public class Methods {
         for(int a=0; a<num_particles; a++){
             fitness[a]=P.getFitness(a);
         }
-            Arrays.sort(fitness);
-            for(int b =0; b <num_particles; b++){
-              if(P.getFitness(b)==fitness[0]){
-                  double co[]= P.getpBest(b);
-                  P.setgBest(co);
-                  break;
+        Arrays.sort(fitness);
+        for(int b =0; b <num_particles; b++){
+            if(P.getFitness(b)==fitness[0]){
+                double co[]= P.getpBest(b);
+                P.setgBest(co);
+                break;
             }
             
         }
@@ -211,7 +214,7 @@ public class Methods {
     public void debug() {
         P.debug();
     }
-   
+    
     public double[] getgBest(){
         double c[]= P.getgBest();
         return c;
