@@ -37,15 +37,23 @@ public class Master implements Runnable {
     }
     
     public void run() {
-        
+        System.out.println("RUN");
         PSO.initialize();
         PSO.assign_neighbors();
         PSO.assign_fitness();
         
-        
+        System.out.println("hello");
         while(!stop){
+            System.out.println("about to sleep!");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("about to get results");
             data=netC.getResults();
             getResults(data);
+          //  netC.pullQClient();
             PSO.calculate_gbest();
             PSO.calculate_nbest();
             

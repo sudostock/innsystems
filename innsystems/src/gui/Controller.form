@@ -77,9 +77,9 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="partText" pref="37" max="32767" attributes="1"/>
-                              <Component id="epochText" pref="37" max="32767" attributes="1"/>
-                              <Component id="neighText" pref="37" max="32767" attributes="1"/>
+                              <Component id="partText" pref="52" max="32767" attributes="1"/>
+                              <Component id="epochText" pref="52" max="32767" attributes="1"/>
+                              <Component id="neighText" pref="52" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
@@ -187,7 +187,7 @@
                       </Group>
                       <Component id="listLabel" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="165" max="32767" attributes="0"/>
+                  <EmptySpace pref="180" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -329,7 +329,7 @@
                       <Component id="jLabel9" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="statusS" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="88" max="32767" attributes="0"/>
+                  <EmptySpace pref="96" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="clientsB" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="runPSO" alignment="3" min="-2" max="-2" attributes="0"/>

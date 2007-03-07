@@ -87,17 +87,21 @@ public class netController {
     
     /* Check for notify() or anything else */
     public double[][] getResults() {
-        if(!resultsB)
+        System.out.println(resultsB);
+        if(!resultsB) {
+            System.out.println("Im in!");
             try{
+                System.out.println("about to wait");
                 wait();
             }catch(InterruptedException ex) {
                 ex.printStackTrace();
             }
+        }
         resultsB = false;
         return results;
     }
     
-    public synchronized void storeTestData(double testData[][]) {
+    public void storeTestData(double testData[][]) {
         double testInfo[];
         for(int i = 0; i < particles; i++) {
             testInfo = new double[4];
@@ -115,7 +119,7 @@ public class netController {
         }
     }
     
-    public synchronized double[] retrieveTestData() {
+    public double[] retrieveTestData() {
         double[] temp = null;
         if(!dataS)
             try{
