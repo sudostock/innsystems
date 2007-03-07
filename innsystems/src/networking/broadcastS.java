@@ -25,9 +25,10 @@ public class broadcastS implements Runnable {
     private boolean stop;
     private InetAddress  group;
     private final String shake = "HELLO";
+    private netController net;
     
-    
-    public broadcastS() {
+    public broadcastS(netController net) {
+        this.net = net;
         try {
             serverIp = InetAddress.getLocalHost();
             group  = InetAddress.getByName("228.5.7.7");
@@ -86,10 +87,11 @@ public class broadcastS implements Runnable {
         buf = packet.getData();
         System.out.println(buf.toString());
         System.out.println(packet.getAddress());
+        net.addQClient(packet.getAddress());
         returnIP(packet.getAddress());
         if(new String(buf).equalsIgnoreCase(shake)) {
             System.out.println("Got the fucking packet!");
-            // Add to list of clients
+            
             returnIP(packet.getAddress());
         } else
             return;
@@ -121,6 +123,10 @@ public class broadcastS implements Runnable {
             ex.printStackTrace();
         }
         
+    }
+    
+    public void stop() {
+        stop = true;
     }
     
 }

@@ -51,7 +51,7 @@ public class SendData implements Runnable {
         DataOutputStream out;
         Socket sock = null;
         try {
-            sock = new Socket(client, 7777);
+            sock = new Socket(client, 7778);
             out = new DataOutputStream(sock.getOutputStream());
             out.writeDouble(particle);
             out.writeDouble(numInput);

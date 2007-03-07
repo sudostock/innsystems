@@ -125,6 +125,7 @@ public class clientComm implements Runnable {
             numInput = in.readDouble();
             numHidden = in.readDouble();
             learnrate = in.readDouble();
+            System.out.println("done, recieved test data!");
         }catch(IOException e) {
             e.printStackTrace();
         }

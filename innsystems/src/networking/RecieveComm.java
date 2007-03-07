@@ -19,7 +19,7 @@ import java.io.*;
  */
 public class RecieveComm implements Runnable{
     private netController controller;
-    private final int listenport = 7778;
+    private final int listenport = 7779;
     private ServerSocket sock;
     private boolean stop;
     private DataInputStream in;

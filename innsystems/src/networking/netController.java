@@ -36,14 +36,14 @@ public class netController {
         results = new double[particles][2];
         resultLeft = new LinkedList();
         resetList();
-        broadcastS clientget = new broadcastS();
-        
+               
         
     }
     
     public synchronized void addQClient(InetAddress address) {
         try {
             qClients.put(address);
+           System.out.println(qClients.toString());
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }

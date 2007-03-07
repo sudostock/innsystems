@@ -14,7 +14,7 @@ import java.net.*;
 
 /**
  *
- * @author Alex Filbius
+ * @author Alex Filby
  */
 public class clientTest {
     
@@ -28,7 +28,7 @@ public class clientTest {
     public static void main(String[] args) throws UnknownHostException {
         clientComm test = new clientComm();
         try {
-            Thread.sleep(20000);
+            Thread.sleep(30000);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
