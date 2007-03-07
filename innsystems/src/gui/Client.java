@@ -6,15 +6,21 @@
 
 package gui;
 
+import networking.*;
+
 /**
  *
- * @author  alex
+ * @author  Alex Filby
+ * 
  */
 public class Client extends javax.swing.JFrame {
+    private clientComm cComm;
+    
     
     /** Creates new form Client */
     public Client() {
         initComponents();
+        setup();
     }
     
     /** This method is called from within the constructor to
@@ -157,6 +163,9 @@ public class Client extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    private void setup() {
+        cComm = new clientComm();
+    }
     /**
      * @param args the command line arguments
      */
