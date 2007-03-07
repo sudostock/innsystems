@@ -20,7 +20,7 @@ public class ClientSend implements Runnable {
     private int particle;
     private int epoch;
     private  double error;
-    private final int port = 7779;
+    private final int port = 7780;
     
     
     public ClientSend(InetAddress server, int particle, int epoch, double error) {

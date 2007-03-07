@@ -55,7 +55,6 @@ public class netController {
         System.out.println(addr);
         if(!addr)
             try{
-                System.out.println("ABOUT TO WAIT!");
                 wait();
             }catch(InterruptedException ex) {
                 ex.printStackTrace();

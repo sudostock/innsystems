@@ -72,13 +72,22 @@ public class controllertest {
         temp[0][1] = 5;
         temp[0][2] = .7;
         
-        net.storeTestData(temp);
+        
         System.out.println("HELLO");
         //  broad.stop();
         RecieveComm r = new RecieveComm(net);
         System.out.println("YO");
         SendData s = new SendData(net);
         System.out.println("Ummm");
+        try {
+            Thread.sleep(5000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        System.out.println("about to add data");
+        net.storeTestData(temp);
+        System.out.println("Added");
     }
     
 }
