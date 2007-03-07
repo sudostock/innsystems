@@ -35,7 +35,7 @@ public class SimpleQuadratic {
         printxyz(P);
         printfitness(P);
         
-        for(int i=0; i<200; i++){ //interations
+        for(int i=0; i<10000; i++){ //iterations
             double[][] coordinates = P.getxyz();
             for(int a=0; a<P.getnumParticles(); a++){ //for each particle...
                 double x = coordinates[a][0];

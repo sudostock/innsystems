@@ -19,11 +19,11 @@ public class Methods {
     //minimum # of Input and Hidden neurons, x and y values
     private final int I = 2;
     private final int H = 3;
-    private final int num_line_particles = 10;
+    private final int num_line_particles = 15;
     private final int random_factor = 25;
     private final double inertial = .8;
-    private final double independence = .5;
-    private final double social = .4;
+    private final double independence = .4;
+    private final double social = .7;
     private final int num_particles;
     private Particles P;
     
@@ -40,13 +40,13 @@ public class Methods {
         
         if(n < num_line_particles) {
             pos = j;
-            //***********************************************
-            //if(x%3==0)pos = (n+1);
+            //**********************
+            if(x%3==0)pos = 1/(n+1);
             
         }else{
             pos = (int)(Math.random()*random_factor);
-            //***********************************************
-            //if(x%3==0)pos = (int)(Math.random()*random_factor/5);
+            //**********************
+            if(x%3==0)pos = 1/(int)(Math.random()*random_factor/5);
         }
         return pos;
     }
@@ -75,7 +75,8 @@ public class Methods {
         for(int k=0; k<num_particles; k++){
             velocity = new double[3];
             for(int l=0; l<3; l++){
-                velocity[l] = Math.random();//sets i,j,and k velocity components to random numbers
+                //*****************
+                velocity[l] = (int)(3*Math.random());//sets i,j,and k velocity components to random numbers
             }
             P.setVelocity(k, velocity);
         }
@@ -111,7 +112,6 @@ public class Methods {
             newpos[2] = posit[2]+vel[2];
             for(int j=0; j<3; j++){
                 if(newpos[j]<0)
-                //******************************************************
                     newpos[j]=(int)Math.abs(10*Math.random())+3;
             }
             P.setPosition(i,newpos);
@@ -129,6 +129,7 @@ public class Methods {
             double gbest[]= P.getgBest();
             
             for(int b=1; b<4; b++){
+                /*Possible error*/
                 if(b%3==0){
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
                     double delta = velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2;
