@@ -36,26 +36,26 @@ public class netController {
         results = new double[particles][2];
         resultLeft = new LinkedList();
         resetList();
-               
+        
         
     }
     
     public synchronized void addQClient(InetAddress address) {
         try {
             qClients.put(address);
-           System.out.println(qClients.toString());
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
         addr = true;
         notify();
-        
     }
     
     public synchronized InetAddress pullQClient() {
         InetAddress tempA = null;
+        System.out.println(addr);
         if(!addr)
             try{
+                System.out.println("ABOUT TO WAIT!");
                 wait();
             }catch(InterruptedException ex) {
                 ex.printStackTrace();

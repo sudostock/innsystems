@@ -126,6 +126,7 @@ public class broadcastS implements Runnable {
     }
     
     public void stop() {
+        System.out.println("STOPPED!");
         stop = true;
     }
     

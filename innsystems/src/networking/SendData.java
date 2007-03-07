@@ -31,10 +31,11 @@ public class SendData implements Runnable {
     public SendData(netController controller) {
         this.controller = controller;
         stop = false;
+        Thread t = new Thread(this);
+        t.start();
     }
     
     public void run() {
-        
         while(!stop) {
             data = controller.retrieveTestData();
             particle = data[0];
@@ -62,7 +63,7 @@ public class SendData implements Runnable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-       
+        
         
     }
     
