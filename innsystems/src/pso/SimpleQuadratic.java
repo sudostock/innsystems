@@ -33,9 +33,10 @@ public class SimpleQuadratic {
         M.assign_fitness();
         
         printxyz(P);
+        printvelocity(P);
         printfitness(P);
         
-        for(int i=0; i<10000; i++){ //iterations
+        for(int i=0; i<1000; i++){ //iterations
             double[][] coordinates = P.getxyz();
             for(int a=0; a<P.getnumParticles(); a++){ //for each particle...
                 double x = coordinates[a][0];
@@ -53,6 +54,7 @@ public class SimpleQuadratic {
             M.adjust_position();
         }
         printxyz(P);
+        printvelocity(P);
         printfitness(P);
     }
     public static void printxyz(Particles P){
@@ -67,6 +69,12 @@ public class SimpleQuadratic {
     public static void printfitness(Particles P){
         for(int i=0; i<P.getnumParticles(); i++){
             System.out.println("fitness["+i+"] = "+P.getFitness(i));
+        }
+    }
+    public static void printvelocity(Particles P){
+        for(int i=0; i<P.getnumParticles(); i++){
+            double v[] = P.getVelocity(i);
+            System.out.println("velocity["+i+"] = "+v[0]+"i "+v[1]+"j "+v[2]+"k ");
         }
     }
 }

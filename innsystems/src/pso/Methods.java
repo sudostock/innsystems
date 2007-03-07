@@ -36,17 +36,17 @@ public class Methods {
     private double setPosition(int n, int dim){
         int x = (n+1)*(n+1)*(dim+1);
         int j = (n+1)*5;
-        int pos=0;
+        double pos=0;
         
         if(n < num_line_particles) {
-            pos = j;
+            pos = (int)j;
             //**********************
-            if(x%3==0)pos = 1/(n+1);
+            if((dim+1)%3==0)pos = (n+1);
             
         }else{
             pos = (int)(Math.random()*random_factor);
             //**********************
-            if(x%3==0)pos = 1/(int)(Math.random()*random_factor/5);
+            if(x%3==0)pos = (Math.random()*random_factor/5);
         }
         return pos;
     }
@@ -76,7 +76,9 @@ public class Methods {
             velocity = new double[3];
             for(int l=0; l<3; l++){
                 //*****************
-                velocity[l] = (int)(3*Math.random());//sets i,j,and k velocity components to random numbers
+                velocity[l] = (int)(3*Math.random())+1;//sets i,j,and k velocity components to random numbers
+                double coord[]=P.getPosition(k);
+            if(coord[l]>10)velocity[l]=velocity[l]*Math.pow(-1,(int)Math.random()*10);
             }
             P.setVelocity(k, velocity);
         }
