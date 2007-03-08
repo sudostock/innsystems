@@ -38,6 +38,7 @@ public class SendData implements Runnable {
     public void run() {
         System.out.println("Running send");
         while(!stop) {
+            System.out.println("About retrieveData");
             data = controller.retrieveTestData();
             particle = data[0];
             numInput = data[1];

@@ -39,8 +39,6 @@ public class Master implements Runnable {
     public void run() {
         System.out.println("RUN");
         PSO.initialize();
-        PSO.assign_neighbors();
-        PSO.assign_fitness();
         
         System.out.println("hello");
         while(!stop){
@@ -50,10 +48,11 @@ public class Master implements Runnable {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            System.out.println("about to get results");
+            System.out.println("about to get results!!!");
             data=netC.getResults();
+            System.out.println("YO !!");
             getResults(data);
-          //  netC.pullQClient();
+            //  netC.pullQClient();
             PSO.calculate_gbest();
             PSO.calculate_nbest();
             

@@ -55,6 +55,7 @@ public class netController {
         System.out.println(addr);
         if(!addr)
             try{
+                System.out.println("ABOUT TO WAIT FOR CLIENTS");
                 wait();
             }catch(InterruptedException ex) {
                 ex.printStackTrace();
@@ -74,7 +75,7 @@ public class netController {
     }
     
     /* Need to check and verify about the notify as to whether the comm thread should pause */
-    public void storeResults(int particle, int epochs, double error) {
+    public synchronized void storeResults(int particle, int epochs, double error) {
         results[particle][0] = epochs;
         results[particle][1] = error;
         resultLeft.remove(particle);
@@ -86,12 +87,12 @@ public class netController {
     }
     
     /* Check for notify() or anything else */
-    public double[][] getResults() {
+    public synchronized double[][] getResults() {
         System.out.println(resultsB);
         if(!resultsB) {
             System.out.println("Im in!");
             try{
-                System.out.println("about to wait");
+                System.out.println("about to wait for RESULTS!");
                 wait();
             }catch(InterruptedException ex) {
                 ex.printStackTrace();
@@ -119,10 +120,11 @@ public class netController {
         }
     }
     
-    public double[] retrieveTestData() {
+    public synchronized double[] retrieveTestData() {
         double[] temp = null;
         if(!dataS)
             try{
+                System.out.println("about to wait for TESTDATA");
                 wait();
             }catch(Exception e) {
                 e.printStackTrace();

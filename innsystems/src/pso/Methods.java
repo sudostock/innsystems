@@ -95,7 +95,6 @@ public class Methods {
                 if (i == 0 && j == 0){
                     neighbors[j] = P.getnumParticles()-1;
                 }else if ((i+j)> P.getnumParticles()){
-                    System.out.println(i+j);
                     neighbors[j] = (i+j-1-P.getnumParticles());
                 } else  neighbors[j] = i + j - 1;
                 P.setNeighbors(i, neighbors);
