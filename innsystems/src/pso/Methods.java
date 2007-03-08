@@ -165,16 +165,17 @@ public class Methods {
     /* Tested: Works */
     public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = Epochs * delta;
-        P.setFitness(a,fitness);
+        //P.setFitness(a,fitness);
         if (fitness < P.getFitness(a)){
             P.setFitness(a, fitness);
             P.setpBest(a, P.getPosition(a));
         }
+        
     }
     
     public void assign_fitness(){
         for(int a = 0; a < P.getnumParticles(); a++){
-            P.setFitness(a , 100);
+            P.setFitness(a , 200);
         }
     }
     
