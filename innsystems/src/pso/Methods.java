@@ -187,7 +187,10 @@ public class Methods {
         for(int b =0; b <num_particles; b++){
             if(P.getFitness(b)==fitness[0]){
                 double co[]= P.getpBest(b);
-                if(P.getgBest(b)>)P.setgBest(co);
+                //P.setgBest(co);
+                //if(P.getgBest()>P.getpBest(b))P.setgBest(co);
+                if(P.getgFitness()>P.getFitness(b))P.setgBest(co);
+                if(P.getgFitness()>P.getFitness(b))P.setgFitness(fitness[0]);
                 break;
             }
             

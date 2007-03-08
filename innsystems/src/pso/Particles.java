@@ -8,6 +8,7 @@ public class Particles {
     private int numParticles;
     private int numNeighbors;
     private int depth;
+    private double gFit;
     private double[] gBest;
     
     private double[][] hive; //needs renaming
@@ -166,11 +167,16 @@ public class Particles {
     public double[][] getxyz(){
         double[][] coordinates = new double[numParticles][3];
         for(int i=0; i<numParticles; i++){
-           coordinates[i][0] = hive[i][0];
-           coordinates[i][1] = hive[i][1];
-           coordinates[i][2] = hive[i][2];
+            coordinates[i][0] = hive[i][0];
+            coordinates[i][1] = hive[i][1];
+            coordinates[i][2] = hive[i][2];
         }
         return coordinates;
     }
-  
+    public void setgFitness(double gf){
+        gFit = gf;
+    }
+    public double getgFitness(){
+        return gFit;
+    }
 }
