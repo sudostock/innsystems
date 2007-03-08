@@ -102,7 +102,7 @@ public class netController {
         return results;
     }
     
-    public void storeTestData(double testData[][]) {
+    public synchronized void storeTestData(double testData[][]) {
         double testInfo[];
         for(int i = 0; i < particles; i++) {
             testInfo = new double[4];
