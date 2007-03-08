@@ -46,6 +46,7 @@ public class Master implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("Storing data!");
         netC.storeTestData(P.getxyz());
         
         System.out.println("hello");

@@ -318,7 +318,7 @@ public class Controller extends javax.swing.JFrame {
         pso = new Master(particles,neighbors, control);
         Master = pso.getThread();
         
-        
+        control.setThreads(Master, SendData, Rec);
         statusS.setText("Waiting for Master...");
     }//GEN-LAST:event_runPSO
     

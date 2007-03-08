@@ -31,27 +31,24 @@ public class clientComm implements Runnable {
     
     public void run() {
         //Following code gets serverIp address
-        byte[] buff;
-        buff = "HELLO".getBytes();
-        int length = buff.length;
         InetAddress serverM = null;
         try {
-            serverM = InetAddress.getByName("10.10.31.15"/*"228.5.7.7"*/);
+            serverM = InetAddress.getByName("10.10.255.255"/*"228.5.7.7"*/);
             System.out.println(serverM);
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         }
-        DatagramPacket packet = new DatagramPacket(buff, length, serverM, 7776);
-        DatagramSocket socket;
+        Socket socket;
         try {
-            socket = new DatagramSocket();
-            socket.send(packet);
+            socket = new Socket(serverM, 7776);
+            server = socket.getInetAddress();
+            System.out.println(server);
             socket.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         
-        System.out.println("YEP");
+     /*   System.out.println("YEP");
         DatagramSocket sock = null;
         boolean stop = false;
         try {
@@ -63,7 +60,7 @@ public class clientComm implements Runnable {
         buff = new byte[256];
         length = buff.length;
         DatagramPacket pack = new DatagramPacket(buff, length);
-        
+      
         while(!stop)
             try{
                 sock.setSoTimeout(5);
@@ -73,10 +70,10 @@ public class clientComm implements Runnable {
                     server = pack.getAddress();
                     stop = true;
                 } catch (SocketTimeoutException ex) {
-                    
+      
                 }}catch (IOException e) {
-                    
-                }
+      
+                }*/
         
         /* Rest of Code */
         try {
@@ -124,9 +121,13 @@ public class clientComm implements Runnable {
         
         try{
             particle = in.readDouble();
+            System.out.println(particle);
             numInput = in.readDouble();
+            System.out.println(numInput);
             numHidden = in.readDouble();
+            System.out.println(numHidden);
             learnrate = in.readDouble();
+            System.out.println(learnrate);
             System.out.println("done, recieved test data!");
         }catch(IOException e) {
             e.printStackTrace();

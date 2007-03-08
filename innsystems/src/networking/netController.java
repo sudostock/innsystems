@@ -26,6 +26,9 @@ public class netController {
     private boolean dataS;
     private double[][] results;
     private LinkedList <Integer> resultLeft;
+    private Thread send;
+    private Thread rec;
+    private Thread mas;
     
     public netController(int particles) {
         this.particles = particles;
@@ -47,12 +50,14 @@ public class netController {
             ex.printStackTrace();
         }
         addr = true;
-        notify();
+        synchronized(send) {
+            notify();
+        }
     }
     
     public synchronized InetAddress pullQClient() {
         InetAddress tempA = null;
-        System.out.println(addr);
+        System.out.println(addr + "clients");
         if(!addr)
             try{
                 System.out.println("ABOUT TO WAIT FOR CLIENTS");
@@ -81,14 +86,14 @@ public class netController {
         resultLeft.remove(particle);
         if(resultLeft.isEmpty() == true){
             resultsB = true;
-            notify();
+            mas.notify();
         }
         
     }
     
     /* Check for notify() or anything else */
     public synchronized double[][] getResults() {
-        System.out.println(resultsB);
+        System.out.println(resultsB + "results");
         if(!resultsB) {
             System.out.println("Im in!");
             try{
@@ -102,7 +107,7 @@ public class netController {
         return results;
     }
     
-    public synchronized void storeTestData(double testData[][]) {
+    public void storeTestData(double testData[][]) {
         double testInfo[];
         for(int i = 0; i < particles; i++) {
             testInfo = new double[4];
@@ -116,7 +121,9 @@ public class netController {
                 ex.printStackTrace();
             }
             dataS = true;
-            notify();
+            synchronized (send) {
+                send.notify();
+            }
         }
     }
     
@@ -144,6 +151,13 @@ public class netController {
         for(int i = 0; i < particles; i++) {
             resultLeft.add(i);
         }
+        
+    }
+    
+    public void setThreads(Thread master, Thread send, Thread recieve) {
+        mas = master;
+        this.send = send;
+        rec = recieve;
     }
     
 }
