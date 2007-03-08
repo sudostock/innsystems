@@ -122,6 +122,7 @@ public class Methods {
     
     public void adjust_velocity(){
         int num_particles = P.getnumParticles();
+        
         for(int a = 0; a<num_particles; a++){
             double velocity[] = P.getVelocity(a);
             double nvelocity[]= new double[3];
@@ -130,20 +131,20 @@ public class Methods {
             double nbest[]= P.getnBest(a);
             double gbest[]= P.getgBest();
             double ddelta = 0;
-            int delta = 0;
+            double delta = 0;
             
             for(int b=1; b<4; b++){
-                /*Possible error*/
                 if(b==3){
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
                     ddelta = (velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
                     nvelocity[b-1]= inertial*velocity[b-1] + ddelta;
                 }else{
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                    delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
-                    nvelocity[b-1]= (int)inertial*velocity[b-1] + delta;
+                    delta = (velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
+                    nvelocity[b-1]= (int)(inertial*velocity[b-1] + delta);
                 }
             }
+            
             for(int c=1; c<4; c++){
                 if(c==3){
                     if(nvelocity[c-1]<-5 || nvelocity[c-1]>5){
@@ -167,20 +168,20 @@ public class Methods {
     /* Tested: Works */
    /* public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = Epochs * delta;
-        //P.setFitness(a,fitness);
+        P.setFitness(a,fitness);
         if (fitness < P.getFitness(a)){
             P.setFitness(a, fitness);
             P.setpBest(a, P.getPosition(a));
-        }else P.setFitness(a,fitness);
+        }
     }*/
-     public void calculate_fitness(int Epochs, double delta, int a){
+    public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = Epochs * delta; //calculates particle's finess value for particular location
         if(fitness < P.getFitness(a)){
             P.setpBest(a, P.getPosition(a));
         }
         P.setFitness(a, fitness);
     }
-     
+    
     
     public void assign_fitness(){
         for(int a = 0; a < P.getnumParticles(); a++){
@@ -254,7 +255,5 @@ public class Methods {
     public void debug2(){
         P.debuggBest();
     }
-    
-    //needs calculate_nbest()
     
 }
