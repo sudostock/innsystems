@@ -19,7 +19,7 @@ public class Methods {
     //minimum # of Input and Hidden neurons, x and y values
     private final int I = 2;
     private final int H = 3;
-    private final int num_line_particles = 15;
+    private final int num_line_particles = 7;
     private final int random_factor = 25;
     private final double inertial = .8;
     private final double independence = .4;
@@ -78,7 +78,7 @@ public class Methods {
                 //*****************
                 velocity[l] = (int)(3*Math.random())+1;//sets i,j,and k velocity components to random numbers
                 double coord[]=P.getPosition(k);
-            if(coord[l]>10)velocity[l]=velocity[l]*Math.pow(-1,(int)Math.random()*10);
+                if(coord[l]>10)velocity[l]=velocity[l]*Math.pow(-1,(int)Math.random()*10);
             }
             P.setVelocity(k, velocity);
         }
@@ -134,7 +134,7 @@ public class Methods {
                 /*Possible error*/
                 if(b%3==0){
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                    double delta = velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2;
+                    double delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
                     nvelocity[b-1]= inertial*velocity[b-1] + delta;
                 }else{
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
@@ -145,11 +145,14 @@ public class Methods {
             for(int c=1; c<4; c++){
                 if(c%3==0){
                     if(nvelocity[c-1]<-5 || nvelocity[c-1]>5){
-                        nvelocity[c-1]=5 * Math.random() * Math.pow(-1, (int)10*Math.random());
+                        nvelocity[c-1]=((Math.random() * 10)-5);
+                        //((Math.random() * 10)-5)
+                        //(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()))
                     }
                 }else{
                     if(nvelocity[c-1]<-5 || nvelocity[c-1]>5){
-                        nvelocity[c-1]=(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()));
+                        nvelocity[c-1]=(int)((Math.random() * 10)-5);
+                        //(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()))
                     }
                 }
             }
@@ -176,7 +179,7 @@ public class Methods {
     
     public void calculate_gbest(){  //global, neighborhood, and personal
         int num_particles = P.getnumParticles();
-        double fitness[]=new double[num_particles];
+        double fitness[] = new double[num_particles];
         for(int a=0; a<num_particles; a++){
             fitness[a]=P.getFitness(a);
         }
@@ -184,7 +187,7 @@ public class Methods {
         for(int b =0; b <num_particles; b++){
             if(P.getFitness(b)==fitness[0]){
                 double co[]= P.getpBest(b);
-                P.setgBest(co);
+                if(P.getgBest(b)>)P.setgBest(co);
                 break;
             }
             
