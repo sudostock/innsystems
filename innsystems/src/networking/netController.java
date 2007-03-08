@@ -12,7 +12,7 @@ import java.net.*;
 import java.util.concurrent.*;
 
 /**
- *
+ * This class handles most of the 
  * @author Alex Filby
  *
  */
@@ -43,7 +43,7 @@ public class netController {
         
     }
     
-    public synchronized void addQClient(InetAddress address) {
+    public void addQClient(InetAddress address) {
         try {
             qClients.put(address);
         } catch (InterruptedException ex) {
@@ -55,7 +55,7 @@ public class netController {
         }
     }
     
-    public synchronized InetAddress pullQClient() {
+    public InetAddress pullQClient() {
         InetAddress tempA = null;
         System.out.println(addr + "clients");
         if(!addr)
@@ -79,23 +79,23 @@ public class netController {
         
     }
     
-    /* Need to check and verify about the notify as to whether the comm thread should pause */
-    public synchronized void storeResults(int particle, int epochs, double error) {
+    public void storeResults(int particle, int epochs, double error) {
         results[particle][0] = epochs;
         results[particle][1] = error;
         resultLeft.remove(particle);
         if(resultLeft.isEmpty() == true){
             resultsB = true;
-            mas.notify();
+            synchronized (mas) {
+                mas.notify();
+            }
         }
         
     }
     
     /* Check for notify() or anything else */
-    public synchronized double[][] getResults() {
+    public double[][] getResults() {
         System.out.println(resultsB + "results");
         if(!resultsB) {
-            System.out.println("Im in!");
             try{
                 System.out.println("about to wait for RESULTS!");
                 wait();
@@ -127,7 +127,7 @@ public class netController {
         }
     }
     
-    public synchronized double[] retrieveTestData() {
+    public double[] retrieveTestData() {
         double[] temp = null;
         if(!dataS)
             try{

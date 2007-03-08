@@ -41,6 +41,7 @@ public class clientComm implements Runnable {
         Socket socket;
         try {
             socket = new Socket(serverM, 7776);
+            
             server = socket.getInetAddress();
             System.out.println(server);
             socket.close();
