@@ -39,6 +39,12 @@ public class Master implements Runnable {
     public void run() {
         System.out.println("RUN");
         PSO.initialize();
+        System.out.println("About to store test data");
+        try {
+            Thread.sleep(10000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         netC.storeTestData(P.getxyz());
         
         System.out.println("hello");

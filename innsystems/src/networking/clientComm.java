@@ -12,8 +12,9 @@ import java.io.*;
 import java.net.*;
 
 /**
+ * Adjusted for known server
  *
- * @author Alex
+ * @author Alex Filby
  */
 public class clientComm implements Runnable {
     private InetAddress server;
@@ -35,7 +36,7 @@ public class clientComm implements Runnable {
         int length = buff.length;
         InetAddress serverM = null;
         try {
-            serverM = InetAddress.getByName("228.5.7.7");
+            serverM = InetAddress.getByName("10.10.31.15"/*"228.5.7.7"*/);
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         }
@@ -113,7 +114,7 @@ public class clientComm implements Runnable {
         double numInput;
         double numHidden;
         double learnrate;
-        
+        System.out.println("About to get data!");
         try {
             in = new DataInputStream(s.getInputStream());
         } catch (IOException ex) {
