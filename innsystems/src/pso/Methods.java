@@ -85,6 +85,8 @@ public class Methods {
         this.assign_neighbors();
         this.assign_fitness();
         P.setgFitness(100);
+        double g[]={20,20,20};
+        P.setgBest(g);
     }
     
     /* This method works as designed */
@@ -140,6 +142,7 @@ public class Methods {
                     nvelocity[b-1]= inertial*velocity[b-1] + ddelta;
                 }else{
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
+                    System.out.println("XXXXvelocity="+nbest[b-1]);
                     delta = (velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
                     nvelocity[b-1]= (int)(inertial*velocity[b-1] + delta);
                 }
@@ -174,10 +177,12 @@ public class Methods {
             P.setpBest(a, P.getPosition(a));
         }
     }*/
+    
     public void calculate_fitness(int Epochs, double delta, int a){
-        double fitness = Epochs * delta; //calculates particle's finess value for particular location
+        double fitness = /*Epochs * */delta; //calculates particle's finess value for particular location
         if(fitness < P.getFitness(a)){
             P.setpBest(a, P.getPosition(a));
+            // P.setFitness(a, fitness);
         }
         P.setFitness(a, fitness);
     }

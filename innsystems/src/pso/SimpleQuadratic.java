@@ -42,8 +42,13 @@ public class SimpleQuadratic {
                 double x = coordinates[a][0];
                 double y = coordinates[a][1];
                 double z = coordinates[a][2];
-                double ans = Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
-                double delta = (Math.abs(6-ans)/6)*100;
+                double ans = x*x*x*x*x+y*y*y*y+z*z*z;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
+                double delta; //= (Math.abs(6-ans)/6)*100;
+                if(ans>3){
+                    delta = (ans-3)/3*100;
+                }else{
+                    delta = (3-ans)/3*100;
+                }
                 M.calculate_fitness(1,delta,a);
                 
             }
