@@ -23,11 +23,12 @@ public class RecieveComm implements Runnable{
     private ServerSocket sock;
     private boolean stop;
     private DataInputStream in;
+    private Thread t;
     
     
     public RecieveComm(netController controller) {
         this.controller = controller;
-        Thread t = new Thread(this);
+        t = new Thread(this);
         stop = false;
         t.start();
     }
@@ -88,6 +89,10 @@ public class RecieveComm implements Runnable{
             ex.printStackTrace();
         }
         
+    }
+    
+    public Thread getThread() {
+        return t;
     }
     
     

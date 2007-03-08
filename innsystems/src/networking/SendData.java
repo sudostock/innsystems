@@ -27,12 +27,14 @@ public class SendData implements Runnable {
     private double learnrate;
     private netController controller;
     private InetAddress client;
+    private Thread t;
     
     public SendData(netController controller) {
         this.controller = controller;
         stop = false;
-        Thread t = new Thread(this);
+        t = new Thread(this);
         t.start();
+        
     }
     
     public void run() {
@@ -67,6 +69,10 @@ public class SendData implements Runnable {
         }
         
         
+    }
+    
+    public Thread getThread() {
+        return t;
     }
     
 }

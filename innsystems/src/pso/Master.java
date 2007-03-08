@@ -25,6 +25,7 @@ public class Master implements Runnable {
     private boolean stop;
     private double data[][];
     netController netC;
+    private Thread t;
     
     /** Creates a new instance of Master */
     public Master(int particles, int neighbors, netController netC) {
@@ -32,7 +33,7 @@ public class Master implements Runnable {
         stop=false;
         this.netC = netC;
         PSO = new Methods(P);
-        Thread t = new Thread(this);
+        t = new Thread(this);
         t.start();
     }
     
@@ -78,6 +79,10 @@ public class Master implements Runnable {
     
     public void stopit(){
         stop = true;
+    }
+    
+    public Thread getThread() {
+        return t;
     }
 }
 

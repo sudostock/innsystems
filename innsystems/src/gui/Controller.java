@@ -21,6 +21,10 @@ public class Controller extends javax.swing.JFrame {
     private RecieveComm rec;
     private SendData send;
     private Master pso;
+    private Thread SendData;
+    private Thread Rec;
+    private Thread broadcastS;
+    private Thread Master;
     
     /** Creates new form Controller */
     public Controller() {
@@ -307,10 +311,14 @@ public class Controller extends javax.swing.JFrame {
     
     private void runPSO(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runPSO
         broadcastS broad = new broadcastS(control);
-     //   send = new SendData(control);
-//        rec = new RecieveComm(control);
-//        pso = new Master(particles,neighbors, control);
-                
+        send = new SendData(control);
+        SendData = send.getThread();
+        rec = new RecieveComm(control);
+        Rec = rec.getThread();
+        pso = new Master(particles,neighbors, control);
+        Master = pso.getThread();
+        
+        
         statusS.setText("Waiting for Master...");
     }//GEN-LAST:event_runPSO
     
