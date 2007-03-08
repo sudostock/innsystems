@@ -9,6 +9,7 @@ public class Particles {
     private int numNeighbors;
     private int depth;
     private double gFit;
+    private double nFit;
     private double[] gBest;
     
     private double[][] hive; //needs renaming
@@ -178,5 +179,11 @@ public class Particles {
     }
     public double getgFitness(){
         return gFit;
+    }
+     public void setnFitness(double nf){
+        nFit = nf;
+    }
+    public double getnFitness(){
+        return nFit;
     }
 }

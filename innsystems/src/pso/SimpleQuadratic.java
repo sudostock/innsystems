@@ -14,7 +14,7 @@ package pso;
  * @author Kevin Beale
  *
  *This class will attempt to solve a simple equation of the form
- *sqrt(x) + sqrt(y) + sqrt(z) = 6 with the obvious answer being (2,2,2)
+ *sqrt(x) + sqrt(y) + sqrt(z) = 6 with the obvious and desired answer being (4,4,4)
  *
  */
 public class SimpleQuadratic {
@@ -36,7 +36,7 @@ public class SimpleQuadratic {
         printvelocity(P);
         printfitness(P);
         
-        for(int i=0; i<500; i++){ //iterations
+        for(int i=0; i<10000; i++){ //iterations
             double[][] coordinates = P.getxyz();
             for(int a=0; a<P.getnumParticles(); a++){ //for each particle...
                 double x = coordinates[a][0];
@@ -45,15 +45,29 @@ public class SimpleQuadratic {
                 double ans = Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
                 double delta = (Math.abs(6-ans)/6)*100;
                 M.calculate_fitness(1,delta,a);
-               
+                
             }
             
             M.calculate_gbest();
             M.calculate_nbest();
             M.adjust_velocity();
             M.adjust_position();
+            if(i==500){
+                System.out.println("---------------------------------------------------\n");
+                printxyz( P);
+                printvelocity(P);
+                printfitness(P);
+                System.out.println("----------------------------------------------------\n\n");
+            }
+             if(i==501){
+                System.out.println("---------------------------------------------------\n");
+                printxyz( P);
+                printvelocity(P);
+                printfitness(P);
+                System.out.println("----------------------------------------------------\n\n");
+            }
         }
-        printxyz(P);
+        printxyz( P);
         printvelocity(P);
         printfitness(P);
     }

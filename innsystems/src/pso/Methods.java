@@ -84,6 +84,7 @@ public class Methods {
         }
         this.assign_neighbors();
         this.assign_fitness();
+        P.setgFitness(100);
     }
     
     /* This method works as designed */
@@ -138,7 +139,7 @@ public class Methods {
                 }else{
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
                     double delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
-                    nvelocity[b-1]= inertial*velocity[b-1] + delta;
+                    nvelocity[b-1]= (int)inertial*velocity[b-1] + delta;
                 }
             }
             for(int c=1; c<4; c++){
@@ -157,6 +158,7 @@ public class Methods {
             }
             P.setVelocity(a,nvelocity);
         }
+        lockgBest();
     }
     
     
@@ -180,22 +182,31 @@ public class Methods {
         int num_particles = P.getnumParticles();
         double fitness[] = new double[num_particles];
         for(int a=0; a<num_particles; a++){
-            fitness[a]=P.getFitness(a);
+            fitness[a]=P.getFitness(a);//for each particle store its fitness value in fitness[]
         }
-        Arrays.sort(fitness);
+        Arrays.sort(fitness);//sort fitness values from lowest to highest
+        
         for(int b =0; b <num_particles; b++){
-            if(P.getFitness(b)==fitness[0]){
-                double co[]= P.getpBest(b);
+            if(P.getFitness(b)==fitness[0]){//for each particle see if its value corresponds to the lowest value
+                double co[] = P.getpBest(b);//gets coordinates of particle with lowest fitness value
                 //P.setgBest(co);
                 //if(P.getgBest()>P.getpBest(b))P.setgBest(co);
                 if(P.getgFitness()>P.getFitness(b))P.setgBest(co);
                 if(P.getgFitness()>P.getFitness(b))P.setgFitness(fitness[0]);
                 break;
             }
-            
         }
     }
-    
+    public void lockgBest(){
+        double gbest = P.getgFitness();
+        for(int i=0; i<P.getnumParticles(); i++){
+            if(P.getFitness(i)==gbest){
+                double[] vel = { 0, 0, 0 };
+                P.setVelocity(i, vel);
+            }
+        }
+        
+    }
     //Method not complete
     public void calculate_nbest(){// neighborhood
         int num_particles = P.getnumParticles();
@@ -209,7 +220,9 @@ public class Methods {
                 for(int c = 0; c<num_particles; c++){
                     if(P.getFitness(c)==fitness[0]){
                         double co[]= P.getpBest(c);
-                        P.setnBest(a, co);
+                        //P.setnBest(a, co);
+                        if(P.getnFitness()>P.getFitness(b))P.setnBest(a, co);
+                        if(P.getnFitness()>P.getFitness(b))P.setnFitness(fitness[0]);
                         break;
                     }
                     
