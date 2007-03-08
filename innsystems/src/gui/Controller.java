@@ -306,10 +306,11 @@ public class Controller extends javax.swing.JFrame {
     }//GEN-LAST:event_stopSystem
     
     private void runPSO(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runPSO
-        send = new SendData(control);
-        rec = new RecieveComm(control);
-        pso = new Master(particles,neighbors, control);
-        
+        broadcastS broad = new broadcastS(control);
+     //   send = new SendData(control);
+//        rec = new RecieveComm(control);
+//        pso = new Master(particles,neighbors, control);
+                
         statusS.setText("Waiting for Master...");
     }//GEN-LAST:event_runPSO
     

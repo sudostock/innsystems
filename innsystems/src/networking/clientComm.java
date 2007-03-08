@@ -37,6 +37,7 @@ public class clientComm implements Runnable {
         InetAddress serverM = null;
         try {
             serverM = InetAddress.getByName("10.10.31.15"/*"228.5.7.7"*/);
+            System.out.println(serverM);
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         }

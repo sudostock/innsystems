@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class broadcastS implements Runnable {
     private InetAddress serverIp;
-    private MulticastSocket sock;
+    private DatagramSocket sock;
     private final int listenPort = 7776;
     private boolean stop;
     private InetAddress  group;
@@ -31,7 +31,8 @@ public class broadcastS implements Runnable {
         this.net = net;
         try {
             serverIp = InetAddress.getLocalHost();
-            group  = InetAddress.getByName("228.5.7.7");
+            System.out.println(serverIp);
+            //  group  = InetAddress.getByName("228.5.7.7");
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         }
@@ -44,9 +45,9 @@ public class broadcastS implements Runnable {
     public void run() {
         stop = false;
         try {
-            
-            sock = new MulticastSocket(listenPort);
-            sock.joinGroup(group);
+            System.out.println("About to listen for clients");
+            sock = new DatagramSocket(listenPort);
+            //    sock.joinGroup(group);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -73,9 +74,9 @@ public class broadcastS implements Runnable {
             }
         }
         try {
-            sock.leaveGroup(group);
+            //    sock.leaveGroup(group);
             sock.close();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         
@@ -89,12 +90,6 @@ public class broadcastS implements Runnable {
         System.out.println(packet.getAddress());
         net.addQClient(packet.getAddress());
         returnIP(packet.getAddress());
-        if(new String(buf).equalsIgnoreCase(shake)) {
-            System.out.println("Got the fucking packet!");
-            
-            returnIP(packet.getAddress());
-        } else
-            return;
     }
     
     private void returnIP(InetAddress client) {
