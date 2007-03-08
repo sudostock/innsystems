@@ -22,8 +22,8 @@ public class Methods {
     private final int num_line_particles = 7;
     private final int random_factor = 25;
     private final double inertial = .8;
-    private final double independence = .4;
-    private final double social = .7;
+    private final double independence = .4;//.4
+    private final double social = .7;//.7
     private final int num_particles;
     private Particles P;
     
@@ -41,12 +41,12 @@ public class Methods {
         if(n < num_line_particles) {
             pos = (int)j;
             //**********************
-            if((dim+1)%3==0)pos = (n+1);
+            if((dim+1)==3)pos = (n+1);
             
         }else{
             pos = (int)(Math.random()*random_factor);
             //**********************
-            if(x%3==0)pos = (Math.random()*random_factor/5);
+            if(x==3)pos = (Math.random()*random_factor/5);
         }
         return pos;
     }
@@ -114,7 +114,7 @@ public class Methods {
             newpos[2] = posit[2]+vel[2];
             for(int j=0; j<3; j++){
                 if(newpos[j]<0)
-                    newpos[j]=(int)Math.abs(10*Math.random())+3;
+                    newpos[j]=(int)(Math.abs(10*Math.random()))+3;
             }
             P.setPosition(i,newpos);
         }
@@ -129,21 +129,23 @@ public class Methods {
             double pbest[]= P.getpBest(a);
             double nbest[]= P.getnBest(a);
             double gbest[]= P.getgBest();
+            double ddelta = 0;
+            int delta = 0;
             
             for(int b=1; b<4; b++){
                 /*Possible error*/
-                if(b%3==0){
+                if(b==3){
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                    double delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
-                    nvelocity[b-1]= inertial*velocity[b-1] + delta;
+                    ddelta = (velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
+                    nvelocity[b-1]= inertial*velocity[b-1] + ddelta;
                 }else{
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                    double delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
+                    delta = (int)(velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
                     nvelocity[b-1]= (int)inertial*velocity[b-1] + delta;
                 }
             }
             for(int c=1; c<4; c++){
-                if(c%3==0){
+                if(c==3){
                     if(nvelocity[c-1]<-5 || nvelocity[c-1]>5){
                         nvelocity[c-1]=((Math.random() * 10)-5);
                         //((Math.random() * 10)-5)
@@ -163,15 +165,22 @@ public class Methods {
     
     
     /* Tested: Works */
-    public void calculate_fitness(int Epochs, double delta, int a){
+   /* public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = Epochs * delta;
         //P.setFitness(a,fitness);
         if (fitness < P.getFitness(a)){
             P.setFitness(a, fitness);
             P.setpBest(a, P.getPosition(a));
+        }else P.setFitness(a,fitness);
+    }*/
+     public void calculate_fitness(int Epochs, double delta, int a){
+        double fitness = Epochs * delta; //calculates particle's finess value for particular location
+        if(fitness < P.getFitness(a)){
+            P.setpBest(a, P.getPosition(a));
         }
-        
+        P.setFitness(a, fitness);
     }
+     
     
     public void assign_fitness(){
         for(int a = 0; a < P.getnumParticles(); a++){
