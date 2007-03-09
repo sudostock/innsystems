@@ -26,11 +26,12 @@ public class clientComm implements Runnable {
     public clientComm(String ServerIP) {
         try {
             server = InetAddress.getByName("10.10.31.15");
-          //  server = InetAddress.getByName(ServerIP);
+            //  server = InetAddress.getByName(ServerIP);
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         }
         Thread t = new Thread(this);
+        stop = false;
         t.start();
         
     }
@@ -41,94 +42,19 @@ public class clientComm implements Runnable {
             
             sock = new Socket(server, 7776);
             sock.close();
+            System.out.println("Socket Closed");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
         
         
-     /*   InetAddress serverM = null;
-        try {
-            serverM = InetAddress.getByName("10.10.255.255");
-        } catch (UnknownHostException ex) {
-            ex.printStackTrace();
-        }
-        System.out.println(serverM);
-        DatagramSocket sock = null;
-        try {
-            sock = new DatagramSocket();
-        } catch (SocketException ex) {
-            ex.printStackTrace();
-        }
-      
-        byte[] buff = "random".getBytes();
-        int length = buff.length;
-        DatagramPacket packet = new DatagramPacket(buff, length, serverM, 7776);
-      
-        try{
-            for(int i = 0; i < 4; i++) {
-                sock.send(packet);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-            }
-            sock.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-       /*Following code gets serverIp address
-        InetAddress serverM = null;
-        try {
-            serverM = InetAddress.getByName("10.10.255.255""228.5.7.7");
-            System.out.println(serverM);
-        } catch (UnknownHostException ex) {
-            ex.printStackTrace();
-        }
-        Socket socket;
-        try {
-            socket = new Socket(serverM, 7776);
-      
-            server = socket.getInetAddress();
-            System.out.println(server);
-            socket.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-      *//*
-        System.out.println("YEP");
-        DatagramSocket sockIn = null;
-        boolean stop = false;
-        try {
-            sockIn = new DatagramSocket(7777);
-        } catch (SocketException ex) {
-            System.out.println("WTF");
-            ex.printStackTrace();
-        }
-        buff = new byte[256];
-        length = buff.length;
-        DatagramPacket pack = new DatagramPacket(buff, length);
-         
-        while(!stop)
-            try{
-                sock.setSoTimeout(5);
-                try {
-                    sockIn.receive(pack);
-                    System.out.println(pack.getAddress());
-                    server = pack.getAddress();
-                    stop = true;
-                    sockIn.close();
-                } catch (SocketTimeoutException ex) {
-         
-                }}catch (IOException e) {
-         
-                }
-         
+           
         /* Rest of Code */
         
         
         try {
-            recieve = new ServerSocket(7778);
+            System.out.println("Starting Socket");
+            recieve = new ServerSocket(7780);
             stop = false;
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -136,6 +62,7 @@ public class clientComm implements Runnable {
         try {
             
             recieve.setSoTimeout(5);
+            System.out.println("Ready to recieve");
             while(!stop) {
                 try{
                     try {
