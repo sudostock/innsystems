@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class broadcastS implements Runnable {
     private InetAddress serverIp;
-    private ServerSocket sock;
+    private DatagramSocket sock;
     private final int listenPort = 7776;
     private boolean stop;
     private InetAddress  group;
@@ -46,7 +46,7 @@ public class broadcastS implements Runnable {
         stop = false;
         try {
             System.out.println("About to listen for clients");
-            sock = new ServerSocket(listenPort);
+            sock = new DatagramSocket(listenPort);
             //    sock.joinGroup(group);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -58,11 +58,13 @@ public class broadcastS implements Runnable {
             ex.printStackTrace();
         }
         while(!stop) {
+            byte buff[] = new byte[256];
+            int length = buff.length;
+            DatagramPacket packet = new DatagramPacket(buff, length);
             try{
                 try {
-                    Socket s = sock.accept();
-                    System.out.println("recieved");
-                    msg(s);
+                    sock.receive(packet);
+                    msg(packet);
                     
                 } catch (SocketTimeoutException ex) {
                     
@@ -80,25 +82,31 @@ public class broadcastS implements Runnable {
         
     }
     
-    private void msg(Socket s) {
+    private void msg(DatagramPacket packet) {
         System.out.println("Down here");
-        net.addQClient(s.getInetAddress());
-        System.out.println(s.getInetAddress());
-    //    returnIP(s.getInetAddress());
+        byte buf[] = new byte[packet.getLength()];
+        buf = packet.getData();
+        System.out.println(buf.toString());
+        System.out.println(packet.getAddress());
+        net.addQClient(packet.getAddress());
+        returnIP(packet.getAddress());
     }
     
     private void returnIP(InetAddress client) {
-        Socket sockOut = null;
+        DatagramSocket sockOut = null;
         try {
-            sockOut = new Socket(client, 7777);
-        }catch(IOException e) {
-            e.printStackTrace();
+            sockOut = new DatagramSocket();
+        } catch (SocketException ex) {
+            ex.printStackTrace();
         }
         
+        byte[] buff = "random".getBytes();
+        int length = buff.length;
+        DatagramPacket packet = new DatagramPacket(buff, length, client, 7777);
         System.out.println(client);
         try{
             for(int i = 0; i < 4; i++) {
-                
+                sockOut.send(packet);
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException ex) {
