@@ -40,6 +40,7 @@ public class clientComm implements Runnable {
         try {
             
             sock = new Socket(server, 7776);
+            sock.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
