@@ -53,6 +53,8 @@ public class SendData implements Runnable {
             learnrate = data[3];
             
             client = controller.pullQClient();
+            System.out.println("About to send that mutha fucker");
+            System.out.println(client);
             sendC(client, particle, numInput, numHidden, learnrate);
         }
     }
@@ -61,7 +63,7 @@ public class SendData implements Runnable {
         DataOutputStream out;
         Socket sock = null;
         try {
-            sock = new Socket(client, 7778);
+            sock = new Socket(client, 7780);
             out = new DataOutputStream(sock.getOutputStream());
             out.writeDouble(particle);
             out.writeDouble(numInput);
@@ -69,6 +71,7 @@ public class SendData implements Runnable {
             out.writeDouble(learnrate);
             out.flush();
             out.close();
+            sock.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

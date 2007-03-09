@@ -12,7 +12,7 @@ import java.net.*;
 import java.util.concurrent.*;
 
 /**
- * This class handles most of the 
+ * This class handles most of the
  * @author Alex Filby
  *
  */
@@ -43,7 +43,7 @@ public class netController {
         
     }
     
-    public void addQClient(InetAddress address) {
+    public synchronized void addQClient(InetAddress address) {
         try {
             qClients.put(address);
         } catch (InterruptedException ex) {
@@ -55,7 +55,7 @@ public class netController {
         }
     }
     
-    public InetAddress pullQClient() {
+    public synchronized InetAddress pullQClient() {
         InetAddress tempA = null;
         System.out.println(addr + "clients");
         if(!addr)
@@ -93,7 +93,7 @@ public class netController {
     }
     
     /* Check for notify() or anything else */
-    public double[][] getResults() {
+    public synchronized double[][] getResults() {
         System.out.println(resultsB + "results");
         if(!resultsB) {
             try{
