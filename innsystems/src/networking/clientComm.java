@@ -23,14 +23,28 @@ public class clientComm implements Runnable {
     private DataInputStream in;
     
     
-    public clientComm() {
+    public clientComm(String ServerIP) {
+        try {
+            server = InetAddress.getByName(ServerIP);
+        } catch (UnknownHostException ex) {
+            ex.printStackTrace();
+        }
         Thread t = new Thread(this);
         t.start();
         
     }
     
     public void run() {
-        InetAddress serverM = null;
+        Socket sock;
+        try {
+            
+            sock = new Socket(server, 7776);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+     /*   InetAddress serverM = null;
         try {
             serverM = InetAddress.getByName("10.10.255.255");
         } catch (UnknownHostException ex) {
@@ -43,11 +57,11 @@ public class clientComm implements Runnable {
         } catch (SocketException ex) {
             ex.printStackTrace();
         }
-        
+      
         byte[] buff = "random".getBytes();
         int length = buff.length;
         DatagramPacket packet = new DatagramPacket(buff, length, serverM, 7776);
-        
+      
         try{
             for(int i = 0; i < 4; i++) {
                 sock.send(packet);
@@ -72,14 +86,14 @@ public class clientComm implements Runnable {
         Socket socket;
         try {
             socket = new Socket(serverM, 7776);
-        
+      
             server = socket.getInetAddress();
             System.out.println(server);
             socket.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        */
+      *//*
         System.out.println("YEP");
         DatagramSocket sockIn = null;
         boolean stop = false;
@@ -92,7 +106,7 @@ public class clientComm implements Runnable {
         buff = new byte[256];
         length = buff.length;
         DatagramPacket pack = new DatagramPacket(buff, length);
-        
+         
         while(!stop)
             try{
                 sock.setSoTimeout(5);
@@ -103,12 +117,14 @@ public class clientComm implements Runnable {
                     stop = true;
                     sockIn.close();
                 } catch (SocketTimeoutException ex) {
-                    
+         
                 }}catch (IOException e) {
-                    
+         
                 }
-        
+         
         /* Rest of Code */
+        
+        
         try {
             recieve = new ServerSocket(7778);
             stop = false;

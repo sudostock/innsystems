@@ -50,9 +50,9 @@ public class netController {
             ex.printStackTrace();
         }
         addr = true;
-/*        synchronized(send) {
+        synchronized(send) {
             notify();
-        }*/
+        }
     }
     
     public InetAddress pullQClient() {

@@ -20,7 +20,7 @@ import java.util.*;
  */
 public class broadcastS implements Runnable {
     private InetAddress serverIp;
-    private DatagramSocket sock;
+    private ServerSocket sock;
     private final int listenPort = 7776;
     private boolean stop;
     private InetAddress  group;
@@ -46,7 +46,7 @@ public class broadcastS implements Runnable {
         stop = false;
         try {
             System.out.println("About to listen for clients");
-            sock = new DatagramSocket(listenPort);
+            sock = new ServerSocket(listenPort);
             //    sock.joinGroup(group);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -58,13 +58,10 @@ public class broadcastS implements Runnable {
             ex.printStackTrace();
         }
         while(!stop) {
-            byte buff[] = new byte[256];
-            int length = buff.length;
-            DatagramPacket packet = new DatagramPacket(buff, length);
             try{
                 try {
-                    sock.receive(packet);
-                    msg(packet);
+                    Socket s = sock.accept();
+                    msg(s);
                     
                 } catch (SocketTimeoutException ex) {
                     
@@ -82,14 +79,10 @@ public class broadcastS implements Runnable {
         
     }
     
-    private void msg(DatagramPacket packet) {
-        System.out.println("Down here");
-        byte buf[] = new byte[packet.getLength()];
-        buf = packet.getData();
-        System.out.println(buf.toString());
-        System.out.println(packet.getAddress());
-        net.addQClient(packet.getAddress());
-        returnIP(packet.getAddress());
+    private void msg(Socket s) {
+        System.out.println(s.getInetAddress());
+        net.addQClient(s.getInetAddress());
+        //   returnIP(packet.getAddress());
     }
     
     private void returnIP(InetAddress client) {
