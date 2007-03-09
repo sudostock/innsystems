@@ -25,7 +25,8 @@ public class clientComm implements Runnable {
     
     public clientComm(String ServerIP) {
         try {
-            server = InetAddress.getByName(ServerIP);
+            server = InetAddress.getByName("10.10.31.15");
+          //  server = InetAddress.getByName(ServerIP);
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
         }
