@@ -140,8 +140,7 @@ public class Methods {
                 if(b==3){
                    
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                    //nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2
-                    
+                    //nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2 
                     ddelta = (independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
                     nvelocity[b-1]= inertial*velocity[b-1] + ddelta;
                 }else{
