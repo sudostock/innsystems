@@ -18,7 +18,7 @@ import java.net.*;
  *
  * @author Alex Filby
  */
-public class SendData implements Runnable {
+public class SendData extends Thread {
     private boolean stop;
     private double[] data;
     private double particle;
@@ -39,13 +39,14 @@ public class SendData implements Runnable {
     
     public void run() {
         System.out.println("Running send");
-        while(!stop) {
-            System.out.println("About retrieveData");
-            try {
-                Thread.sleep(15000);
+         try {
+                Thread.sleep(3000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        while(!stop) {
+            System.out.println("About retrieveData");
+           
             data = controller.retrieveTestData();
             particle = data[0];
             numInput = data[1];
@@ -53,7 +54,7 @@ public class SendData implements Runnable {
             learnrate = data[3];
             
             client = controller.pullQClient();
-            System.out.println("About to send that mutha fucker");
+            System.out.println("About to send that mutha f");
             System.out.println(client);
             sendC(client, particle, numInput, numHidden, learnrate);
         }

@@ -18,15 +18,15 @@ import java.util.concurrent.*;
  */
 public class netController {
     private int particles;
-    private ArrayBlockingQueue qClients;
-    private ArrayBlockingQueue dQ;
+    private SynchronousQueue qClients;
+    private SynchronousQueue dQ;
     private List lClients;
     private boolean addr;
     private boolean resultsB;
     private boolean dataS;
     private double[][] results;
     private LinkedList <Integer> resultLeft;
-    private Thread send;
+    private  Thread send;
     private Thread rec;
     private Thread mas;
     
@@ -34,8 +34,8 @@ public class netController {
         this.particles = particles;
         addr = false;
         dataS = false;
-        qClients = new ArrayBlockingQueue(particles);
-        dQ = new ArrayBlockingQueue(particles);
+        qClients = new SynchronousQueue(true);
+        dQ = new SynchronousQueue(true);
         results = new double[particles][2];
         resultLeft = new LinkedList();
         resetList();
@@ -43,38 +43,35 @@ public class netController {
         
     }
     
-    public synchronized void addQClient(InetAddress address) {
+    public void addQClient(InetAddress address) {
         try {
             qClients.put(address);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
         addr = true;
-        synchronized(send) {
-            notify();
-        }
     }
     
-    public synchronized InetAddress pullQClient() {
+    public InetAddress pullQClient() {
         InetAddress tempA = null;
         System.out.println(addr + "clients");
-        if(!addr)
+      /*  if(!addr)
             try{
                 System.out.println("ABOUT TO WAIT FOR CLIENTS");
                 wait();
             }catch(InterruptedException ex) {
                 ex.printStackTrace();
-            }
+            }*/
         try {
             tempA = (InetAddress) qClients.take();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
         
-        if(qClients.isEmpty() == true)
+      /*  if(qClients.isEmpty() == true)
             addr = false;
         else
-            addr = true;
+            addr = true;*/
         return tempA;
         
     }
@@ -127,7 +124,7 @@ public class netController {
         }
     }
     
-    public double[] retrieveTestData() {
+    public synchronized double[] retrieveTestData() {
         double[] temp = null;
         if(!dataS)
             try{
