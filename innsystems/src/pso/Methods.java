@@ -47,6 +47,7 @@ public class Methods {
             pos = (int)(Math.random()*random_factor);
             //**********************
             if(x==3)pos = (Math.random()*random_factor/5);
+            System.out.println(pos);
         }
         return pos;
     }
