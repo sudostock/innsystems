@@ -48,6 +48,7 @@ public class SendData extends Thread {
             System.out.println("About retrieveData");
            
             data = controller.retrieveTestData();
+            System.out.println(data);
             particle = data[0];
             numInput = data[1];
             numHidden = data[2];

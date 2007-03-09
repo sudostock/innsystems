@@ -18,8 +18,8 @@ import java.util.concurrent.*;
  */
 public class netController {
     private int particles;
-    private SynchronousQueue qClients;
-    private SynchronousQueue dQ;
+    private CDQueue  clients;
+    private CDQueue  dQ;
     private List lClients;
     private boolean addr;
     private boolean resultsB;
@@ -34,8 +34,8 @@ public class netController {
         this.particles = particles;
         addr = false;
         dataS = false;
-        qClients = new SynchronousQueue(true);
-        dQ = new SynchronousQueue(true);
+        clients = new CDQueue(particles);
+        dQ = new CDQueue(particles);
         results = new double[particles][2];
         resultLeft = new LinkedList();
         resetList();
@@ -44,35 +44,38 @@ public class netController {
     }
     
     public void addQClient(InetAddress address) {
-        try {
-            qClients.put(address);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
-        addr = true;
+        clients.put(address);
+//        try {
+//            qClients.put(address);
+//        } catch (InterruptedException ex) {
+//            ex.printStackTrace();
+//        }
+//        addr = true;
     }
-    
+//
     public InetAddress pullQClient() {
-        InetAddress tempA = null;
-        System.out.println(addr + "clients");
-      /*  if(!addr)
-            try{
-                System.out.println("ABOUT TO WAIT FOR CLIENTS");
-                wait();
-            }catch(InterruptedException ex) {
-                ex.printStackTrace();
-            }*/
-        try {
-            tempA = (InetAddress) qClients.take();
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+        return (InetAddress) clients.take();
         
-      /*  if(qClients.isEmpty() == true)
-            addr = false;
-        else
-            addr = true;*/
-        return tempA;
+//        InetAddress tempA = null;
+//        System.out.println(addr + "clients");
+//      /*  if(!addr)
+//            try{
+//                System.out.println("ABOUT TO WAIT FOR CLIENTS");
+//                wait();
+//            }catch(InterruptedException ex) {
+//                ex.printStackTrace();
+//            }*/
+//        try {
+//            tempA = (InetAddress) qClients.take();
+//        } catch (InterruptedException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//      /*  if(qClients.isEmpty() == true)
+//            addr = false;
+//        else
+//            addr = true;*/
+//        return tempA;
         
     }
     
@@ -105,6 +108,7 @@ public class netController {
     }
     
     public void storeTestData(double testData[][]) {
+        System.out.println("In storing data!");
         double testInfo[];
         for(int i = 0; i < particles; i++) {
             testInfo = new double[4];
@@ -124,6 +128,7 @@ public class netController {
         }
     }
     
+    /* Needs to be fixed */
     public synchronized double[] retrieveTestData() {
         double[] temp = null;
         if(!dataS)
@@ -133,11 +138,14 @@ public class netController {
             }catch(Exception e) {
                 e.printStackTrace();
             }
+        System.out.println("Got some test data, now gonna get a client!");
+        System.out.println();
         try {
             temp =(double[]) dQ.take();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+        System.out.println(temp);
         
         if(dQ.isEmpty())
             dataS = false;
