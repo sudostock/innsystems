@@ -37,18 +37,21 @@ public class SimpleQuadratic {
         printfitness(P);
         
         for(int i=0; i<10000; i++){ //iterations
-            double[][] coordinates = P.getxyz();
+            double[][] coordinates = P.getxyz();//get coordinates
             for(int a=0; a<P.getnumParticles(); a++){ //for each particle...
                 double x = coordinates[a][0];
                 double y = coordinates[a][1];
                 double z = coordinates[a][2];
-                double ans = x*x*x*x*x+y*y*y*y+z*z*z;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
-                double delta; //= (Math.abs(6-ans)/6)*100;
-                if(ans>3){
-                    delta = (ans-3)/3*100;
-                }else{
-                    delta = (3-ans)/3*100;
+                double ans = x+y+z;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
+                if(i==9999 || i==500){
+                System.out.println("ANSWER============="+ans);
                 }
+                double delta = (Math.abs((6-ans)/6))*100;
+                /*if(ans>6){
+                    delta = ((ans-6)/6)*100;
+                }else{
+                    delta = ((6-ans)/6)*100;
+                }*/
                 M.calculate_fitness(1,delta,a);
                 
             }
@@ -59,28 +62,28 @@ public class SimpleQuadratic {
             M.adjust_position();
             if(i==500){
                 System.out.println("---------------------------------------------------\n");
-                printxyz( P);
+                printxyz(P);
                 printvelocity(P);
                 printfitness(P);
                 System.out.println("----------------------------------------------------\n\n");
             }
              if(i==501){
                 System.out.println("---------------------------------------------------\n");
-                printxyz( P);
+                printxyz(P);
                 printvelocity(P);
                 printfitness(P);
                 System.out.println("----------------------------------------------------\n\n");
             }
         }
-        printxyz( P);
+        printxyz(P);
         printvelocity(P);
         printfitness(P);
     }
     public static void printxyz(Particles P){
-        double[][] coordinates1 = P.getxyz();
+        double[][] coordinates = P.getxyz();
         for(int i=0; i<P.getnumParticles(); i++){
             for(int j=0; j<3; j++){
-                System.out.println("coordinates["+i+"]["+j+"] = ]"+coordinates1[i][j]);
+                System.out.println("coordinates["+i+"]["+j+"] = ]"+coordinates[i][j]);
             }
             
         }
