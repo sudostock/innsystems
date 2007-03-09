@@ -172,7 +172,7 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_connectServer
     
     private void setup() {
-        cComm = new clientComm();
+        cComm = new clientComm("10.10.31.15");
     }
     /**
      * @param args the command line arguments
