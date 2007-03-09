@@ -59,25 +59,33 @@ public class SimpleQuadratic {
             M.calculate_gbest();
             M.calculate_nbest();
             M.adjust_velocity();
-            M.adjust_position();
-            if(i==500){
+            if(i==10){
                 System.out.println("---------------------------------------------------\n");
                 printxyz(P);
                 printvelocity(P);
                 printfitness(P);
                 System.out.println("----------------------------------------------------\n\n");
             }
-             if(i==501){
+            if(i==150){
                 System.out.println("---------------------------------------------------\n");
                 printxyz(P);
                 printvelocity(P);
                 printfitness(P);
                 System.out.println("----------------------------------------------------\n\n");
             }
+             if(i==500){
+                System.out.println("---------------------------------------------------\n");
+                printxyz(P);
+                printvelocity(P);
+                printfitness(P);
+                System.out.println("----------------------------------------------------\n\n");
+            }
+             M.adjust_position();
         }
+        
         printxyz(P);
         printvelocity(P);
-        printfitness(P);
+        printfitness(P);      
     }
     public static void printxyz(Particles P){
         double[][] coordinates = P.getxyz();

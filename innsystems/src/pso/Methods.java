@@ -22,8 +22,8 @@ public class Methods {
     private final int num_line_particles = 7;
     private final int random_factor = 25;
     private final double inertial = .8;
-    private final double independence = .4;//.4
-    private final double social = .7;//.7
+    private final double independence = .5;//.4
+    private final double social = .5;//.7
     private final int num_particles;
     private Particles P;
     
@@ -115,8 +115,9 @@ public class Methods {
             newpos[1] = posit[1]+vel[1];
             newpos[2] = posit[2]+vel[2];
             for(int j=0; j<3; j++){
-                if(newpos[j]<0)
-                    newpos[j]=(int)(Math.abs(10*Math.random()))+3;
+                if(newpos[j]<0){
+                    newpos[j]=(int)(Math.abs(10*Math.random()-5));
+                }
             }
             P.setPosition(i,newpos);
         }
@@ -137,26 +138,29 @@ public class Methods {
             
             for(int b=1; b<4; b++){
                 if(b==3){
+                   
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                    ddelta = (velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
+                    //nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2
+                    
+                    ddelta = (independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
                     nvelocity[b-1]= inertial*velocity[b-1] + ddelta;
                 }else{
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                    delta = (velocity[b-1]+independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
+                    delta = (independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
                     nvelocity[b-1]= (int)(inertial*velocity[b-1] + delta);
                 }
             }
             
             for(int c=1; c<4; c++){
                 if(c==3){
-                    if(nvelocity[c-1]<-5 || nvelocity[c-1]>5){
-                        nvelocity[c-1]=((Math.random() * 10)-5);
+                    if(nvelocity[c-1]<-10 || nvelocity[c-1]>10){
+                        nvelocity[c-1]=((Math.random() * 20)-10);
                         //((Math.random() * 10)-5)
                         //(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()))
                     }
                 }else{
-                    if(nvelocity[c-1]<-5 || nvelocity[c-1]>5){
-                        nvelocity[c-1]=(int)((Math.random() * 10)-5);
+                    if(nvelocity[c-1]<-10 || nvelocity[c-1]>10){
+                        nvelocity[c-1]=(int)((Math.random() * 20)-10);
                         //(int)(5*Math.random()*Math.pow(-1, (int)10*Math.random()))
                     }
                 }
