@@ -29,7 +29,7 @@
           <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
+                      <EmptySpace pref="70" max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -38,11 +38,11 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="setsL" max="32767" attributes="1"/>
+                      <Component id="setsL" pref="104" max="32767" attributes="1"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel2" pref="92" max="32767" attributes="0"/>
+                      <Component id="jLabel2" pref="104" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -53,18 +53,18 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="epochS" alignment="0" pref="309" max="32767" attributes="1"/>
+                  <Component id="epochS" alignment="0" pref="320" max="32767" attributes="1"/>
                   <Component id="statusText" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="190" max="32767" attributes="0"/>
+              <EmptySpace pref="215" max="32767" attributes="0"/>
               <Component id="stopNote" min="-2" pref="227" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <Component id="last" pref="106" max="32767" attributes="1"/>
+              <Component id="last" pref="133" max="32767" attributes="1"/>
               <EmptySpace min="-2" pref="321" max="-2" attributes="0"/>
           </Group>
       </Group>

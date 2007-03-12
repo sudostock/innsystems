@@ -58,4 +58,8 @@ public class CDQueue {
         return obj;
     }
     
+    public boolean isEmpty() {
+        return q.isEmpty();
+    }
+    
 }

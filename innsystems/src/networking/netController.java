@@ -92,7 +92,7 @@ public class netController {
         
     }
     
-    /* Check for notify() or anything else */
+    /* Might be broken?? */
     public synchronized double[][] getResults() {
         System.out.println(resultsB + "results");
         if(!resultsB) {
@@ -116,39 +116,23 @@ public class netController {
             testInfo[1] = testData[i][0];
             testInfo[2] = testData[i][1];
             testInfo[3] = testData[i][2];
-            try {
-                dQ.put(testInfo);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-            dataS = true;
-            synchronized (send) {
-                send.notify();
-            }
+            testInfo[3] = testData[i][2];
+            
+            dQ.put(testInfo);
+            
         }
     }
     
     /* Needs to be fixed */
-    public synchronized double[] retrieveTestData() {
+    public double[] retrieveTestData() {
         double[] temp = null;
-        if(!dataS)
-            try{
-                System.out.println("about to wait for TESTDATA");
-                wait();
-            }catch(Exception e) {
-                e.printStackTrace();
-            }
-        System.out.println("Got some test data, now gonna get a client!");
+        System.out.println("about to get data!");
         System.out.println();
-        try {
-            temp =(double[]) dQ.take();
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+        
+        temp =(double[]) dQ.take();
+        
         System.out.println(temp);
         
-        if(dQ.isEmpty())
-            dataS = false;
         return temp;
     }
     
