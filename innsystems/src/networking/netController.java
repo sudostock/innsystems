@@ -24,8 +24,9 @@ public class netController {
     private boolean addr;
     private boolean resultsB;
     private boolean dataS;
-    private double[][] results;
-    private LinkedList <Integer> resultLeft;
+    private Results result;
+    
+    
     private  Thread send;
     private Thread rec;
     private Thread mas;
@@ -36,11 +37,7 @@ public class netController {
         dataS = false;
         clients = new CDQueue(particles);
         dQ = new CDQueue(particles);
-        results = new double[particles][2];
-        resultLeft = new LinkedList();
-        resetList();
-        
-        
+        result = new Results(particles);
     }
     
     public void addQClient(InetAddress address) {
@@ -79,36 +76,17 @@ public class netController {
         
     }
     
+    
     public void storeResults(int particle, int epochs, double error) {
-        results[particle][0] = epochs;
-        results[particle][1] = error;
-        resultLeft.remove(particle);
-        if(resultLeft.isEmpty() == true){
-            resultsB = true;
-            synchronized (mas) {
-                mas.notify();
-            }
-        }
-        
+        result.inputResults(particle, epochs, error);
     }
     
-    /* Might be broken?? */
-    public synchronized double[][] getResults() {
-        System.out.println(resultsB + "results");
-        if(!resultsB) {
-            try{
-                System.out.println("about to wait for RESULTS!");
-                wait();
-            }catch(InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        }
-        resultsB = false;
-        return results;
+    public double[][] getResults() {
+        return result.getResults();
     }
+    
     
     public void storeTestData(double testData[][]) {
-        System.out.println("In storing data!");
         double testInfo[];
         for(int i = 0; i < particles; i++) {
             testInfo = new double[4];
@@ -119,28 +97,19 @@ public class netController {
             testInfo[3] = testData[i][2];
             
             dQ.put(testInfo);
-            
         }
+        System.out.println("Stored Data!");
     }
     
-    /* Needs to be fixed */
+    
     public double[] retrieveTestData() {
         double[] temp = null;
-        System.out.println("about to get data!");
-        System.out.println();
+        System.out.println("Getting Test Data to send off!");
         
         temp =(double[]) dQ.take();
         
-        System.out.println(temp);
-        
+        System.out.println("Got test data");
         return temp;
-    }
-    
-    public void resetList() {
-        for(int i = 0; i < particles; i++) {
-            resultLeft.add(i);
-        }
-        
     }
     
     public void setThreads(Thread master, Thread send, Thread recieve) {

@@ -39,25 +39,23 @@ public class SendData extends Thread {
     
     public void run() {
         System.out.println("Running send");
-         try {
-                Thread.sleep(3000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            Thread.sleep(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         while(!stop) {
-            System.out.println("About retrieveData");
-           
+                        
             data = controller.retrieveTestData();
-            System.out.println(data);
             particle = data[0];
             numInput = data[1];
             numHidden = data[2];
             learnrate = data[3];
             
             client = controller.pullQClient();
-            System.out.println("About to send that mutha f");
-            System.out.println(client);
+            System.out.println("Ready to send to "+client);
             sendC(client, particle, numInput, numHidden, learnrate);
+            System.out.println("Sent");
         }
     }
     

@@ -49,9 +49,7 @@ public class Master implements Runnable {
         System.out.println("Storing data!");
         netC.storeTestData(P.getxyz());
         
-        System.out.println("hello");
         while(!stop){
-            System.out.println("about to sleep!");
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException ex) {
