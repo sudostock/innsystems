@@ -17,10 +17,13 @@
 
  * *By Wed March 7*
   * Complete Milestone 1.0 - have the entire system finished and ready to debug
+   *Been delayed even further, no estimate at this time
 
- * *Write* networking code
+ * ~~*Write* networking code~~
  * *Write* "Main" program that interfaces with all of the other sections
+  * Partially complete, the GUI is done, it just needs to be tweaked more or less
  * *Write* "Client" program to be put on remote computers
+  * GUI has a finalized design, but it needs to pull information from each run and is about 50% complete
  * Finish testing of all components of the project
  * Take the collected data and start to run tests with the system as a whole
  * Debug any errors as fast as possible
