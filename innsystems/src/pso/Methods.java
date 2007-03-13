@@ -21,7 +21,7 @@ public class Methods {
     private final int H = 3;
     private final int num_line_particles = 7;
     private final int random_factor = 25;
-    private final double inertial = .8;
+    private final double inertial = .8;//.8
     private final double independence = .5;//.4
     private final double social = .5;//.7
     private final int num_particles;
@@ -168,6 +168,22 @@ public class Methods {
             P.setVelocity(a,nvelocity);
         }
         lockgBest();
+    }
+    
+    public void adjust_velocity2(){
+        int num_particles = P.getnumParticles();
+        
+        /*
+         for every particle
+            for i and j velocities of each particle
+                adjust velocity according to equation
+            for k velocity of each particle
+                adjust velocity according to equation
+         store new velocity component in 2dim array
+         constrict velocity
+         lock the global best
+         
+         */
     }
     
     
