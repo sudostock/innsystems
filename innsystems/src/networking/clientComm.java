@@ -48,7 +48,7 @@ public class clientComm implements Runnable {
         }
         
         
-           
+        
         /* Rest of Code */
         
         
@@ -59,29 +59,25 @@ public class clientComm implements Runnable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        try {
-            
-            recieve.setSoTimeout(5);
-            System.out.println("Ready to recieve");
-            while(!stop) {
-                try{
-                    try {
-                        Socket s = recieve.accept();
-                        msg(s);
-                        s.close();
-                    } catch (SocketTimeoutException ex) {
-                        
-                    }
-                }catch(IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } catch (SocketException ex) {
-            ex.printStackTrace();
+        
+        try{
+        recieve.setSoTimeout(5);
+        }catch(SocketException e) {
+            e.printStackTrace();
         }
-        
-        
-        
+        System.out.println("Ready to recieve");
+        while(!stop) {
+            try{
+                Socket s = recieve.accept();
+                System.out.println("Right here");
+                msg(s);
+                s.close();
+            }catch(SocketTimeoutException e) {
+                
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     
@@ -107,6 +103,7 @@ public class clientComm implements Runnable {
             learnrate = in.readDouble();
             System.out.println(learnrate);
             System.out.println("done, recieved test data!");
+            in.close();
         }catch(IOException e) {
             e.printStackTrace();
         }

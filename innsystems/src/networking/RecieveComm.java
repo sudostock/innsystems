@@ -48,6 +48,7 @@ public class RecieveComm implements Runnable{
             
             try{
                 Socket s = sock.accept();
+                System.out.println("Right here");
                 msg(s);
                 s.close();
             }catch(SocketTimeoutException e) {

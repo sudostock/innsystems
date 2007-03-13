@@ -59,24 +59,16 @@ public class broadcastS implements Runnable {
         }
         while(!stop) {
             try{
-                try {
-                    Socket s = sock.accept();
-                    msg(s);
-                    
-                } catch (SocketTimeoutException ex) {
-                    
-                }
-            }catch(IOException e) {
+                Socket s = sock.accept();
+                msg(s);
+                s.close();
+            }catch(SocketTimeoutException e) {
+                
+            }catch(Exception e) {
                 e.printStackTrace();
             }
+            
         }
-        try {
-            //    sock.leaveGroup(group);
-            sock.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        
     }
     
     private void msg(Socket s) {
