@@ -4,10 +4,7 @@ import java.io.*; // import the Java input/output classes
 import java.util.*; // import the Java utilities classes
 
 /**
- * This class is an implementation of a foward feed neural net with the backpropagation algorithem used to determine
- * the change in connection weights
- *
- *
+ * 
  * @author Dr. Lilly
  * @version 1.0.0 2/12/07
  * This is a fully functional class that creates the appropriate test class for the backpropagation network

@@ -134,14 +134,14 @@ public class Methods {
             double pbest[]= P.getpBest(a);
             double nbest[]= P.getnBest(a);
             double gbest[]= P.getgBest();
-            double ddelta = 0;                                                  
+            double ddelta = 0;
             double delta = 0;
             
             for(int b=1; b<4; b++){
                 if(b==3){
-                   
+                    
                     //new velocity= (inertial)(velocity)+(social)*random()*(nbest[d]-position[d])+(independence)*random()*(pbest[d]-position[d])
-                    //nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2 
+                    //nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2
                     ddelta = (independence*Math.random()*(pbest[b-1]-pos[b-1])+social*Math.random()*(nbest[b-1]-pos[b-1]+gbest[b-1]-pos[b-1])/2);
                     nvelocity[b-1]= inertial*velocity[b-1] + ddelta;
                 }else{
@@ -278,6 +278,59 @@ public class Methods {
     
     public void debug2(){
         P.debuggBest();
+    }
+    
+    public void printParticles() {
+        String view[][] = new String[100][100];
+        
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                view[i][j] = " ";
+            }
+        }
+        
+        int particles = P.getnumParticles();
+        
+        for(int i = 0; i < particles; i++) {
+            double pos[] = new double[3];
+            pos = P.getPosition(i);
+            
+            view[(int)pos[1]][(int)pos[0]] = "X";
+        }
+        System.out.println("-------------");
+        System.out.println(" X and Y graph");
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                System.out.print(view[i][j] + "\t");
+            }
+            System.out.println("");
+        }
+        System.out.println("----------");
+        view = new String[100][100];
+        
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                view[i][j] = " ";
+            }
+        }
+        
+        
+        
+        for(int i = 0; i < particles; i++) {
+            double pos[] = new double[3];
+            pos = P.getPosition(i);
+            
+            view[(int)pos[2]][(int)pos[0]] = "X";
+        }
+        System.out.println("-------------");
+        System.out.println(" X and Z graph");
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                System.out.print(view[i][j] + "\t");
+            }
+            System.out.println("");
+        }
+        
     }
     
 }

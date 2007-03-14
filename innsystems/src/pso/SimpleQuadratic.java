@@ -25,7 +25,7 @@ public class SimpleQuadratic {
     }
     public static void main(String[] args) {
         
-        Particles P = new Particles(15, 5);
+        Particles P = new Particles(300, 10);
         Methods M = new Methods(P);
         
         M.initialize();
@@ -36,15 +36,15 @@ public class SimpleQuadratic {
         printvelocity(P);
         printfitness(P);
         
-        for(int i=0; i<10000; i++){ //iterations
+        for(int i=0; i<600; i++){ //iterations
             double[][] coordinates = P.getxyz();//get coordinates
             for(int a=0; a<P.getnumParticles(); a++){ //for each particle...
                 double x = coordinates[a][0];
                 double y = coordinates[a][1];
                 double z = coordinates[a][2];
-                double ans = x+y+z;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
+                double ans = x+y+z/*x*5*y+y*y*2+z*z*z*z*x*/;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
                 if(i==9999 || i==500){
-                System.out.println("ANSWER============="+ans);
+                    System.out.println("ANSWER============="+ans);
                 }
                 double delta = (Math.abs((6-ans)/6))*100;
                 /*if(ans>6){
@@ -59,33 +59,49 @@ public class SimpleQuadratic {
             M.calculate_gbest();
             M.calculate_nbest();
             M.adjust_velocity();
-            if(i==10){
-                System.out.println("---------------------------------------------------\n");
-                printxyz(P);
+            
+            if(i==0){
+                System.out.println("0---------------------------------------------------\n");
+            /*    printxyz(P);
                 printvelocity(P);
-                printfitness(P);
+                printfitness(P);*/
+                printParticles(M);
+                System.out.println("----------------------------------------------------\n\n");
+            }
+            
+            if(i==10){
+                System.out.println("10---------------------------------------------------\n");
+            /*    printxyz(P);
+                printvelocity(P);
+                printfitness(P);*/
+                printParticles(M);
                 System.out.println("----------------------------------------------------\n\n");
             }
             if(i==150){
-                System.out.println("---------------------------------------------------\n");
-                printxyz(P);
+                System.out.println("150---------------------------------------------------\n");
+               /* printxyz(P);
                 printvelocity(P);
-                printfitness(P);
+                printfitness(P);*/
+                printParticles(M);
                 System.out.println("----------------------------------------------------\n\n");
             }
-             if(i==500){
-                System.out.println("---------------------------------------------------\n");
-                printxyz(P);
+            if(i==500){
+                System.out.println("500---------------------------------------------------\n");
+               /* printxyz(P);
                 printvelocity(P);
-                printfitness(P);
+                printfitness(P);*/
+                printParticles(M);
                 System.out.println("----------------------------------------------------\n\n");
             }
-             M.adjust_position();
+            M.adjust_position();
         }
         
         printxyz(P);
         printvelocity(P);
-        printfitness(P);      
+        printfitness(P);
+        
+        System.out.println("Finished!");
+        printParticles(M);
     }
     public static void printxyz(Particles P){
         double[][] coordinates = P.getxyz();
@@ -107,4 +123,10 @@ public class SimpleQuadratic {
             System.out.println("velocity["+i+"] = "+v[0]+"i "+v[1]+"j "+v[2]+"k ");
         }
     }
+    
+    public static void printParticles(Methods M) {
+        M.printParticles();
+    }
+    
+    
 }
