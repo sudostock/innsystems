@@ -59,6 +59,7 @@ public class SimpleQuadratic {
             M.calculate_gbest();
             M.calculate_nbest();
             M.adjust_velocity();
+            printParticles(M);
             
             if(i==0){
                 System.out.println("0---------------------------------------------------\n");

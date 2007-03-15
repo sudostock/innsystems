@@ -42,40 +42,11 @@ public class netController {
     
     public void addQClient(InetAddress address) {
         clients.put(address);
-//        try {
-//            qClients.put(address);
-//        } catch (InterruptedException ex) {
-//            ex.printStackTrace();
-//        }
-//        addr = true;
-    }
-//
-    public InetAddress pullQClient() {
-        return (InetAddress) clients.take();
-        
-//        InetAddress tempA = null;
-//        System.out.println(addr + "clients");
-//      /*  if(!addr)
-//            try{
-//                System.out.println("ABOUT TO WAIT FOR CLIENTS");
-//                wait();
-//            }catch(InterruptedException ex) {
-//                ex.printStackTrace();
-//            }*/
-//        try {
-//            tempA = (InetAddress) qClients.take();
-//        } catch (InterruptedException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//      /*  if(qClients.isEmpty() == true)
-//            addr = false;
-//        else
-//            addr = true;*/
-//        return tempA;
-        
     }
     
+    public InetAddress pullQClient() {
+        return (InetAddress) clients.take();
+    }
     
     public void storeResults(int particle, int epochs, double error) {
         result.inputResults(particle, epochs, error);
