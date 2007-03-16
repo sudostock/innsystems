@@ -1,7 +1,7 @@
 /*
  * ClientSend.java
  *
- * 
+ *
  */
 
 package networking;
@@ -17,23 +17,17 @@ import java.net.*;
  */
 public class ClientSend implements Runnable {
     private InetAddress server;
-    private int particle;
-    private int epoch;
-    private  double error;
     private final int port = 7780;
     
     
-    public ClientSend(InetAddress server, int particle, int epoch, double error) {
+    public ClientSend(InetAddress server) {
         this.server = server;
-        this.particle = particle;
-        this.epoch = epoch;
-        this.error = error;
         
         Thread t = new Thread(this);
         t.start();
         
     }
-
+    
     public void run() {
         
         Socket sock;
