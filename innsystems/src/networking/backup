@@ -210,3 +210,17 @@ public class broadcastS implements Runnable {
                 }}catch (IOException e) {
          
                 }
+
+
+
+Client backup information ****************
+
+ Socket sock;
+        try {
+            
+            sock = new Socket(server, 7776);
+            sock.close();
+            System.out.println("Socket Closed");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }

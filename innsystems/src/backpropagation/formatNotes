@@ -1,0 +1,23 @@
+Notes about the new Format class:
+
+This class needs to be rather efficient as it will become a bottle neck in the program
+Everytime the number of input nodes changes the class will need to recreate the input data
+
+
+The class needs to have some sort of cache and a check in the event that the dataSet being
+requested was the same as the previous time in which case it will not have to run anything
+extra.
+
+The class needs to read through the input file once to get number of lines or needs to use
+an arraylist to store all the lines of the input and then convert it to an array when finished.
+This will eliminate the need to read from a file which is a massive bottleneck. At the same time it
+needs to be finding the highest and lowest value.
+
+After it inputs the data from a file, it then needs to take the information about the highest and lowest
+numbers and then go through the entire list and normilize the data. 
+
+All this needs to be done on the creation of the object, which will save a large amount of runtime during
+the actual running of the NN
+
+It then needs to include a method that is called to create the tInputs and the tOutputs, or turn them into two seperate
+methods.

@@ -12,7 +12,8 @@ import java.net.*;
 import java.util.concurrent.*;
 
 /**
- * This class handles most of the
+ * This class handles most of the controller functions
+ *
  * @author Alex Filby
  *
  */
@@ -26,15 +27,11 @@ public class netController {
     private boolean dataS;
     private Results result;
     
+    private double[][] testData;
     
-    private  Thread send;
-    private Thread rec;
-    private Thread mas;
-    
+        
     public netController(int particles) {
         this.particles = particles;
-        addr = false;
-        dataS = false;
         clients = new CDQueue(particles);
         dQ = new CDQueue(particles);
         result = new Results(particles);
@@ -58,6 +55,7 @@ public class netController {
     
     
     public void storeTestData(double testData[][]) {
+        this.testData = testData;
         double testInfo[];
         for(int i = 0; i < particles; i++) {
             testInfo = new double[4];
@@ -74,19 +72,8 @@ public class netController {
     
     
     public double[] retrieveTestData() {
-        double[] temp = null;
-        System.out.println("Getting Test Data to send off!");
-        
-        temp =(double[]) dQ.take();
-        
-        System.out.println("Got test data");
-        return temp;
+        return (double[]) dQ.take();
     }
     
-    public void setThreads(Thread master, Thread send, Thread recieve) {
-        mas = master;
-        this.send = send;
-        rec = recieve;
-    }
-    
+        
 }

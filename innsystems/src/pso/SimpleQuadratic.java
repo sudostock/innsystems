@@ -25,7 +25,7 @@ public class SimpleQuadratic {
     }
     public static void main(String[] args) {
         
-        Particles P = new Particles(300, 10);
+        Particles P = new Particles(100, 10);
         Methods M = new Methods(P);
         
         M.initialize();
@@ -42,7 +42,7 @@ public class SimpleQuadratic {
                 double x = coordinates[a][0];
                 double y = coordinates[a][1];
                 double z = coordinates[a][2];
-                double ans = x*5*y+y*y*2+z*z*z*z*x;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
+                double ans = x+y+z;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
                 if(i==9999 || i==500){
                     System.out.println("ANSWER============="+ans);
                 }
