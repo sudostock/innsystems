@@ -10,9 +10,7 @@ Assignments will be listed here for things needing to be created and bugs that n
 
 
 *Joel*
- * Work out kinks in PSO
- * Find more problems to test PSO with, then test them
- * Start brainstorming ways stress test the program
+ * Work on GUIs, fix issue 25
  * Stress Test Filby
 
 *Kevin*
