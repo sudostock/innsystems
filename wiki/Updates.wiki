@@ -19,6 +19,11 @@ This page will list updates to the project as they become to be.
  * Work on the networking is still going.
  * Work on the GUIs has begun.
 
+== March 26, 2007 ==
 
+ * Work on core networking components are finished.
+  * Still working on some error checking features.
+ * Working on GUIs is still on going.
+ 
 
 
