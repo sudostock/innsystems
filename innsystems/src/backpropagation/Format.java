@@ -33,11 +33,16 @@ public class Format {
     private double max;
     private double min;
     private double[] dataSet;
-    
+    private int inputNodes;
+    private int outputNodes;
+    private int patterns;
+    private double[][] t_inputs;
+    private double[][] t_outputs;
     
     /** Creates a new instance of Format */
-    public Format(String filename) {
+    public Format(String filename, int outputNodes) {
         this.filename = filename;
+        this.outputNodes = outputNodes;
         initialize();
     }
     
@@ -94,7 +99,15 @@ public class Format {
         
     }
     
-    public void createDataSet(int inputNodes) {
+    public void createDataSet(int inputNodes, int patterns) {
+        if(this.inputNodes == inputNodes && this.patterns == patterns)
+            return;
+        this.inputNodes = inputNodes;
+        this.patterns = patterns;
+        
+        t_inputs = new double[patterns][inputNodes +1]; // + 1 for bias nerode
+        t_outputs = new double[patterns][outputNodes];
+        
         
     }
     
