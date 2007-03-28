@@ -34,8 +34,10 @@
 
 == By State Science Fair ==
 
- * Have a complete working system with data to show our findings
- * In depth knowledge of everything about the project so we can field questions
+ * Project not completed enough to be able to present the findings
+
+ * ~~Have a complete working system with data to show our findings~~
+ * ~~In depth knowledge of everything about the project so we can field questions~~
 
 == Tentative ==
  * Run profiler
@@ -45,6 +47,7 @@
 == Day After? ==
 
  * *RELAX*
+
 
 
 
