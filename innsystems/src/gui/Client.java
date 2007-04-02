@@ -54,6 +54,7 @@ public class Client extends javax.swing.JFrame {
         statusText.setText("Status");
 
         setsL.setFont(new java.awt.Font("Arial", 0, 12));
+        setsL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         setsL.setText("Sets Completed:");
 
         setsCounter.setFont(new java.awt.Font("Arial", 0, 12));
@@ -174,7 +175,7 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_connectServer
     
     private void setup() {
-        cComm = new clientComm("127.0.0.1");
+        clientComm com = new clientComm();
     }
     /**
      * @param args the command line arguments

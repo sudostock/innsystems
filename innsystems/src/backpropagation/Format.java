@@ -34,7 +34,7 @@ public class Format {
     private double min;
     private double[] dataSet;
     private int inputNodes;
-    private int outputNodes;
+    private final int outputNodes;
     private int patterns;
     private double[][] t_inputs;
     private double[][] t_outputs;
@@ -46,7 +46,7 @@ public class Format {
         initialize();
     }
     
-    /* Needs to be rewritten to make it more error resistant and utlizing the Scanner class, need to know format of 
+    /* Needs to be rewritten to make it more error resistant and utlizing the Scanner class, need to know format of
      * input data first, unless it can read in a line and determine what kind of data it is */
     private void initialize(){
         BufferedReader inFile = null;
@@ -104,19 +104,38 @@ public class Format {
             return;
         this.inputNodes = inputNodes;
         this.patterns = patterns;
+        if(this.inputNodes == inputNodes) return;
         
         t_inputs = new double[patterns][inputNodes +1]; // + 1 for bias nerode
         t_outputs = new double[patterns][outputNodes];
         
+        int skips = ((5*60)/inputNodes);
+        int outSkips = 50;
+        int pointerI = 0;
+        int pointer = 0;
         
+        for(int i = 0; i < patterns; i++) {
+            for(int j = 0; j < inputNodes; j++) {
+                t_inputs[i][j] = dataSet[pointer];
+                pointer+= skips;
+            }
+            t_inputs[i][inputNodes -1] = 1;
+            
+            for(int j = 0; j < outputNodes; j++) {
+                t_outputs[i][j] = dataSet[pointer];
+                pointer+= outSkips;
+            }
+            pointerI += skips;
+            pointer = pointerI;
+        }
     }
     
     public double[][] getInputs() {
-        
+        return t_inputs;
     }
     
     public double[][] getOutputs() {
-        
+        return t_outputs;
     }
     
 }
