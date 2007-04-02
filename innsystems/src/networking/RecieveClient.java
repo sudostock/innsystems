@@ -62,6 +62,7 @@ public class RecieveClient implements Runnable {
     
     
     private void msg(Socket s) {
+        double generation;
         double particle;
         double numInput;
         double numHidden;
@@ -74,6 +75,8 @@ public class RecieveClient implements Runnable {
         }
         
         try{
+            generation = in.readDouble();
+            System.out.println(generation);
             particle = in.readDouble();
             System.out.println(particle);
             numInput = in.readDouble();
@@ -84,11 +87,12 @@ public class RecieveClient implements Runnable {
             System.out.println(learnrate);
             in.close();
             
-            double[] testData = new double[4];
-            testData[0] = particle;
-            testData[1] = numInput;
-            testData[2] = numHidden;
-            testData[3] = learnrate;
+            double[] testData = new double[5];
+            testData[0] = generation;
+            testData[1] = particle;
+            testData[2] = numInput;
+            testData[3] = numHidden;
+            testData[4] = learnrate;
             client.addTestData(testData);
             System.out.println("done, recieved test data!");
             

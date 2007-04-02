@@ -44,8 +44,6 @@ public class clientComm {
     public double[] getTestResults() {
         return (double[]) testResults.take();
     }
-    
-    
-    
+       
     
 }

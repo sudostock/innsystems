@@ -19,6 +19,7 @@ import java.util.concurrent.*;
  */
 public class netController {
     private int particles;
+    private int generation;
     private CDQueue  clients;
     private CDQueue  dQ;
     private List lClients;
@@ -29,7 +30,7 @@ public class netController {
     
     private double[][] testData;
     
-        
+    
     public netController(int particles) {
         this.particles = particles;
         clients = new CDQueue(particles);
@@ -75,5 +76,13 @@ public class netController {
         return (double[]) dQ.take();
     }
     
-        
+    public void setGeneration(int generation) {
+        this.generation = generation;
+    }
+    
+    public int getGeneration() {
+        return generation;
+    }
+    
+    
 }

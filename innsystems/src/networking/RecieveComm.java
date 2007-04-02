@@ -19,6 +19,7 @@ import java.io.*;
  */
 public class RecieveComm implements Runnable{
     private netController controller;
+    private int generation;
     private final int listenport = 7780;
     private ServerSocket sock;
     private boolean stop;
@@ -48,6 +49,7 @@ public class RecieveComm implements Runnable{
             
             try{
                 Socket s = sock.accept();
+                controller.getGeneration();
                 System.out.println("Right here");
                 msg(s);
                 s.close();
@@ -63,6 +65,7 @@ public class RecieveComm implements Runnable{
     
     
     private void msg( Socket s ) {
+        int gen = -1;
         int particle = -1;
         int epochs = -1;
         double error = -1;
@@ -75,6 +78,9 @@ public class RecieveComm implements Runnable{
         }
         
         try{
+            gen = in.readInt();
+            if(this.generation != gen)
+                return;
             particle = in.readInt();
             epochs = in.readInt();
             error = in.readDouble();
@@ -92,10 +98,8 @@ public class RecieveComm implements Runnable{
         
     }
     
-    public Thread getThread() {
-        return t;
+    public void stop() {
+        stop = true;
     }
-    
-    
     
 }

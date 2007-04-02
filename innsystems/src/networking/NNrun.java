@@ -20,6 +20,7 @@ public class NNrun implements Runnable {
     private Backpropagation nn;
     private final int outputL = 6;
     private double[] testData;
+    private int generation;
     private int particle;
     private int inputL;
     private int hiddenL;
@@ -37,7 +38,7 @@ public class NNrun implements Runnable {
     /** Creates a new instance of NNrun */
     public NNrun(clientComm client, String filename) {
         this.client = client;
-        dataP = new Format(filename);
+        dataP = new Format(filename, outputL);
         stop = false;
         Thread t = new Thread(this);
         t.start();
@@ -48,10 +49,11 @@ public class NNrun implements Runnable {
         
         while(!stop) {
             testData = client.getTestData();
-            particle = (int) testData[0];
-            inputL = (int) testData[1];
-            hiddenL = (int) testData[2];
-            learnRate = testData[3];
+            generation = (int) testData[0];
+            particle = (int) testData[1];
+            inputL = (int) testData[2];
+            hiddenL = (int) testData[3];
+            learnRate = testData[4];
             
             int[] tLayer = new int[3];
             tLayer[0] = inputL;
@@ -59,15 +61,16 @@ public class NNrun implements Runnable {
             tLayer[2] = outputL;
             
             nn.createNetwork(tLayer, learnRate, momentum, patterns);
-            dataP.createDataSet(inputL);
+            dataP.createDataSet(inputL, patterns);
             nn.train(dataP.getInputs(), dataP.getOutputs());
             epochs = nn.getEpochs();
             error = nn.getError();
             
-            double[] testResults = new double[3];
-            testResults[0] = particle;
-            testResults[1] = epochs;
-            testResults[2] = error;
+            double[] testResults = new double[4];
+            testResults[0] = generation;
+            testResults[1] = particle;
+            testResults[2] = epochs;
+            testResults[3] = error;
             
             client.addTestResults(testResults);
         }

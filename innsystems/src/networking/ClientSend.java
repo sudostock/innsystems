@@ -51,7 +51,8 @@ public class ClientSend implements Runnable {
             out = new DataOutputStream(sock.getOutputStream());
             out.writeInt((int) testResults[0]);
             out.writeInt((int) testResults[1]);
-            out.writeDouble(testResults[2]);
+            out.writeInt((int) testResults[2]);
+            out.writeDouble(testResults[3]);
             out.flush();
             out.close();
             sock.close();

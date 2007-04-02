@@ -21,6 +21,7 @@ import java.net.*;
 public class SendData extends Thread {
     private boolean stop;
     private double[] data;
+    private int gen;
     private double particle;
     private double numInput;
     private double numHidden;
@@ -45,7 +46,8 @@ public class SendData extends Thread {
             e.printStackTrace();
         }
         while(!stop) {
-                        
+            
+            gen = controller.getGeneration();
             data = controller.retrieveTestData();
             particle = data[0];
             numInput = data[1];
@@ -54,17 +56,18 @@ public class SendData extends Thread {
             
             client = controller.pullQClient();
             System.out.println("Ready to send to "+client);
-            sendC(client, particle, numInput, numHidden, learnrate);
+            sendC(client, gen, particle, numInput, numHidden, learnrate);
             System.out.println("Sent");
         }
     }
     
-    private void sendC(InetAddress client, double particle, double numInput, double numHidden, double learnrate) {
+    private void sendC(InetAddress client, int generation, double particle, double numInput, double numHidden, double learnrate) {
         DataOutputStream out;
         Socket sock = null;
         try {
             sock = new Socket(client, 7780);
             out = new DataOutputStream(sock.getOutputStream());
+            out.writeDouble(generation);
             out.writeDouble(particle);
             out.writeDouble(numInput);
             out.writeDouble(numHidden);
@@ -78,9 +81,5 @@ public class SendData extends Thread {
         
         
     }
-    
-    public Thread getThread() {
-        return t;
-    }
-    
+          
 }
