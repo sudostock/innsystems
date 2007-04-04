@@ -186,4 +186,8 @@ public class Particles {
     public double getnFitness(){
         return nFit;
     }
+    
+    public void modifyX(int neuvopos, int p){
+        hive[p][0]= neuvopos;
+    }
 }

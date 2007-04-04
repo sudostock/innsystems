@@ -25,6 +25,8 @@ public class Methods {
     private final double independence = .5;//.4
     private final double social = .5;//.7
     private final int num_particles;
+    private final int lowInodes=5;
+    private final int highInodes=30;
     private Particles P;
     
     
@@ -69,6 +71,7 @@ public class Methods {
                 coordinates[b]= setPosition(a,b);
             }
             P.setPosition(a,coordinates);
+            constrictInodes();
         }
         
         //initialize particle velocities
@@ -121,6 +124,7 @@ public class Methods {
                 }
             }
             P.setPosition(i,newpos);
+            constrictInodes();
         }
     }
     
@@ -332,5 +336,18 @@ public class Methods {
         }
         
     }
+    
+    public void constrictInodes(){
+        double[] ipos;
+        double[] temp;
+        for(int i =0; i<P.getnumParticles(); i++){
+           temp = P.getPosition(i); 
+           if(temp[0]>30 || temp[0]<5){
+               temp[0] = 30 - 25*Math.random();
+           }
+           P.modifyX((int)temp[0], i);
+        }       
+    }    
+    
     
 }
