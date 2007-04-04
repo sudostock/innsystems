@@ -87,8 +87,13 @@ public class Format {
             
         }
         
-         /* This is where the ArrayList is converted to an array, need to find a better way
-          * NOT YET IMPLEMENTED! */
+        // Converts array list to an array
+        dataSet = new double[data.size()];
+        int lengthData = data.size();
+         for(int i = 0; i < lengthData; i++) {
+            dataSet[i] = data.get(i);
+         }
+        data = null;
         
         /* Normalizing data */
         int length = dataSet.length;
