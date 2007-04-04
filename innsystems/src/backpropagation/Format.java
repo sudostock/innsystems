@@ -44,6 +44,8 @@ public class Format {
         this.filename = filename;
         this.outputNodes = outputNodes;
         initialize();
+        inputNodes = 0;
+        patterns = 0;
     }
     
     /* Needs to be rewritten to make it more error resistant and utlizing the Scanner class, need to know format of
@@ -90,9 +92,9 @@ public class Format {
         // Converts array list to an array
         dataSet = new double[data.size()];
         int lengthData = data.size();
-         for(int i = 0; i < lengthData; i++) {
+        for(int i = 0; i < lengthData; i++) {
             dataSet[i] = data.get(i);
-         }
+        }
         data = null;
         
         /* Normalizing data */
@@ -101,16 +103,16 @@ public class Format {
             dataSet[i] = ((2*((dataSet[i]-min)/(max-min)))-1);
         }
         
-        
     }
     
     public void createDataSet(int inputNodes, int patterns) {
-        if(this.inputNodes == inputNodes && this.patterns == patterns)
+        if(this.inputNodes == inputNodes && this.patterns == patterns){
+            System.out.println("hmm");
             return;
+        }
         this.inputNodes = inputNodes;
         this.patterns = patterns;
-        if(this.inputNodes == inputNodes) return;
-        
+                
         t_inputs = new double[patterns][inputNodes +1]; // + 1 for bias nerode
         t_outputs = new double[patterns][outputNodes];
         
@@ -141,6 +143,16 @@ public class Format {
     
     public double[][] getOutputs() {
         return t_outputs;
+    }
+    
+    public void showInputs() {
+        
+        for(int i = 0; i < patterns; i++) {
+            for(int j = 0; j < inputNodes; j++) {
+                System.out.print(t_inputs[i][j] + "\t");
+            }
+            System.out.println("");
+        }
     }
     
 }

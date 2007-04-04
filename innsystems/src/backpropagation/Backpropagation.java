@@ -204,7 +204,7 @@ public class Backpropagation implements Serializable {
         for(int i = 0; i < tLayer.length; i++) {
             numUnits += tLayer[i];
         }
-        resetNet();
+        resetNet_new();
     }
     
     public void train(double[][] tSetInputs, double[][] tSetOutputs) {

@@ -26,7 +26,7 @@ public class NNrun implements Runnable {
     private int hiddenL;
     private double learnRate;
     private double momentum = .2;
-    private final int patterns = 4;
+    private final int patterns = 10;
     private boolean stop;
     
     private int epochs;
