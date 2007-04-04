@@ -21,10 +21,7 @@ public class Controller extends javax.swing.JFrame {
     private RecieveComm rec;
     private SendData send;
     private Master pso;
-    private Thread SendData;
-    private Thread Rec;
-    private Thread broadcastS;
-    private Thread Master;
+    
     
     /** Creates new form Controller */
     public Controller() {
@@ -303,6 +300,9 @@ public class Controller extends javax.swing.JFrame {
         
         control = new netController(particles);
         statusS.setText("Controller Running...");
+        
+        broadcastS broad = new broadcastS(control);
+        statusS.setText("Listening for clients...");
     }//GEN-LAST:event_setInputs
     
     private void stopSystem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSystem
@@ -310,7 +310,6 @@ public class Controller extends javax.swing.JFrame {
     }//GEN-LAST:event_stopSystem
     
     private void runPSO(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runPSO
-        broadcastS broad = new broadcastS(control);
         send = new SendData(control);
         //   SendData = send.getThread();
         rec = new RecieveComm(control);
@@ -319,7 +318,7 @@ public class Controller extends javax.swing.JFrame {
         //  Master = pso.getThread();
         
         // control.setThreads(Master, SendData, Rec);
-        statusS.setText("Waiting for Master...");
+        statusS.setText("PSO Running...");
     }//GEN-LAST:event_runPSO
     
     private void getClients(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getClients

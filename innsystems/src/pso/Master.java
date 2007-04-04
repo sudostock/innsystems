@@ -75,7 +75,7 @@ public class Master implements Runnable {
         }
     }
     
-    public void stopit(){
+    public void stop(){
         stop = true;
     }
     

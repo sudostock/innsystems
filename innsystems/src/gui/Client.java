@@ -11,11 +11,12 @@ import networking.*;
 /**
  *
  * @author  Alex Filby
- * 
+ *
  */
 public class Client extends javax.swing.JFrame {
     private clientComm cComm;
-    
+    private String data = "AppleTestData.db";
+       
     
     /** Creates new form Client */
     public Client() {
@@ -169,13 +170,20 @@ public class Client extends javax.swing.JFrame {
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void connectServer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectServer
-
+// Connect to server
+        
+        LocateServer ls = new LocateServer();
+        ClientSend send = new ClientSend(cComm, ls.getServer());
+        ls = null;
+        RecieveClient rec = new RecieveClient(cComm);
+        NNrun nn = new NNrun(cComm, data);
+        
     }//GEN-LAST:event_connectServer
     
     private void setup() {
-        clientComm com = new clientComm();
+        clientComm cComm = new clientComm();
     }
     /**
      * @param args the command line arguments
