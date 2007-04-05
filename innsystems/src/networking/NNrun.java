@@ -54,6 +54,7 @@ public class NNrun implements Runnable {
             inputL = (int) testData[2];
             hiddenL = (int) testData[3];
             learnRate = testData[4];
+            learnRate = (1/learnRate);
             
             int[] tLayer = new int[3];
             tLayer[0] = inputL;
