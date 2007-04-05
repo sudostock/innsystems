@@ -42,11 +42,11 @@ public class SimpleQuadratic {
                 double x = coordinates[a][0];
                 double y = coordinates[a][1];
                 double z = coordinates[a][2];
-                double ans = x+y+z;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
+                double ans = x*y*z;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
                 if(i==9999 || i==500){
                     System.out.println("ANSWER============="+ans);
                 }
-                double delta = (Math.abs((6-ans)/6))*100;
+                double delta = (Math.abs((37-ans)/37))*100;
                 /*if(ans>6){
                     delta = ((ans-6)/6)*100;
                 }else{
