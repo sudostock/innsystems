@@ -16,14 +16,14 @@ import java.net.*;
  * @author Alex Filby
  */
 public class ClientSend implements Runnable {
-    private clientComm client;
+    private clientComm cComm;
     private InetAddress server;
     private final int port = 7780;
     private boolean stop;
     
     
-    public ClientSend(clientComm client, InetAddress server) {
-        this.client = client;
+    public ClientSend(clientComm cComm, InetAddress server) {
+        this.cComm = cComm;
         this.server = server;
         stop = false;
         Thread t = new Thread(this);
@@ -32,10 +32,10 @@ public class ClientSend implements Runnable {
     }
     
     public void run() {
-        double[] testResults;
+        double[] testResults = null;
         
         while(!stop) {
-            testResults = client.getTestResults();
+            testResults = cComm.getTestResults();
             sendData(testResults);
         }
         

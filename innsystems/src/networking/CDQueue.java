@@ -9,7 +9,7 @@ package networking;
 import java.util.concurrent.*;
 
 /**
- * This class uses the ArrayBlockingQueue and a wait and notify scheme, so that all of the threads in 
+ * This class uses the ArrayBlockingQueue and a wait and notify scheme, so that all of the threads in
  * the main program can talk to each other and use wait and notify and only call those threads which use
  * that particular instance of an object from this class
  *
@@ -45,7 +45,6 @@ public class CDQueue {
         Object obj = null;
         if(!data) {
             try {
-                System.out.println("About to wait!");
                 wait();
             } catch (Exception e) {
                 e.printStackTrace();

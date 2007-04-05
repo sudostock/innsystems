@@ -16,7 +16,7 @@ import networking.*;
 public class Client extends javax.swing.JFrame {
     private clientComm cComm;
     private String data = "AppleTestData.db";
-       
+    
     
     /** Creates new form Client */
     public Client() {
@@ -182,7 +182,7 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_connectServer
     
     private void setup() {
-        clientComm cComm = new clientComm();
+        cComm = new clientComm();
     }
     /**
      * @param args the command line arguments

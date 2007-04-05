@@ -12,7 +12,7 @@ import java.io.*;
 import java.net.*;
 
 /**
- * 
+ *
  *
  * @author Alex Filby
  */
@@ -25,7 +25,7 @@ public class clientComm {
     public clientComm() {
         testData = new CDQueue(defaultSize);
         testResults = new CDQueue(defaultSize);
-                
+        
     }
     
     
@@ -44,6 +44,6 @@ public class clientComm {
     public double[] getTestResults() {
         return (double[]) testResults.take();
     }
-       
+    
     
 }

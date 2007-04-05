@@ -17,17 +17,16 @@ import java.io.*;
  * @author Alex Filby
  */
 public class RecieveClient implements Runnable {
-    private clientComm client;
+    private clientComm cComm;
     private final int listenport = 7780;
     private ServerSocket sock;
     private boolean stop;
     private DataInputStream in;
-    private Thread t;
+        
     
-    
-    public RecieveClient(clientComm client) {
-        this.client = client;
-        t = new Thread(this);
+    public RecieveClient(clientComm cComm) {
+        this.cComm = cComm;
+        Thread t = new Thread(this);
         stop = false;
         t.start();
     }
@@ -47,13 +46,12 @@ public class RecieveClient implements Runnable {
             
             try{
                 Socket s = sock.accept();
-                System.out.println("Right here");
                 msg(s);
                 s.close();
             }catch(SocketTimeoutException e) {
                 
             }catch(Exception e) {
-                e.printStackTrace();
+                
             }
         }
         
@@ -93,7 +91,7 @@ public class RecieveClient implements Runnable {
             testData[2] = numInput;
             testData[3] = numHidden;
             testData[4] = learnrate;
-            client.addTestData(testData);
+            cComm.addTestData(testData);
             System.out.println("done, recieved test data!");
             
         }catch(IOException e) {
