@@ -302,7 +302,7 @@ public class Controller extends javax.swing.JFrame {
         //   SendData = send.getThread();
         rec = new RecieveComm(control);
         //    Rec = rec.getThread();
-        pso = new Master(particles,neighbors, control);
+        pso = new Master(particles, neighbors, epochs, control);
         //  Master = pso.getThread();
         
         // control.setThreads(Master, SendData, Rec);
