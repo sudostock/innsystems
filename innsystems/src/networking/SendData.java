@@ -48,6 +48,7 @@ public class SendData extends Thread {
         while(!stop) {
             
             gen = controller.getGeneration();
+            System.out.println("Send Generation " + gen);
             data = controller.retrieveTestData();
             particle = data[0];
             numInput = data[1];

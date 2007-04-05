@@ -91,6 +91,8 @@ public class RecieveComm implements Runnable{
         }
         
         controller.storeResults(particle, epochs, error);
+        System.out.println("Storing results");
+        controller.addQClient(s.getInetAddress());
         try {
             
             in.close();

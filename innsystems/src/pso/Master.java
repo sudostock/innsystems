@@ -43,6 +43,7 @@ public class Master implements Runnable {
         
         for(int i=0; i<maxEpochs; i++){
             netC.setGeneration(i);
+            System.out.println("Generation " + i);
             netC.storeTestData(P.getxyz());
             
             data=netC.getResults();
