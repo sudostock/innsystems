@@ -79,8 +79,10 @@ public class RecieveComm implements Runnable{
         
         try{
             gen = in.readInt();
-            if(this.generation != gen)
+            if(this.generation != gen){
+             System.out.println("NOPE!");
                 return;
+            }
             particle = in.readInt();
             epochs = in.readInt();
             error = in.readDouble();
