@@ -42,6 +42,7 @@ public class Master implements Runnable {
         PSO.assign_fitness();
         
         for(int i=0; i<maxEpochs; i++){
+            netC.setGeneration(i);
             netC.storeTestData(P.getxyz());
             
             data=netC.getResults();
