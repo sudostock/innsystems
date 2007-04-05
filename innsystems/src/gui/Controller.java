@@ -307,6 +307,7 @@ public class Controller extends javax.swing.JFrame {
         
         // control.setThreads(Master, SendData, Rec);
         statusS.setText("PSO Running...");
+        
     }//GEN-LAST:event_runPSO
         
     /**
