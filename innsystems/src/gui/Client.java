@@ -89,7 +89,6 @@ public class Client extends javax.swing.JFrame {
         stopNote.setFont(new java.awt.Font("Arial", 0, 12));
 
         connectB.setText("Connect");
-        connectB.setEnabled(false);
         connectB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 connectServer(evt);
