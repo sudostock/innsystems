@@ -52,7 +52,7 @@ public class SimpleQuadratic {
                 }else{
                     delta = ((6-ans)/6)*100;
                 }*/
-                M.calculate_fitness(1,delta,a);
+                M.calculate_fitness(1,delta,a);//Epochs, delta, particle#
                 
             }
             

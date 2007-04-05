@@ -30,7 +30,6 @@ public class Master implements Runnable {
     public Master(int particles, int neighbors, int maxEpochs, netController netC) {
         P = new Particles(particles, neighbors);
         this.maxEpochs = maxEpochs;
-        stop=false;
         this.netC = netC;
         PSO = new Methods(P);
         Thread t = new Thread(this);
@@ -39,10 +38,11 @@ public class Master implements Runnable {
     
     public void run() {
         PSO.initialize();
+        PSO.assign_neighbors();
+        PSO.assign_fitness();
         
-        netC.storeTestData(P.getxyz());
-        
-        while(!stop){
+        for(int i=0; i<maxEpochs; i++){
+            netC.storeTestData(P.getxyz());
             
             data=netC.getResults();
             
@@ -53,6 +53,8 @@ public class Master implements Runnable {
             
             PSO.adjust_velocity();
             PSO.adjust_position();
+            
+            System.out.println("Epoch["+i+"] gbest: "+P.getgFitness());
         }
         
     }
