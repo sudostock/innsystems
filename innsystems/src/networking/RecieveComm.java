@@ -49,7 +49,7 @@ public class RecieveComm implements Runnable{
             
             try{
                 Socket s = sock.accept();
-                controller.getGeneration();
+                generation = controller.getGeneration();
                 System.out.println("Right here");
                 msg(s);
                 s.close();
