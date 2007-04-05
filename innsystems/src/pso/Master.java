@@ -3,7 +3,7 @@
  *
  * Created on March 1, 2007, 8:15 PM
  *
- * 
+ *
  */
 
 package pso;
@@ -22,43 +22,32 @@ public class Master implements Runnable {
     private Particles P;
     private Methods PSO;
     private boolean stop;
+    private int maxEpochs;
     private double data[][];
     netController netC;
-    private Thread t;
     
     /** Creates a new instance of Master */
-    public Master(int particles, int neighbors, netController netC) {
+    public Master(int particles, int neighbors, int maxEpochs, netController netC) {
         P = new Particles(particles, neighbors);
+        this.maxEpochs = maxEpochs;
         stop=false;
         this.netC = netC;
         PSO = new Methods(P);
-        t = new Thread(this);
+        Thread t = new Thread(this);
         t.start();
     }
     
     public void run() {
-        System.out.println("RUN");
         PSO.initialize();
-        System.out.println("About to store test data");
-        try {
-            Thread.sleep(10000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("Storing data!");
+        
         netC.storeTestData(P.getxyz());
         
         while(!stop){
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-            System.out.println("about to get results!!!");
+            
             data=netC.getResults();
-            System.out.println("YO !!");
+            
             getResults(data);
-            //  netC.pullQClient();
+            
             PSO.calculate_gbest();
             PSO.calculate_nbest();
             
@@ -79,9 +68,7 @@ public class Master implements Runnable {
         stop = true;
     }
     
-    public Thread getThread() {
-        return t;
-    }
+    
 }
 
 
