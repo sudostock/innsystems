@@ -39,6 +39,7 @@ public class NNrun implements Runnable {
     public NNrun(clientComm client, String filename) {
         this.client = client;
         dataP = new Format(filename, outputL);
+        nn = new Backpropagation("Test");
         stop = false;
         Thread t = new Thread(this);
         t.start();
