@@ -68,6 +68,7 @@ public class NNrun implements Runnable {
             epochs = nn.getEpochs();
             error = nn.getError();
             
+            System.out.println("Generation " + generation);
             System.out.println("Epochs :" + epochs + "Error" + error);
             double[] testResults = new double[4];
             testResults[0] = generation;

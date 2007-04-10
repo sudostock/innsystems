@@ -81,6 +81,7 @@ public class RecieveComm implements Runnable{
             gen = in.readInt();
             if(this.generation != gen){
              System.out.println("NOPE!");
+             controller.addQClient(s.getInetAddress());
                 return;
             }
             particle = in.readInt();
