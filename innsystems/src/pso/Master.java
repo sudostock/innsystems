@@ -58,6 +58,10 @@ public class Master implements Runnable {
             
             System.out.println("Epoch["+i+"] gbest: "+P.getgFitness());
         }
+        double[] results = P.getgBest();
+        for(int i = 0; i < results.length; i++) {
+            System.out.println(results[i]);
+        }
         
     }
     
