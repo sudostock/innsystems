@@ -39,26 +39,19 @@ public class SendData extends Thread {
     }
     
     public void run() {
-        System.out.println("Running send");
-        try {
-            Thread.sleep(3000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         while(!stop) {
             
-            gen = controller.getGeneration();
-            System.out.println("Send Generation " + gen);
             data = controller.retrieveTestData();
-            particle = data[0];
-            numInput = data[1];
-            numHidden = data[2];
-            learnrate = data[3];
+            gen = (int) data[0];
+            System.out.println("Send Generation " + gen);
+            particle = data[1];
+            numInput = data[2];
+            numHidden = data[3];
+            learnrate = data[4];
             
             client = controller.pullQClient();
             System.out.println("Ready to send to "+client);
             sendC(client, gen, particle, numInput, numHidden, learnrate);
-            System.out.println("Sent");
         }
     }
     
@@ -76,11 +69,27 @@ public class SendData extends Thread {
             out.flush();
             out.close();
             sock.close();
+            System.out.println("Sent");
+            //Find error codes to catch
         } catch (IOException ex) {
+            System.out.println("Computer not reachable");
             ex.printStackTrace();
+            addData(particle, numInput, numHidden, learnrate);
+            controller.addQClient(client);
+            System.out.println("Data not sent, put back in queue.");
         }
         
         
     }
-          
+    
+    private void addData(double particle, double numInput, double numHidden, double learnrate) {
+        double[] data = new double[4];
+        data[0] = particle;
+        data[1] = numInput;
+        data[2] = numHidden;
+        data[3] = learnrate;
+        
+        controller.addTestData(data);
+    }
+    
 }

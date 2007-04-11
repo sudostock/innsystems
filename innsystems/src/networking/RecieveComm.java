@@ -79,7 +79,7 @@ public class RecieveComm implements Runnable{
         
         try{
             gen = in.readInt();
-            if(this.generation != gen){
+            if(generation != gen){
              System.out.println("NOPE!");
              controller.addQClient(s.getInetAddress());
                 return;

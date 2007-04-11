@@ -59,16 +59,20 @@ public class netController {
         this.testData = testData;
         double testInfo[];
         for(int i = 0; i < particles; i++) {
-            testInfo = new double[4];
-            testInfo[0] = i;
-            testInfo[1] = testData[i][0];
-            testInfo[2] = testData[i][1];
-            testInfo[3] = testData[i][2];
-            testInfo[3] = testData[i][2];
+            testInfo = new double[5];
+            testInfo[0] = generation;
+            testInfo[1] = i;
+            testInfo[2] = testData[i][0];
+            testInfo[3] = testData[i][1];
+            testInfo[4] = testData[i][2];
             
             dQ.put(testInfo);
         }
         System.out.println("Stored Data!");
+    }
+    
+    public void addTestData(double data[]) {
+        dQ.put(data);
     }
     
     
