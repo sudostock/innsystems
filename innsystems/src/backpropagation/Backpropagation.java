@@ -253,7 +253,7 @@ public class Backpropagation implements Serializable {
                         weights1[j][k] = weights1[j][k]+
                                 learnRate*weightsDelta1[j]*tSetInputs[i][k];
             }
-            System.out.println("error = "+ error+" epochs = "+epochs);
+           // System.out.println("error = "+ error+" epochs = "+epochs);
             if (epochs>400) break;
         }
         while (error > targetError);
