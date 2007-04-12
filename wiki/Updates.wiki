@@ -24,6 +24,10 @@ This page will list updates to the project as they become to be.
  * Work on core networking components are finished.
   * Still working on some error checking features.
  * Working on GUIs is still on going.
+
+== April 12, 2007 ==
+
+* Project has reached Milestone 1.0, major bugs have been squashed and all basic functionality is up and working*
  
 
 
