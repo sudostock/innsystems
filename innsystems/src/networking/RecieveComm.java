@@ -50,7 +50,6 @@ public class RecieveComm implements Runnable{
             try{
                 Socket s = sock.accept();
                 generation = controller.getGeneration();
-                System.out.println("Right here");
                 msg(s);
                 s.close();
             }catch(SocketTimeoutException e) {
@@ -80,8 +79,8 @@ public class RecieveComm implements Runnable{
         try{
             gen = in.readInt();
             if(generation != gen){
-             System.out.println("NOPE!");
-             controller.addQClient(s.getInetAddress());
+                System.out.println("NOPE!");
+                controller.addQClient(s.getInetAddress());
                 return;
             }
             particle = in.readInt();

@@ -70,10 +70,9 @@ public class SendData extends Thread {
             out.flush();
             out.close();
             sock.close();
-            System.out.println("Sent");
             //Find error codes to catch
         }catch(BindException e) {
-            System.out.println(e);
+            //System.out.println(e);
             addData(generation, particle, numInput, numHidden, learnrate);
             controller.addQClient(client);
         }catch(ConnectException e) {

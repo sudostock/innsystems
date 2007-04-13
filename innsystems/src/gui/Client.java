@@ -35,24 +35,17 @@ public class Client extends javax.swing.JFrame {
         statusText = new javax.swing.JLabel();
         setsL = new javax.swing.JLabel();
         setsCounter = new javax.swing.JLabel();
-        last = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        epochS = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        errorS = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        stopNote = new javax.swing.JLabel();
         connectB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("innsystems Client Alpha (Broken, buttons dont work!)");
+        setTitle("Innsystems Client v1.0");
         statusL.setFont(new java.awt.Font("Arial", 0, 12));
         statusL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         statusL.setText("Status:");
 
         statusText.setFont(new java.awt.Font("Arial", 0, 12));
-        statusText.setText("Status");
+        statusText.setText("Not connected");
 
         setsL.setFont(new java.awt.Font("Arial", 0, 12));
         setsL.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -61,32 +54,8 @@ public class Client extends javax.swing.JFrame {
         setsCounter.setFont(new java.awt.Font("Arial", 0, 12));
         setsCounter.setText("00");
 
-        last.setFont(new java.awt.Font("Arial", 0, 12));
-        last.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        last.setText("Last");
-
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Epochs:");
-
-        epochS.setFont(new java.awt.Font("Arial", 0, 12));
-        epochS.setText("00");
-
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 12));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Error:");
-
-        errorS.setFont(new java.awt.Font("Arial", 0, 12));
-        errorS.setText("00");
-
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("%");
-
         jButton1.setText("Stop");
         jButton1.setEnabled(false);
-
-        stopNote.setFont(new java.awt.Font("Arial", 0, 12));
 
         connectB.setText("Connect");
         connectB.addActionListener(new java.awt.event.ActionListener() {
@@ -100,42 +69,24 @@ public class Client extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(260, Short.MAX_VALUE)
-                .add(connectB)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton1)
-                .add(60, 60, 60))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .addContainerGap(72, Short.MAX_VALUE)
-                        .add(jLabel1))
                     .add(layout.createSequentialGroup()
                         .add(42, 42, 42)
                         .add(statusL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
-                        .add(setsL, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
-                    .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
+                        .add(setsL, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(setsCounter, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(layout.createSequentialGroup()
-                        .add(errorS)
-                        .add(20, 20, 20)
-                        .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 61, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(epochS, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                    .add(statusText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .add(statusText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(217, Short.MAX_VALUE)
-                .add(stopNote, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 227, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .add(layout.createSequentialGroup()
-                .add(last, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                .add(321, 321, 321))
+                .addContainerGap(68, Short.MAX_VALUE)
+                .add(connectB)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jButton1)
+                .add(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -148,24 +99,11 @@ public class Client extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(setsL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(setsCounter, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .add(23, 23, 23)
-                .add(last, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(73, 73, 73)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .add(epochS))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .add(errorS, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-                .add(20, 20, 20)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton1)
-                    .add(connectB))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(stopNote, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .add(connectB)
+                    .add(jButton1))
+                .add(36, 36, 36))
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -175,6 +113,7 @@ public class Client extends javax.swing.JFrame {
         
         LocateServer ls = new LocateServer();
         ClientSend send = new ClientSend(cComm, ls.getServer());
+        statusText.setText("Connected...");
         ls = null;
         RecieveClient rec = new RecieveClient(cComm);
         NNrun nn = new NNrun(cComm, data);
@@ -197,18 +136,11 @@ public class Client extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connectB;
-    private javax.swing.JLabel epochS;
-    private javax.swing.JLabel errorS;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel last;
     private javax.swing.JLabel setsCounter;
     private javax.swing.JLabel setsL;
     private javax.swing.JLabel statusL;
     private javax.swing.JLabel statusText;
-    private javax.swing.JLabel stopNote;
     // End of variables declaration//GEN-END:variables
     
 }

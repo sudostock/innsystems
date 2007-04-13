@@ -22,7 +22,7 @@ public class RecieveClient implements Runnable {
     private ServerSocket sock;
     private boolean stop;
     private DataInputStream in;
-        
+    
     
     public RecieveClient(clientComm cComm) {
         this.cComm = cComm;
@@ -65,7 +65,6 @@ public class RecieveClient implements Runnable {
         double numInput;
         double numHidden;
         double learnrate;
-        System.out.println("About to get data!");
         try {
             in = new DataInputStream(s.getInputStream());
         } catch (IOException ex) {
@@ -92,8 +91,7 @@ public class RecieveClient implements Runnable {
             testData[3] = numHidden;
             testData[4] = learnrate;
             cComm.addTestData(testData);
-            System.out.println("done, recieved test data!");
-            
+                        
         }catch(IOException e) {
             e.printStackTrace();
         }

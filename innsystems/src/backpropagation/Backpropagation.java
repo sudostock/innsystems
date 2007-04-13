@@ -191,17 +191,18 @@ public class Backpropagation implements Serializable {
         this.learnRate = learnRate;
         this.momentum = momentum;
         this.patterns = patterns;
+        int tLayersize = tLayer.length;
         mode = 0;
         tolerance = .1;
         sumSE = 0;
         
         numWeights = 0;
-        for(int i = 0; i < tLayer.length -1; i++) {
+        for(int i = 0; i < tLayersize -1; i++) {
             numWeights += tLayer[i] * tLayer[i+1];
         }
         
         numUnits = 0;
-        for(int i = 0; i < tLayer.length; i++) {
+        for(int i = 0; i < tLayersize; i++) {
             numUnits += tLayer[i];
         }
         resetNet_new();

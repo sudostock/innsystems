@@ -36,7 +36,6 @@ public class ClientSend implements Runnable {
         
         while(!stop) {
             testResults = cComm.getTestResults();
-            System.out.println("Client Send Gen  " + testResults[0]);
             sendData(testResults);
         }
         

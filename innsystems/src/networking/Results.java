@@ -44,7 +44,6 @@ public class Results {
     public synchronized double[][] getResults() {
         if(!resultsB) {
             try{
-                System.out.println("No results yet, waiting...");
                 wait();
             }catch(InterruptedException ex) {
                 ex.printStackTrace();

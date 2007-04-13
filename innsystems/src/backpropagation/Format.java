@@ -12,21 +12,11 @@ import java.io.*;
 
 
 /**
- * This class is a rewrite of the Format2 class written by Dr Lilly. It is modified to work with the program
- * it will now be an object instead of a main class and it will no longer output a file, instead it will
- * have methods to allow retrieval of those "formatted" and normilized data. Also this new class will have
- * the ability to store the input data in an array, so that when the number of input nodes changes the program
- * will quickly be able to create a new dataset.
- *
- * Theoretically this class will have to be rewritten for each and every type of data one would like to run
- * this allows the Neural Net to be more generalized and let the user decide how they want to normilize their
- * data.
- *
- * This class needs to be looked at for error checking, this is an important class with intensive read from files
- * and manipulation of data.
+ * This class takes a basic input file of just stock numbers it could be easily changed to 
+ * accomadate a different data file
  *
  * @author Alex Filby
- * @version 0.0.1 3/18/07
+ * @version 1.0.0 4/11/07
  */
 public class Format {
     private String filename;
@@ -107,12 +97,11 @@ public class Format {
     
     public void createDataSet(int inputNodes, int patterns) {
         if(this.inputNodes == inputNodes && this.patterns == patterns){
-            System.out.println("hmm");
             return;
         }
         this.inputNodes = inputNodes;
         this.patterns = patterns;
-                
+        
         t_inputs = new double[patterns][inputNodes +1]; // + 1 for bias nerode
         t_outputs = new double[patterns][outputNodes];
         

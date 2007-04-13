@@ -33,7 +33,14 @@ public class netController {
     
     public netController(int particles) {
         this.particles = particles;
-        clients = new CDQueue(particles);
+        clients = new CDQueue(50);
+        dQ = new CDQueue(particles);
+        result = new Results(particles);
+    }
+    
+    public netController(int particles, int client) {
+        this.particles = particles;
+        clients = new CDQueue(client);
         dQ = new CDQueue(particles);
         result = new Results(particles);
     }
