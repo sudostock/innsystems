@@ -22,23 +22,25 @@ import java.io.*;
 public class Master implements Runnable {
     private Particles P;
     private Methods PSO;
+    private String filename;
     private boolean stop;
     private int maxEpochs;
     private BufferedWriter outFile = null;
     netController netC;
     
     /** Creates a new instance of Master */
-    public Master(int particles, int neighbors, int maxEpochs, netController netC) {
+    public Master(int particles, int neighbors, int maxEpochs, String filename, netController netC) {
         P = new Particles(particles, neighbors);
         this.maxEpochs = maxEpochs;
         this.netC = netC;
+        this.filename = filename;
         PSO = new Methods(P);
         Thread t = new Thread(this);
         stop = false;
         t.start();
         
         try {
-            outFile = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("testInfo.txt")));
+            outFile = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename)));
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -69,7 +71,15 @@ public class Master implements Runnable {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            if(stop) break;
+            if(stop) {
+                try {
+                    outFile.flush();
+                    outFile.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                break;
+            }
         }
         try {
             outFile.flush();

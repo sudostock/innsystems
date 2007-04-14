@@ -10,7 +10,10 @@
 package networking;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.Socket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 
 /**
  * Simple class that at the moment just finds the server by being hard coded or through use of a list

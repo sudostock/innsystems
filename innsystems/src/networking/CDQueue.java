@@ -6,7 +6,7 @@
 
 package networking;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * This class uses the ArrayBlockingQueue and a wait and notify scheme, so that all of the threads in
