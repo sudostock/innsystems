@@ -385,6 +385,7 @@ public class Controller extends javax.swing.JFrame {
         neighText.setText("");
         epochText.setEditable(true);
         epochText.setText("");
+        jButton1.setEnabled(true);
         
     }//GEN-LAST:event_resetPSO
     
@@ -395,7 +396,7 @@ public class Controller extends javax.swing.JFrame {
         neighText.setEditable(false);
         epochs = Integer.parseInt(epochText.getText());
         epochText.setEditable(false);
-        
+        jButton1.setEnabled(false);
         control = new netController(particles);
         statusS.setText("Controller Running...");
         
