@@ -8,8 +8,13 @@
 
 package networking;
 
-import java.net.*;
-import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.io.InputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 
 
 /**
@@ -91,7 +96,7 @@ public class RecieveComm implements Runnable{
         }
         
         controller.storeResults(particle, epochs, error);
-        System.out.println("Storing results");
+        //System.out.println("Storing results");
         controller.addQClient(s.getInetAddress());
         try {
             

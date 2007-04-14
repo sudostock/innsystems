@@ -25,6 +25,7 @@ public class Methods {
     private final double independence = .5;//.4
     private final double social = .5;//.7
     private final int num_particles;
+    private final int num_neighbors;
     private final int lowInodes=5;
     private final int highInodes=30;
     private Particles P;
@@ -33,6 +34,7 @@ public class Methods {
     public Methods(Particles particle) {
         P = particle;
         num_particles = P.getnumParticles();
+        num_neighbors = P.getnumNeighbors();
     }
     
     private double setPosition(int n, int dim){
@@ -55,7 +57,7 @@ public class Methods {
     }
     
     public void initialize(){
-        int num_particles = P.getnumParticles();
+        //int num_particles = P.getnumParticles();
         //x=input neurons, y=hidden neurons, z=learn rate,
         double w=0, x=0, y=0, z=0;
         int r=0;
@@ -65,7 +67,7 @@ public class Methods {
         for (int j=0; j<3; j++)coordinates[j]=0;
         
         //initialize particle positions
-        for(int a=0; a<num_particles; a++){
+        for(int a=0; a< num_particles; a++){
             //*dimension adjusting functionality to be included after initial project completion
             for(int b=0; b<3; b++){
                 coordinates[b]= setPosition(a,b);
@@ -95,15 +97,15 @@ public class Methods {
     
     /* This method works as designed */
     public void assign_neighbors(){
-        int neighborhood_size=P.getnumNeighbors();
-        int particles_num = P.getnumParticles();
-        for(int i = 0; i < particles_num; i++){
-            int[] neighbors = new int[neighborhood_size];
-            for (int j = 0; j < neighborhood_size; j++){
+      //  int neighborhood_size=P.getnumNeighbors();
+        //int particles_num = P.getnumParticles();
+        for(int i = 0; i < num_particles; i++){
+            int[] neighbors = new int[num_neighbors];
+            for (int j = 0; j < num_neighbors; j++){
                 if (i == 0 && j == 0){
-                    neighbors[j] = particles_num -1;
-                }else if ((i+j)> particles_num ){
-                    neighbors[j] = (i+j-1-particles_num);
+                    neighbors[j] = num_particles -1;
+                }else if ((i+j)> num_particles ){
+                    neighbors[j] = (i+j - 1 - num_particles);
                 } else  neighbors[j] = i + j - 1;
                 P.setNeighbors(i, neighbors);
             }
@@ -112,8 +114,8 @@ public class Methods {
     
     /* This method works */
     public void adjust_position(){
-        int particles_num = P.getnumParticles();
-        for (int i = 0; i < particles_num; i++){
+      //  int particles_num = P.getnumParticles();
+        for (int i = 0; i < num_particles; i++){
             double[] posit = P.getPosition(i);
             double[] vel = P.getVelocity(i);
             double[] newpos = new double[3];
@@ -131,9 +133,9 @@ public class Methods {
     }
     
     public void adjust_velocity(){
-        int num_particles = P.getnumParticles();
+      //  int num_particles = P.getnumParticles();
         
-        for(int a = 0; a<num_particles; a++){
+        for(int a = 0; a< num_particles; a++){
             double velocity[] = P.getVelocity(a);
             double nvelocity[]= new double[3];
             double pos[]= P.getPosition(a);
@@ -177,7 +179,7 @@ public class Methods {
     }
     
     public void adjust_velocity2(){
-        int num_particles = P.getnumParticles();
+      //  int num_particles = P.getnumParticles();
         
         /*
          for every particle
@@ -204,7 +206,7 @@ public class Methods {
     }*/
     
     public void calculate_fitness(int Epochs, double delta, int a){
-        double fitness = (double)(Epochs * delta); //calculates particle's finess value for particular location
+        double fitness = (Epochs * delta); //calculates particle's finess value for particular location
         if(fitness < P.getFitness(a)){
             P.setpBest(a, P.getPosition(a));
             // P.setFitness(a, fitness);
@@ -214,14 +216,14 @@ public class Methods {
     
     
     public void assign_fitness(){
-        int particles_num = P.getnumParticles();
-        for(int a = 0; a < particles_num; a++){
+      //  int particles_num = P.getnumParticles();
+        for(int a = 0; a < num_particles; a++){
             P.setFitness(a , 200);
         }
     }
     
     public void calculate_gbest(){  //global, neighborhood, and personal
-        int num_particles = P.getnumParticles();
+       // int num_particles = P.getnumParticles();
         double fitness[] = new double[num_particles];
         for(int a=0; a< num_particles; a++){
             fitness[a]=P.getFitness(a);//for each particle store its fitness value in fitness[]
@@ -240,9 +242,9 @@ public class Methods {
         }
     }
     public void lockgBest(){
-        int particles_num = P.getnumParticles();
+       // int particles_num = P.getnumParticles();
         double gbest = P.getgFitness();
-        for(int i=0; i< particles_num; i++){
+        for(int i=0; i< num_particles; i++){
             if(P.getFitness(i)==gbest){
                 double[] vel = { 0, 0, 0 };
                 P.setVelocity(i, vel);
@@ -250,17 +252,17 @@ public class Methods {
         }
         
     }
-    //Method not complete
+    
     public void calculate_nbest(){// neighborhood
-        int num_particles = P.getnumParticles();
+       // int num_particles = P.getnumParticles();
         double fitness[]=new double[num_particles];
         for(int a=0; a< num_particles; a++){
-            int num_neighbors = P.getnumNeighbors();
-            for (int b = 0; b<num_neighbors; b++){
+          //  int num_neighbors = P.getnumNeighbors();
+            for (int b = 0; b< num_neighbors; b++){
                 fitness[b]=P.getFitness(b);
                 Arrays.sort(fitness);
                 //The for loop below was using 'b' also, which could be what caused the confusion
-                for(int c = 0; c<num_particles; c++){
+                for(int c = 0; c< num_particles; c++){
                     if(P.getFitness(c)==fitness[0]){
                         double co[]= P.getpBest(c);
                         //P.setnBest(a, co);

@@ -9,6 +9,7 @@
 package pso;
 
 import networking.netController;
+import java.io.*;
 
 
 
@@ -23,7 +24,7 @@ public class Master implements Runnable {
     private Methods PSO;
     private boolean stop;
     private int maxEpochs;
-    private double data[][];
+    private BufferedWriter outFile = null;
     netController netC;
     
     /** Creates a new instance of Master */
@@ -35,34 +36,48 @@ public class Master implements Runnable {
         Thread t = new Thread(this);
         stop = false;
         t.start();
+        
+        try {
+            outFile = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("testInfo.txt")));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void run() {
         PSO.initialize();
-                
+        double[] results = null;
         for(int i=0; i<maxEpochs; i++){
             netC.setGeneration(i);
-            System.out.println("Generation " + i);
             netC.storeTestData(P.getxyz());
-            
-            data=netC.getResults();
-            
-            getResults(data);
-            
+            System.out.println("Sending Test Data: Generation " + i);
+            getResults(netC.getResults());
+            System.out.println("Calculating Results...");
             PSO.calculate_gbest();
             PSO.calculate_nbest();
             
             PSO.adjust_velocity();
             PSO.adjust_position();
-            
-            System.out.println("Epoch["+i+"] gbest: "+P.getgFitness());
+            results = P.getgBest();
+            try {
+                //System.out.println("Epoch["+i+"] gbest: "+P.getgFitness());
+                outFile.write("Epoch["+i+"] gbest: "+P.getgFitness());
+                outFile.newLine();
+                outFile.write("Position " + results[0] + " " + results[1]
+                        + " " + results[2]);
+                outFile.newLine();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             if(stop) break;
         }
-        double[] results = P.getgBest();
-        for(int i = 0; i < results.length; i++) {
-            System.out.println(results[i]);
+        try {
+            outFile.flush();
+            outFile.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        
+        System.out.println("Finished Run");
     }
     
     public void getResults(double results[][]){

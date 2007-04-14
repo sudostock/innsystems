@@ -53,17 +53,18 @@ public class Particles {
     //returns the current position
     public double[] getPosition(int particle){
         double[] coord = new double[3];
-        for (int i = 0; i < 3; i++){
-            coord[i] = hive[particle][i];
-        }
+        coord[0] = hive[particle][0];
+        coord[1] = hive[particle][1];
+        coord[2] = hive[particle][2];
+        
         return coord;
     }
     
     public double[] getPrevPosition(int particle){
         double[] coord = new double[3];
-        for (int i = 3; i < 6; i++){
-            coord[i-3] = hive[particle][i];
-        }
+        coord[0] = hive[particle][3];
+        coord[1] = hive[particle][4];
+        coord[2] = hive[particle][5];
         return coord;
     }
     //sets the velocity
@@ -75,9 +76,9 @@ public class Particles {
     //returns the velocity
     public double[] getVelocity(int particle){
         double[] coord = new double[3];
-        for (int i = 6; i < 9; i++){
-            coord[i-6] = hive[particle][i];
-        }
+        coord[0] = hive[particle][6];
+        coord[1] = hive[particle][7];
+        coord[2] = hive[particle][8];
         return coord;
     }
     //sets the fitness in terms of error
@@ -180,7 +181,7 @@ public class Particles {
     public double getgFitness(){
         return gFit;
     }
-     public void setnFitness(double nf){
+    public void setnFitness(double nf){
         nFit = nf;
     }
     public double getnFitness(){

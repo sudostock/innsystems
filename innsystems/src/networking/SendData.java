@@ -10,8 +10,13 @@
 package networking;
 
 
-import java.io.*;
-import java.net.*;
+import java.net.Socket;
+import java.net.BindException;
+import java.net.ConnectException;
+import java.net.InetAddress;
+import java.io.DataOutputStream;
+import java.io.OutputStream;
+import java.io.IOException;
 
 /**
  * Class takes data from the netController class and sends it to the appropriate client
@@ -43,15 +48,15 @@ public class SendData extends Thread {
             
             data = controller.retrieveTestData();
             gen = (int) data[0];
-            System.out.println("Send Generation " + gen);
+           // System.out.println("Send Generation " + gen);
             particle = data[1];
-            System.out.println("Send Particle #: " + particle);
+           // System.out.println("Send Particle #: " + particle);
             numInput = data[2];
             numHidden = data[3];
             learnrate = data[4];
             
             client = controller.pullQClient();
-            System.out.println("Ready to send to "+client);
+           // System.out.println("Ready to send to "+client);
             sendC(client, gen, particle, numInput, numHidden, learnrate);
         }
     }

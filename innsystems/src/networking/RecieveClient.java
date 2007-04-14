@@ -8,8 +8,13 @@
 
 package networking;
 
-import java.net.*;
-import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.DataInputStream;
 
 /**
  * This class is used to recieve all the incoming communications for the client
