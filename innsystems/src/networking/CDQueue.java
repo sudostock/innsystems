@@ -20,17 +20,23 @@ public class CDQueue {
     private int size = 50;
     private boolean data;
     
-    /** Creates a new instance of CDQueue */
+    /** Creates an instance of CDQueue */
     public CDQueue() {
         q = new ArrayBlockingQueue(size);
         data = false;
     }
     
+    /** Creates an instance of CDQueue 
+     * @param size set an explicit size of the Queue
+     */
     public CDQueue(int size) {
         q = new ArrayBlockingQueue(size);
         data = false;
     }
     
+    /** Places an object into the Queue
+     * @param obj Any object the user wants to store
+     */
     public synchronized void put(Object obj) {
         try {
             q.put(obj);
@@ -41,6 +47,9 @@ public class CDQueue {
         notify();
     }
     
+    /** Removes the first item in the Queue
+     * @returns Object
+     */
     public synchronized Object take() {
         Object obj = null;
         if(!data) {
@@ -61,6 +70,9 @@ public class CDQueue {
         return obj;
     }
     
+    /** Checks for data in queue
+     * @returns boolean
+     */
     public boolean isEmpty() {
         return q.isEmpty();
     }

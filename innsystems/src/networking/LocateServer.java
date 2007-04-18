@@ -24,6 +24,7 @@ import java.net.UnknownHostException;
  *
  * @author Alexander.Filby
  */
+
 public class LocateServer {
     private InetAddress server;
     private final String defaultServer = "10.10.31.15";
@@ -31,14 +32,19 @@ public class LocateServer {
     private boolean address = false;
     private String serverlist;
     
+    /** Creates instance of LocateServer, default */
     public LocateServer() {
         findServer();
     }
     
+    /** Creates instance of LocateServer
+     * @param filename name of the serverlist file, file extension is irrelevant
+     */
     public LocateServer(String filename) {
         findServer(filename);
     }
     
+    /** findServer tries to connect to the default server */
     private void findServer() {
         try {
             server = InetAddress.getByName(defaultServer);
@@ -62,7 +68,9 @@ public class LocateServer {
         }
         
     }
-    
+     /** Cycles through list of included server ips until it find a server
+      * @param filename name of file that includes server ips
+      */
     private void findServer(String filename) {
         serverlist = filename;
         BufferedReader inFile = null;
@@ -105,6 +113,9 @@ public class LocateServer {
         }
     }
     
+    /** Fetches server ip find by locate method
+     * @returns ip address of server
+     */
     public InetAddress getServer() {
         if(address)
             return server;

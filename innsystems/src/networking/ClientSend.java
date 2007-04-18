@@ -24,7 +24,10 @@ public class ClientSend implements Runnable {
     private final int port = 7780;
     private boolean stop;
     
-    
+    /** Creates an instance of ClientSend
+     * @param cComm a netController object
+     * @param InetAddress address of the server
+     */
     public ClientSend(clientComm cComm, InetAddress server) {
         this.cComm = cComm;
         this.server = server;
@@ -44,6 +47,9 @@ public class ClientSend implements Runnable {
         
     }
     
+    /** Sends data in queue back to server
+     * @param double[] results that have to be sent to server
+     */
     private void sendData(double[] testResults) {
         Socket sock;
         DataOutputStream out;
