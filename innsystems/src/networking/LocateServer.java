@@ -9,7 +9,11 @@
 
 package networking;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -25,6 +29,7 @@ public class LocateServer {
     private final String defaultServer = "10.10.31.15";
     private final int port = 7776;
     private boolean address = false;
+    private String serverlist;
     
     public LocateServer() {
         findServer();
@@ -59,7 +64,45 @@ public class LocateServer {
     }
     
     private void findServer(String filename) {
+        serverlist = filename;
+        BufferedReader inFile = null;
+        try {
+            inFile = new BufferedReader(new InputStreamReader(new FileInputStream(serverlist)));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
         
+        String serverT = null;
+        while(true) {
+            try {
+                serverT = inFile.readLine();
+                if(serverT == null) break;
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            
+            try {
+                server = InetAddress.getByName(serverT);
+            } catch (UnknownHostException ex) {
+                System.out.println("Unknown Host");
+                continue;
+            }
+            
+            Socket sock = null;
+            try {
+                sock = new Socket(server, port);
+            } catch (Exception e) {
+                System.out.println("Failed to connect to server!");
+                continue;
+            }
+            try {
+                address = true;
+                sock.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            
+        }
     }
     
     public InetAddress getServer() {

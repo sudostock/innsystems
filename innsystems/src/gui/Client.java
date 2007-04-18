@@ -16,7 +16,7 @@ import networking.*;
 public class Client extends javax.swing.JFrame {
     private clientComm cComm;
     private String data = "AppleTestData.db";
-    
+    private String serverlist;
     
     /** Creates new form Client */
     public Client() {
@@ -37,6 +37,10 @@ public class Client extends javax.swing.JFrame {
         setsCounter = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         connectB = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        serverL = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        dataF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Innsystems Client v1.0");
@@ -64,6 +68,16 @@ public class Client extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 12));
+        jLabel1.setText("Server List:");
+
+        serverL.setText("Enter filename");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12));
+        jLabel2.setText("Data File:");
+
+        dataF.setText("Enter datafile");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,17 +91,25 @@ public class Client extends javax.swing.JFrame {
                                 .add(statusL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 60, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .add(setsL, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .add(setsL, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .add(jLabel1))
+                            .add(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .add(jLabel2)))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(setsCounter, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(statusText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(statusText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(serverL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(dataF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(68, Short.MAX_VALUE)
+                        .addContainerGap(108, Short.MAX_VALUE)
                         .add(connectB)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton1)))
-                .add(79, 79, 79))
+                .add(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -100,7 +122,15 @@ public class Client extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(setsL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(setsCounter, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .add(73, 73, 73)
+                .add(17, 17, 17)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel1)
+                    .add(serverL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(14, 14, 14)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(dataF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(14, 14, 14)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(connectB)
                     .add(jButton1))
@@ -111,8 +141,11 @@ public class Client extends javax.swing.JFrame {
     
     private void connectServer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectServer
 // Connect to server
-        
-        LocateServer ls = new LocateServer();
+        data = dataF.getText();
+        dataF.setEditable(false);
+        serverlist = serverL.getText();
+        serverL.setEditable(false);
+        LocateServer ls = new LocateServer(serverlist);
         ClientSend send = new ClientSend(cComm, ls.getServer());
         statusText.setText("Connected...");
         ls = null;
@@ -137,7 +170,11 @@ public class Client extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connectB;
+    private javax.swing.JTextField dataF;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField serverL;
     private javax.swing.JLabel setsCounter;
     private javax.swing.JLabel setsL;
     private javax.swing.JLabel statusL;
