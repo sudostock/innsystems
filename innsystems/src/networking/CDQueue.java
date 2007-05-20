@@ -77,4 +77,8 @@ public class CDQueue {
         return q.isEmpty();
     }
     
+    public void changeSize(int size) {
+        q = new ArrayBlockingQueue(size);
+    }
+    
 }

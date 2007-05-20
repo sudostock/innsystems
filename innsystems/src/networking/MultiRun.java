@@ -82,16 +82,16 @@ public class MultiRun implements Runnable {
         
         String filename = (particles + "_" + neighbors + "_" + epochs + ".txt");
         pso = new Master(particles, neighbors, epochs, filename, control);
-        
         for(int i = 1; i < lengthA; i++) {
             control.next();
-            
             particles = testdata[i][0];
             neighbors = testdata[i][1];
             epochs = testdata[i][2];
             
+            
             control.reset_Controller(particles);
             control.resetSwit();
+            
             filename = (particles + "_" + neighbors + "_" + epochs + ".txt");
             pso = new Master(particles, neighbors, epochs, filename, control);
         }

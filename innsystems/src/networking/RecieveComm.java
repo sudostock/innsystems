@@ -107,8 +107,9 @@ public class RecieveComm implements Runnable{
         
     }
     
-    public void stop() {
+    public void stopTT() {
         stop = true;
     }
     
+  
 }

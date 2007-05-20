@@ -489,8 +489,8 @@ public class Controller extends javax.swing.JFrame {
     }//GEN-LAST:event_setInputs
     
     private void stopSystem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSystem
-        pso.stop();
-        rec.stop();
+        //pso.stop();
+       // rec.stop();
         
     }//GEN-LAST:event_stopSystem
     

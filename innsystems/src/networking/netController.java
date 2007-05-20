@@ -98,7 +98,7 @@ public class netController {
     
     public void reset_Controller(int particles) {
         this.particles = particles;
-        dQ = new CDQueue(particles);
+        dQ.changeSize(particles);
         result = new Results(particles);
     }
     

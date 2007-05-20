@@ -45,18 +45,15 @@ public class SendData extends Thread {
     
     public void run() {
         while(!stop) {
-            
             data = controller.retrieveTestData();
             gen = (int) data[0];
-           // System.out.println("Send Generation " + gen);
+            // System.out.println("Send Generation " + gen);
             particle = data[1];
-           // System.out.println("Send Particle #: " + particle);
+            // System.out.println("Send Particle #: " + particle);
             numInput = data[2];
             numHidden = data[3];
             learnrate = data[4];
-            
             client = controller.pullQClient();
-           // System.out.println("Ready to send to "+client);
             sendC(client, gen, particle, numInput, numHidden, learnrate);
         }
     }
@@ -105,5 +102,6 @@ public class SendData extends Thread {
         
         controller.addTestData(data);
     }
+    
     
 }
