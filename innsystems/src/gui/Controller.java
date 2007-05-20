@@ -11,16 +11,18 @@ import pso.*;
 
 /**
  *
- * @author  alex
+ * @author  Alex Filby
  */
 public class Controller extends javax.swing.JFrame {
     private int particles;
     private int neighbors;
     private int epochs;
+    private boolean single = true;
     private netController control;
     private RecieveComm rec;
     private SendData sendD;
     private Master pso;
+    private MultiRun mRun;
     
     
     /** Creates new form Controller */
@@ -39,6 +41,7 @@ public class Controller extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         partText = new javax.swing.JTextField();
         particlesL = new javax.swing.JLabel();
@@ -49,6 +52,10 @@ public class Controller extends javax.swing.JFrame {
         neighL = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         resetB = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
+        testRuns = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientList = new javax.swing.JList();
@@ -75,6 +82,7 @@ public class Controller extends javax.swing.JFrame {
 
         fAbout.setTitle("About");
         fAbout.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel4.setMinimumSize(new java.awt.Dimension(40, 40));
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setEditable(false);
@@ -88,7 +96,7 @@ public class Controller extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -117,7 +125,7 @@ public class Controller extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("INNSystems Controller ver0.9");
+        setTitle("INNSystems Controller ver1.0");
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         particlesL.setText("Number of Particles:");
@@ -143,36 +151,82 @@ public class Controller extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
+        jRadioButton1.setText("Single Run");
+        jRadioButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jRadioButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                singleRun(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Multiple Runs");
+        jRadioButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jRadioButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiRuns(evt);
+            }
+        });
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Test Runs:");
+
+        testRuns.setEditable(false);
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(52, 52, 52)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(particlesL)
-                    .add(inputL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(neighL)
-                    .add(epochL))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(partText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .add(epochText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .add(neighText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-                .add(40, 40, 40))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jButton1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(resetB)
                 .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(68, 68, 68)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(particlesL)
+                            .add(neighL)
+                            .add(epochL))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(partText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                            .add(epochText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                            .add(neighText, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
+                        .add(23, 23, 23)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(inputL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jPanel1Layout.createSequentialGroup()
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(org.jdesktop.layout.GroupLayout.LEADING, jRadioButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jRadioButton2)
+                                    .add(testRuns, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))))))
+                .add(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .add(43, 43, 43)
                 .add(inputL, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jRadioButton1)
+                    .add(jRadioButton2))
+                .add(16, 16, 16)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(testRuns, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(particlesL)
                     .add(partText, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -316,7 +370,7 @@ public class Controller extends javax.swing.JFrame {
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(statusS, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 49, Short.MAX_VALUE)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(filenameF, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -374,6 +428,25 @@ public class Controller extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    private void singleRun(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleRun
+        partText.setEditable(true);
+        neighText.setEditable(true);
+        epochText.setEditable(true);
+        filenameF.setEditable(true);
+        testRuns.setEditable(false);
+        single = true;
+        
+    }//GEN-LAST:event_singleRun
+    
+    private void multiRuns(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiRuns
+        partText.setEditable(false);
+        neighText.setEditable(false);
+        epochText.setEditable(false);
+        filenameF.setEditable(false);
+        testRuns.setEditable(true);
+        single = false;
+    }//GEN-LAST:event_multiRuns
+    
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         fAbout.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -385,23 +458,34 @@ public class Controller extends javax.swing.JFrame {
         neighText.setText("");
         epochText.setEditable(true);
         epochText.setText("");
+        jRadioButton1.setSelected(true);
+        filenameF.setEditable(true);
+        testRuns.setEditable(false);
+        single = true;
         jButton1.setEnabled(true);
         
     }//GEN-LAST:event_resetPSO
     
     private void setInputs(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setInputs
-        particles = Integer.parseInt(partText.getText());
-        partText.setEditable(false);
-        neighbors = Integer.parseInt(neighText.getText());
-        neighText.setEditable(false);
-        epochs = Integer.parseInt(epochText.getText());
-        epochText.setEditable(false);
-        jButton1.setEnabled(false);
-        control = new netController(particles);
-        statusS.setText("Controller Running...");
-        
-        broadcastS broad = new broadcastS(control);
-        statusS.setText("Listening for clients...");
+        if(single) {
+            particles = Integer.parseInt(partText.getText());
+            partText.setEditable(false);
+            neighbors = Integer.parseInt(neighText.getText());
+            neighText.setEditable(false);
+            epochs = Integer.parseInt(epochText.getText());
+            epochText.setEditable(false);
+            jButton1.setEnabled(false);
+            control = new netController(particles);
+            statusS.setText("Controller Running...");
+            
+            broadcastS broad = new broadcastS(control);
+            statusS.setText("Listening for clients...");
+        }else {
+            testRuns.setEditable(false);
+            jButton1.setEnabled(false);
+            mRun = new MultiRun(testRuns.getText());
+            statusS.setText("Listening for clients...");
+        }
     }//GEN-LAST:event_setInputs
     
     private void stopSystem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSystem
@@ -411,20 +495,23 @@ public class Controller extends javax.swing.JFrame {
     }//GEN-LAST:event_stopSystem
     
     private void runPSO(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runPSO
-        if(filenameF.getText().equalsIgnoreCase("")) {
+        if(single) {
+            if(filenameF.getText().equalsIgnoreCase("")) {
+                statusS.setText("Error: Enter a filename!");
+                return;
+            }
+            sendD = new SendData(control);
+            rec = new RecieveComm(control);
             
+            
+            pso = new Master(particles, neighbors, epochs, filenameF.getText(), control);
+            filenameF.setEditable(false);
+            
+            statusS.setText("PSO Running...");
+        } else {
+            mRun.start();
+            statusS.setText("PSO Running...");
         }
-        sendD = new SendData(control);
-        //   SendData = send.getThread();
-        rec = new RecieveComm(control);
-        //    Rec = rec.getThread();
-        
-        pso = new Master(particles, neighbors, epochs, filenameF.getText(), control);
-        filenameF.setEditable(false);
-        //  Master = pso.getThread();
-        
-        // control.setThreads(Master, SendData, Rec);
-        statusS.setText("PSO Running...");
         
     }//GEN-LAST:event_runPSO
     
@@ -442,6 +529,7 @@ public class Controller extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel GVbest;
     private javax.swing.JLabel bestP;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JList clientList;
     private javax.swing.JLabel epochL;
     private javax.swing.JTextField epochText;
@@ -452,6 +540,7 @@ public class Controller extends javax.swing.JFrame {
     private javax.swing.JLabel inputL;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
@@ -463,6 +552,8 @@ public class Controller extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
@@ -476,6 +567,7 @@ public class Controller extends javax.swing.JFrame {
     private javax.swing.JButton runPSO;
     private javax.swing.JLabel statusS;
     private javax.swing.JButton stopSys;
+    private javax.swing.JTextField testRuns;
     private javax.swing.JLabel veloL;
     // End of variables declaration//GEN-END:variables
     

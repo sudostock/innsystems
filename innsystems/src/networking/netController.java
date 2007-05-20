@@ -25,6 +25,7 @@ public class netController {
     private boolean resultsB;
     private boolean dataS;
     private Results result;
+    private Switch swit;
     
     private double[][] testData;
     
@@ -34,6 +35,7 @@ public class netController {
         clients = new CDQueue(50);
         dQ = new CDQueue(particles);
         result = new Results(particles);
+        swit = new Switch();
     }
     
     public netController(int particles, int client) {
@@ -41,6 +43,7 @@ public class netController {
         clients = new CDQueue(client);
         dQ = new CDQueue(particles);
         result = new Results(particles);
+        swit = new Switch();
     }
     
     public void addQClient(InetAddress address) {
@@ -91,6 +94,24 @@ public class netController {
     
     public int getGeneration() {
         return generation;
+    }
+    
+    public void reset_Controller(int particles) {
+        this.particles = particles;
+        dQ = new CDQueue(particles);
+        result = new Results(particles);
+    }
+    
+    public void next() {
+        swit.next();
+    }
+    
+    public void finished() {
+        swit.finished();
+    }
+    
+    public void resetSwit() {
+        swit.reset();
     }
     
     

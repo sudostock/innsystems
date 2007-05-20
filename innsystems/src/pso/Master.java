@@ -88,6 +88,7 @@ public class Master implements Runnable {
             ex.printStackTrace();
         }
         System.out.println("Finished Run");
+        netC.finished();
     }
     
     public void getResults(double results[][]){
