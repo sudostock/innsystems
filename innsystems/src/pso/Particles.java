@@ -89,12 +89,14 @@ public class Particles {
     public double getFitness(int particle){
         return hive[particle][9];
     }
+    
     //sets the personal best for this particle
     public void setpBest(int particle, double[] pBest){
         hive[particle][10] = pBest[0];
         hive[particle][11] = pBest[1];
         hive[particle][12] = pBest[2];
     }
+    
     //gets the personal best for this particle
     public double[] getpBest(int particle){
         double[] p = new double[3];
@@ -103,6 +105,7 @@ public class Particles {
         p[2] = hive[particle][12];
         return p;
     }
+    
     //sets all the initial data for one particle.
     public void setAll(int particle, double[] position, double[] velocity, double fitness, double tFitness, double[] pBest, int[] neighbors){
         setPosition(particle, position);
@@ -113,12 +116,14 @@ public class Particles {
         hive[particle][12] = pBest[2];
         setNeighbors(particle, neighbors);
     }
+    
     //set neighbors
     public void setNeighbors(int particle, int[] neighbors){
         for (int i = 16; i < numNeighbors+16; i++){
             hive[particle][i] = neighbors[i-16];
         }
     }
+    
     //get neighbors
     public double[] getNeighbors(int particle){
         double[] neighbors = new double[(int)numNeighbors];

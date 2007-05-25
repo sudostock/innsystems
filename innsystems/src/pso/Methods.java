@@ -52,14 +52,11 @@ public class Methods {
             pos = (int)(Math.random()*random_factor);
             //**********************
             if(x==3)pos = (Math.random()*random_factor/5);
-            System.out.println(pos);
         }
         return pos;
     }
     
     public void initialize(){
-        //int num_particles = P.getnumParticles();
-        //x=input neurons, y=hidden neurons, z=learn rate,
         double w=0, x=0, y=0, z=0;
         int r=0;
         
@@ -113,7 +110,6 @@ public class Methods {
         }
     }
     
-    /* This method works */
     public void adjust_position(){
         //  int particles_num = P.getnumParticles();
         for (int i = 0; i < num_particles; i++){
@@ -134,7 +130,6 @@ public class Methods {
     }
     
     public void adjust_velocity(){
-        //  int num_particles = P.getnumParticles();
         
         for(int a = 0; a< num_particles; a++){
             double velocity[] = P.getVelocity(a);
@@ -179,52 +174,22 @@ public class Methods {
         lockgBest();
     }
     
-    public void adjust_velocity2(){
-        //  int num_particles = P.getnumParticles();
-        
-        /*
-         for every particle
-            for i and j velocities of each particle
-                adjust velocity according to equation
-            for k velocity of each particle
-                adjust velocity according to equation
-         store new velocity component in 2dim array
-         constrict velocity
-         lock the global best
-         
-         */
-    }
-    
-    
-    /* Tested: Works */
-   /* public void calculate_fitness(int Epochs, double delta, int a){
-        double fitness = Epochs * delta;
-        P.setFitness(a,fitness);
-        if (fitness < P.getFitness(a)){
-            P.setFitness(a, fitness);
-            P.setpBest(a, P.getPosition(a));
-        }
-    }*/
-    
     public void calculate_fitness(int Epochs, double delta, int a){
         double fitness = (Epochs * delta); //calculates particle's finess value for particular location
         if(fitness < P.getFitness(a)){
             P.setpBest(a, P.getPosition(a));
-            // P.setFitness(a, fitness);
         }
         P.setFitness(a, fitness);
     }
     
     
     public void assign_fitness(){
-        //  int particles_num = P.getnumParticles();
         for(int a = 0; a < num_particles; a++){
             P.setFitness(a , 200);
         }
     }
     
     public void calculate_gbest(){  //global, neighborhood, and personal
-        // int num_particles = P.getnumParticles();
         double fitness[] = new double[num_particles];
         for(int a=0; a< num_particles; a++){
             fitness[a]=P.getFitness(a);//for each particle store its fitness value in fitness[]
@@ -234,16 +199,14 @@ public class Methods {
         for(int b =0; b < num_particles; b++){
             if(P.getFitness(b)==fitness[0]){//for each particle see if its value corresponds to the lowest value
                 double co[] = P.getpBest(b);//gets coordinates of particle with lowest fitness value
-                //P.setgBest(co);
-                //if(P.getgBest()>P.getpBest(b))P.setgBest(co);
                 if(P.getgFitness()>P.getFitness(b))P.setgBest(co);
                 if(P.getgFitness()>P.getFitness(b))P.setgFitness(fitness[0]);
                 break;
             }
         }
     }
+    
     public void lockgBest(){
-        // int particles_num = P.getnumParticles();
         double gbest = P.getgFitness();
         for(int i=0; i< num_particles; i++){
             if(P.getFitness(i)==gbest){
@@ -261,93 +224,94 @@ public class Methods {
             //  int num_neighbors = P.getnumNeighbors();
             for (int b = 0; b< num_neighbors; b++){
                 fitness[b]=P.getFitness(b);
-                if (nBest > fitness[b]) { 
-
-                P.setnBest(a, P.getpBest(b));
-                P.setnFitness(fitness[b]);
+                if (nBest > fitness[b]) {
+                    
+                    P.setnBest(a, P.getpBest(b));
+                    P.setnFitness(fitness[b]);
                 }
             }
         }
     }
-
-/** Debug method that returns the particle array contained inside the particles class */
-public void debug() {
-    P.debug();
-}
-
-public double[] getgBest(){
-    double c[]= P.getgBest();
-    return c;
-}
-
-public void debug2(){
-    P.debuggBest();
-}
-
-public void printParticles() {
-    String view[][] = new String[100][100];
     
-    for(int i = 0; i < 100; i++) {
-        for(int j = 0; j < 100; j++) {
-            view[i][j] = " ";
-        }
+    /** Debug method that returns the particle array contained inside the particles class */
+    public void debug() {
+        P.debug();
     }
     
-    int particles = P.getnumParticles();
+    public double[] getgBest(){
+        double c[]= P.getgBest();
+        return c;
+    }
     
-    for(int i = 0; i < particles; i++) {
-        double pos[] = new double[3];
-        pos = P.getPosition(i);
+    public void debug2(){
+        P.debuggBest();
+    }
+    
+  
+    
+    public void printParticles() {
+        String view[][] = new String[100][100];
         
-        view[(int)pos[1]][(int)pos[0]] = "X";
-    }
-    System.out.println("-------------");
-    System.out.println(" X and Y graph");
-    for(int i = 0; i < 100; i++) {
-        for(int j = 0; j < 100; j++) {
-            System.out.print(view[i][j] + "\t");
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                view[i][j] = " ";
+            }
         }
-        System.out.println("");
-    }
-    System.out.println("----------");
-    view = new String[100][100];
-    
-    for(int i = 0; i < 100; i++) {
-        for(int j = 0; j < 100; j++) {
-            view[i][j] = " ";
-        }
-    }
-    
-    
-    
-    for(int i = 0; i < particles; i++) {
-        double pos[] = new double[3];
-        pos = P.getPosition(i);
         
-        view[(int)pos[2]][(int)pos[0]] = "X";
-    }
-    System.out.println("-------------");
-    System.out.println(" X and Z graph");
-    for(int i = 0; i < 100; i++) {
-        for(int j = 0; j < 100; j++) {
-            System.out.print(view[i][j] + "\t");
+        int particles = P.getnumParticles();
+        for(int i = 0; i < particles; i++) {
+            double pos[] = new double[3];
+            pos = P.getPosition(i);
+            
+            view[(int)pos[1]][(int)pos[0]] = "X";
         }
-        System.out.println("");
+        System.out.println("-------------");
+        System.out.println(" X and Y graph");
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                System.out.print(view[i][j] + "\t");
+            }
+            System.out.println("");
+        }
+        System.out.println("----------");
+        view = new String[100][100];
+        
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                view[i][j] = " ";
+            }
+        }
+        
+        
+        
+        for(int i = 0; i < particles; i++) {
+            double pos[] = new double[3];
+            pos = P.getPosition(i);
+            
+            view[(int)pos[2]][(int)pos[0]] = "X";
+        }
+        System.out.println("-------------");
+        System.out.println(" X and Z graph");
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                System.out.print(view[i][j] + "\t");
+            }
+            System.out.println("");
+        }
+        
     }
     
-}
-
-public void constrictInodes(){
-    double[] ipos;
-    double[] temp;
-    for(int i =0; i<P.getnumParticles(); i++){
-        temp = P.getPosition(i);
-        if(temp[0]>30 || temp[0]<5){
-            temp[0] = 30 - 25*Math.random();
+    public void constrictInodes(){
+        double[] ipos;
+        double[] temp;
+        for(int i =0; i<P.getnumParticles(); i++){
+            temp = P.getPosition(i);
+            if(temp[0]>30 || temp[0]<5){
+                temp[0] = 30 - 25*Math.random();
+            }
+            P.modifyX((int)temp[0], i);
         }
-        P.modifyX((int)temp[0], i);
     }
-}
-
-
+    
+    
 }
