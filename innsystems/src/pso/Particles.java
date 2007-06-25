@@ -125,10 +125,10 @@ public class Particles {
     }
     
     //get neighbors
-    public double[] getNeighbors(int particle){
-        double[] neighbors = new double[(int)numNeighbors];
+    public int[] getNeighbors(int particle){
+        int[] neighbors = new int[numNeighbors];
         for (int i = 16; i < numNeighbors+16; i++){
-            neighbors[i-16] = hive[particle][i];
+            neighbors[i-16] = (int) hive[particle][i];
         }
         return neighbors;
     }
@@ -186,9 +186,11 @@ public class Particles {
     public double getgFitness(){
         return gFit;
     }
+    /* Not understanding the use of method, looks pointless */
     public void setnFitness(double nf){
         nFit = nf;
     }
+    /* Not understanding the use of method, looks pointless */
     public double getnFitness(){
         return nFit;
     }

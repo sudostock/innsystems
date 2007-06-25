@@ -216,7 +216,7 @@ public class Methods {
         }
         
     }
-    
+   /* Broken */ 
     public void calculate_nbest(){// neighborhood
         // int num_particles = P.getnumParticles();
         double fitness[]=new double[num_particles];
@@ -230,6 +230,23 @@ public class Methods {
                     P.setnFitness(fitness[b]);
                 }
             }
+        }
+    }
+    
+    /* Finished, needs to be double checked */
+    public void calculate_nbest_test() {
+      
+        for(int i = 0; i < num_particles; i++) {
+            double nbestP = P.getFitness(i);
+            int partNum = i;
+            int neighbors[] = P.getNeighbors(i);
+            for(int j = 0; j < num_neighbors; j++) {
+                if( P.getFitness(neighbors[j]) < nbestP ) {
+                    nbestP = P.getFitness(neighbors[j]);
+                    partNum = neighbors[j];
+                }
+            }
+            P.setnBest(i, P.getPosition(partNum));
         }
     }
     
