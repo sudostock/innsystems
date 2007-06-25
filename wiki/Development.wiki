@@ -10,15 +10,11 @@ Assignments will be listed here for things needing to be created and bugs that n
 
 
 *Joel*
- * Work on GUIs, fix issue 25
- * Stress Test Filby
+ * Answer Emails...
 
 *Kevin*
- * Work out kinks in PSO
- * Find ways PSO could be make better
- * Start brainstorming ways stress test the program
+ * Work out specifics for dimension modifying
 
 *Alex*
  * Find a way to add redundancy to controller/client
- * Finish format class and backpropagation class
- * Start brainstorming ways stress test the program
+ * Work on some bugs still lingering in the project
