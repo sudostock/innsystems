@@ -3,52 +3,14 @@
 
 = Goals =
 
-== By end of Feb ==
+== By end of Aug/Summer ==
 
- * ~~Settle on a design for the PSO~~
- * ~~*Write* the PSO~~
- * ~~Determine best way to network the computers~~
- * ~~Begin testing of the different sections of code~~
- * ~~!!Get approval from jellis.~~ - NO, DENIED MONEY
-  * SGA will approve if only objection was money
- 
- * *Note: February is over, not all is done, moved to March goals*
-== By end of March ==
-
- * *By Wed March 7*
-  * Complete Milestone 1.0 - have the entire system finished and ready to debug
-   *Been delayed even further, no estimate at this time
-
- * ~~*Write* networking code~~
- * *Write* "Main" program that interfaces with all of the other sections
-  * Partially complete, the GUI is done, it just needs to be tweaked more or less
- * *Write* "Client" program to be put on remote computers
-  * GUI has a finalized design, but it needs to pull information from each run and is about 50% complete
- * Finish testing of all components of the project
- * Take the collected data and start to run tests with the system as a whole
- * Debug any errors as fast as possible
- * Make full blown runs with the system and record data
- * Run same data on non PSO computer to have control
- * Write paper
- * Begin designing presentation
-
-== By State Science Fair ==
-
- * Project not completed enough to be able to present the findings
-
- * ~~Have a complete working system with data to show our findings~~
- * ~~In depth knowledge of everything about the project so we can field questions~~
-
-== Tentative ==
- * Run profiler
- * !!Optimize!!
- 
-
-== Day After? ==
-
- * *RELAX*
-
-
+ * Work through issues list and resolve majority of bugs
+ * Add enhancements
+ * Add dimension modifying to the PSO
+ * Run data tests
+ * Analyze data
+ * Anything else that comes up
 
 
 
