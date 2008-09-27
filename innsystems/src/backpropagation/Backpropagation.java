@@ -8,7 +8,7 @@ package backpropagation;
  */
 
 
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.io.Serializable;
 import java.util.StringTokenizer;
 import java.io.IOException;
@@ -261,7 +261,7 @@ public class Backpropagation implements Serializable {
     }
     
     public void getValue(double[] testvec) {
-        double sumSE;
+        //double sumSE;
         
 //*** Did not normalize data so no need to convert back
 //***        data = normalizeData(data);

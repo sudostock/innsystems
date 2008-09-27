@@ -1,9 +1,28 @@
 /*
  * Controller.java
  *
+ * Copyright (c) 2007 Alex Filby, Joel Wolfe, Kevin Beale
+ *
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+ *
+ *The above copyright notice and this permission notice shall be included in
+ *all copies or substantial portions of the Software.
+ *
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ *THE SOFTWARE.
+ * 
  * Created on February 26, 2007, 10:38 AM
  */
-
 package gui;
 
 import networking.*;
@@ -14,6 +33,7 @@ import pso.*;
  * @author  Alex Filby
  */
 public class Controller extends javax.swing.JFrame {
+
     private int particles;
     private int neighbors;
     private int epochs;
@@ -23,13 +43,12 @@ public class Controller extends javax.swing.JFrame {
     private SendData sendD;
     private Master pso;
     private MultiRun mRun;
-    
-    
+
     /** Creates new form Controller */
     public Controller() {
         initComponents();
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -427,7 +446,7 @@ public class Controller extends javax.swing.JFrame {
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void singleRun(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleRun
         partText.setEditable(true);
         neighText.setEditable(true);
@@ -435,9 +454,9 @@ public class Controller extends javax.swing.JFrame {
         filenameF.setEditable(true);
         testRuns.setEditable(false);
         single = true;
-        
+
     }//GEN-LAST:event_singleRun
-    
+
     private void multiRuns(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiRuns
         partText.setEditable(false);
         neighText.setEditable(false);
@@ -446,11 +465,11 @@ public class Controller extends javax.swing.JFrame {
         testRuns.setEditable(true);
         single = false;
     }//GEN-LAST:event_multiRuns
-    
+
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         fAbout.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-    
+
     private void resetPSO(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetPSO
         partText.setEditable(true);
         partText.setText("");
@@ -463,11 +482,11 @@ public class Controller extends javax.swing.JFrame {
         testRuns.setEditable(false);
         single = true;
         jButton1.setEnabled(true);
-        
+
     }//GEN-LAST:event_resetPSO
-    
+
     private void setInputs(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setInputs
-        if(single) {
+        if (single) {
             particles = Integer.parseInt(partText.getText());
             partText.setEditable(false);
             neighbors = Integer.parseInt(neighText.getText());
@@ -477,42 +496,41 @@ public class Controller extends javax.swing.JFrame {
             jButton1.setEnabled(false);
             control = new netController(particles);
             statusS.setText("Controller Running...");
-            
+
             broadcastS broad = new broadcastS(control);
             statusS.setText("Listening for clients...");
-        }else {
+        } else {
             testRuns.setEditable(false);
             jButton1.setEnabled(false);
             mRun = new MultiRun(testRuns.getText());
             statusS.setText("Listening for clients...");
         }
     }//GEN-LAST:event_setInputs
-    
+
     private void stopSystem(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSystem
         //pso.stop();
-       // rec.stop();
-        
+        // rec.stop();
     }//GEN-LAST:event_stopSystem
-    
+
     private void runPSO(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runPSO
-        if(single) {
-            if(filenameF.getText().equalsIgnoreCase("")) {
+        if (single) {
+            if (filenameF.getText().equalsIgnoreCase("")) {
                 statusS.setText("Error: Enter a filename!");
                 return;
             }
             sendD = new SendData(control);
             rec = new RecieveComm(control);
-            
-            
+
+
             pso = new Master(particles, neighbors, epochs, filenameF.getText(), control);
             filenameF.setEditable(false);
-            
+
             statusS.setText("PSO Running...");
         } else {
             mRun.start();
             statusS.setText("PSO Running...");
         }
-        
+
     }//GEN-LAST:event_runPSO
     
     /**
