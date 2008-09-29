@@ -12,7 +12,8 @@ import java.util.Arrays;
 
 /**
  *
- * @author Kevin Beale, Joel Wolfe
+ * @author Kevin Beale
+ * @author Joel Wolfe
  *
  */
 public class Methods {
