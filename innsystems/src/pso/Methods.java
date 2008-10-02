@@ -94,7 +94,7 @@ public class Methods {
         P.setgBest(g);
     }
     
-    /* This method works as designed */
+    /* Broken, allows particle to be its own neighbor. */
     public void assign_neighbors(){
         //  int neighborhood_size=P.getnumNeighbors();
         //int particles_num = P.getnumParticles();
@@ -217,7 +217,7 @@ public class Methods {
         }
         
     }
-   /* Broken */ 
+   /* Broken, because not specifing which neighbors, some ones over and over. */ 
     public void calculate_nbest(){// neighborhood
         // int num_particles = P.getnumParticles();
         double fitness[]=new double[num_particles];
@@ -234,16 +234,19 @@ public class Methods {
         }
     }
     
-    /* Finished, needs to be double checked */
+    /* Fixed, needs to be double checked */
     public void calculate_nbest_test() {
-      
+        double nBestP;
+        int partNum;
+        int neighbors[];
+        
         for(int i = 0; i < num_particles; i++) {
-            double nbestP = P.getFitness(i);
-            int partNum = i;
-            int neighbors[] = P.getNeighbors(i);
+            nBestP = P.getFitness(i);
+            partNum = i;
+            neighbors = P.getNeighbors(i);
             for(int j = 0; j < num_neighbors; j++) {
-                if( P.getFitness(neighbors[j]) < nbestP ) {
-                    nbestP = P.getFitness(neighbors[j]);
+                if( P.getFitness(neighbors[j]) < nBestP ) {
+                    nBestP = P.getFitness(neighbors[j]);
                     partNum = neighbors[j];
                 }
             }
