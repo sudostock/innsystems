@@ -42,22 +42,22 @@ public class SimpleQuadratic {
                 double x = coordinates[a][0];
                 double y = coordinates[a][1];
                 double z = coordinates[a][2];
-                double ans = x+y+z;//Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
+                double ans = /*x+y+z;*/Math.sqrt(x)+Math.sqrt(y)+Math.sqrt(z);
                 if(i==9999 || i==500){
                     System.out.println("ANSWER============="+ans);
                 }
-                double delta = (Math.abs((10-ans)/10))*100;
-                /*if(ans>6){
+                double delta;/* = (Math.abs((10-ans)/10))*100;*/
+                if(ans>6){
                     delta = ((ans-6)/6)*100;
                 }else{
                     delta = ((6-ans)/6)*100;
-                }*/
+                }
                 M.calculate_fitness(1,delta,a);//Epochs, delta, particle#
                 
             }
             
             M.calculate_gbest();
-            M.calculate_nbest();
+            M.calculate_nbest_test();
             M.adjust_velocity();
             //printParticles(M);
             
@@ -102,6 +102,12 @@ public class SimpleQuadratic {
         printfitness(P);
         
         System.out.println("Finished!");
+        System.out.println("GBEST ");
+        double[] best = M.getgBest();
+        for(int i = 0; i < best.length; i++) {
+            System.out.print(i + " " + best[i] + " ");
+        }
+        System.out.println("");
         printParticles(M);
     }
     public static void printxyz(Particles P){
