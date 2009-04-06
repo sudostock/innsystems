@@ -94,18 +94,13 @@ public class Methods {
         P.setgBest(g);
     }
     
-    /* Fixed, needs to be double checked. */
-    public void assign_neighbors(){
-        //  int neighborhood_size=P.getnumNeighbors();
-        //int particles_num = P.getnumParticles();
+    public void assign_neighbors() {
         int[] neighbors = new int[num_neighbors];
-        int pivot = num_particles - 1;
-        for(int i = 0; i < num_particles; i++){
-            int k = i + 1;
-            for (int j = 0; j < num_neighbors; j++){
-                if(k > pivot)
-                    k = 0;
-                neighbors[j] = k++;               
+        for(int i = 0; i < num_particles; i++) {
+            int particle = i + 1;
+            for(int j = 0; j < num_neighbors; j++) {
+                neighbors[j] = particle % num_neighbors;
+                particle++;
             }
             P.setNeighbors(i, neighbors);
         }
