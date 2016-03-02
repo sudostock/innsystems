@@ -1,0 +1,3 @@
+This project's goal is to create a system using particle swarm optimization that will optimize neural nets for specific problems which the user chooses. Our aim is to create neural nets which train faster and more accurately through optimization then by simply using standard training methods alone.
+
+**Congrats to all working on the project, after many months, and numerous hours of work the project has reach Milestone 1.0!**
